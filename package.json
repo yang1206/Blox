@@ -1,0 +1,60 @@
+{
+  "name": "my-blog",
+  "scripts": {
+    "dev": "concurrently 'pnpm:dev:*'",
+    "dev:server": "pnpm run --dir packages/server dev",
+    "build:server": "pnpm run --dir packages/server build",
+    "start": "concurrently 'pnpm:start:*'",
+    "start:server": "pnpm run --dir packages/server start",
+    "lint": "concurrently 'pnpm:lint:*'",
+    "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
+    "lint:lint-staged": "lint-staged",
+    "commit": "git pull && git add -A && git-cz && git push"
+  },
+  "author": "Yang1206",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
+  "private": true,
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "date-fns": "^2.29.3",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-ts": "^0.34.0",
+    "@commitlint/cli": "^17.4.0",
+    "@commitlint/config-conventional": "^17.4.0",
+    "@types/node": "^18.11.18",
+    "commitizen": "^4.2.6",
+    "cz-git": "^1.4.1",
+    "eslint": "^8.31.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "typescript": "^4.9.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git",
+      "useEmoji": true
+    }
+  },
+  "eslintConfig": {
+    "extends": "@antfu/eslint-config-ts"
+  },
+  "lint-staged": {
+    "./packages/client/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix"
+    ],
+    "./packages/admin/**/*.{vue,ts,,js}": [
+      "eslint --fix"
+    ],
+    "./packages/server/src/**/*.{ts,js}": [
+      "eslint --fix"
+    ]
+  }
+}
