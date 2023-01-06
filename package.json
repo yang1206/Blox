@@ -2,14 +2,14 @@
   "name": "my-blog",
   "scripts": {
     "clean": "npx rimraf ./node_modules ./packages/**/node_modules",
-    "dev": "concurrently 'pnpm:dev:*'",
+    "dev": "turbo run dev --parallel",
     "dev:server": "pnpm run --dir packages/server dev",
-    "build": "concurrently 'pnpm:build:*'",
+    "build": "pnpm exec turbo run build",
     "build:server": "pnpm run --dir packages/server build",
     "build:config": "pnpm run --dir packages/config build",
-    "start": "concurrently 'pnpm:start:*'",
+    "start": "pnpm exec turbo run start",
     "start:server": "pnpm run --dir packages/server start",
-    "lint": "concurrently 'pnpm:lint:*'",
+    "lint": "pnpm exec turbo run lint",
     "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
     "prepare": "husky install",
     "precommit": "lint-staged",
@@ -24,7 +24,6 @@
   },
   "private": true,
   "dependencies": {
-    "concurrently": "^7.6.0",
     "date-fns": "^2.29.3",
     "rimraf": "^3.0.2"
   },
@@ -39,6 +38,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",
+    "turbo": "^1.6.3",
     "typescript": "^4.9.4"
   },
   "config": {

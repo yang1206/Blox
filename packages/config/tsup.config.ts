@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ['./src/index.ts'],
   clean: true,
   outDir: './lib',
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   dts: true,
   minify: true,
 })
