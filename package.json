@@ -1,9 +1,12 @@
 {
   "name": "my-blog",
   "scripts": {
+    "clean": "npx rimraf ./node_modules ./packages/**/node_modules",
     "dev": "concurrently 'pnpm:dev:*'",
     "dev:server": "pnpm run --dir packages/server dev",
+    "build": "concurrently 'pnpm:build:*'",
     "build:server": "pnpm run --dir packages/server build",
+    "build:config": "pnpm run --dir packages/config build",
     "start": "concurrently 'pnpm:start:*'",
     "start:server": "pnpm run --dir packages/server start",
     "lint": "concurrently 'pnpm:lint:*'",
