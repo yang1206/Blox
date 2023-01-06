@@ -8,12 +8,12 @@ import { AuthModule } from 'src/modules/auth/auth.module'
 import { CategoryModule } from 'src/modules/category/category.module'
 import { TagsModule } from 'src/modules/tags/tags.module'
 import { FileModule } from 'src/modules/file/file.module'
-import envConfig from '../config/env'
+import { config } from '@my-blog/config'
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // 设置为全局
-      envFilePath: [envConfig.path],
+      envFilePath: [config.path],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

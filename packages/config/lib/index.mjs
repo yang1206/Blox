@@ -1,0 +1,1 @@
+import*as o from"fs";import*as t from"path";var n=process.env.NODE_ENV==="production";function e(){let r=t.resolve(".env"),s=t.resolve(".env.prod");if(!o.existsSync(r)&&!o.existsSync(s))throw new Error("\u7F3A\u5C11\u73AF\u5883\u914D\u7F6E\u6587\u4EF6");return{path:n&&o.existsSync(s)?s:r}}var p=e();export{p as config};
