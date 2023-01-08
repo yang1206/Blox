@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { Roles } from '../auth/role.decorator'
+import { RolesGuard } from '../auth/role.guard'
 import { TagsService } from './tags.service'
 import type { TagsRo } from './dto/tag.dto'
 import { CreateTagDto } from './dto/tag.dto'
@@ -8,6 +9,7 @@ import type { TagEntity } from './entities/tag.entity'
 
 @ApiTags('标签')
 @Controller('tags')
+@UseGuards(RolesGuard)
 export class TagsController {
   constructor(private readonly tagsService: TagsService) { }
 

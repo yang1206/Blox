@@ -1,13 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { SearchQuery } from 'src/types/interface/query.interface'
 import { Roles } from '../auth/role.decorator'
+import { RolesGuard } from '../auth/role.guard'
 import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/category.dto'
 import { CategoryEntity } from './entities/category.entity'
 
 @Controller('category')
 @ApiTags('分类')
+@UseGuards(RolesGuard)
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) { }
 

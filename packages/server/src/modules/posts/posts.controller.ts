@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import {
   Body,
   Controller,
@@ -16,9 +16,9 @@ import { RolesGuard } from 'src/modules/auth/role.guard'
 import { Request } from 'express'
 import { SearchQuery } from 'src/types/interface/query.interface'
 import { Roles } from '../auth/role.decorator'
-import { CreatePostDto, LikePostDto } from './dto/post.dot'
-import type { PostInfoDto } from './dto/post.dot'
+import { CreatePostDto, LikePostDto, PostInfoDto, PostsRo } from './dto/post.dot'
 import { PostsService } from './posts.service'
+
 @ApiTags('文章')
 @Controller('posts')
 @UseGuards(RolesGuard)
@@ -39,6 +39,7 @@ export class PostsController {
   /**
    * 获取所有文章
    */
+  @ApiResponse({ status: 200, type: PostsRo })
   @ApiOperation({ summary: '获取所有文章' })
   @Get()
   async findAll(@Query() query: SearchQuery) {
@@ -50,6 +51,7 @@ export class PostsController {
    */
   @Get('/recommend')
   @ApiOperation({ summary: '获取所有推荐文章' })
+  @ApiResponse({ status: 200, type: PostsRo })
   getRecommendArticles(@Query() query: SearchQuery) {
     return this.postsService.getRecommendArticles(query)
   }
@@ -59,6 +61,7 @@ export class PostsController {
      */
   @Get('/category/:id')
   @ApiOperation({ summary: '获取分类下所有文章' })
+  @ApiResponse({ status: 200, type: PostsRo })
   findArticlesByCategory(@Param('id') id: number, @Query() queryParams: SearchQuery) {
     return this.postsService.findArticlesByCategory(id, queryParams)
   }
@@ -66,6 +69,7 @@ export class PostsController {
   /**
    * 获取标签下所有文章
    */
+  @ApiResponse({ status: 200, type: PostsRo })
   @Get('/tag/:id')
   @ApiOperation({ summary: '获取标签下所有文章' })
   findArticlesByTag(@Param('id') tag: number, @Query() queryParams: SearchQuery) {
@@ -95,6 +99,7 @@ export class PostsController {
    * @param id
    */
   @ApiOperation({ summary: '获取指定文章' })
+  @ApiResponse({ status: 200, type: PostInfoDto })
   @Get(':id')
   async findById(@Param('id') id: string) {
     return await this.postsService.findById(id)

@@ -1,5 +1,12 @@
 {
   "name": "my-blog",
+  "private": true,
+  "author": "Yang1206",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
   "scripts": {
     "clean": "npx rimraf ./node_modules ./packages/**/node_modules",
     "dev": "turbo run dev --parallel",
@@ -16,13 +23,6 @@
     "lint:lint-staged": "lint-staged",
     "commit": "git pull && git add -A && git-cz && git push"
   },
-  "author": "Yang1206",
-  "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "pnpm": ">=7"
-  },
-  "private": true,
   "dependencies": {
     "date-fns": "^2.29.3",
     "rimraf": "^3.0.2"
@@ -35,7 +35,7 @@
     "commitizen": "^4.2.6",
     "cz-git": "^1.4.1",
     "eslint": "^8.31.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",
     "turbo": "^1.6.3",
@@ -47,9 +47,6 @@
       "useEmoji": true
     }
   },
-  "eslintConfig": {
-    "extends": "@antfu/eslint-config-ts"
-  },
   "lint-staged": {
     "./packages/client/**/*.{ts,tsx,js,jsx}": [
       "eslint --fix"
@@ -60,5 +57,8 @@
     "./packages/server/src/**/*.{ts,js}": [
       "eslint --fix"
     ]
+  },
+  "eslintConfig": {
+    "extends": "@antfu/eslint-config-ts"
   }
 }

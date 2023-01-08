@@ -2,23 +2,23 @@
   "name": "@my-blog/config",
   "version": "1.0.0",
   "description": "",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "author": "Yang1206",
+  "license": "MIT",
+  "keywords": [],
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.js"
+      "require": "./lib/index.js",
+      "import": "./lib/index.js"
     }
   },
-  "sideEffects": false,
-  "scripts": {
-    "build": "tsup"
-  },
-  "keywords": [],
+  "main": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib",
     "src"
   ],
-  "author": "Yang1206",
-  "license": "MIT"
+  "scripts": {
+    "build": "tsup"
+  }
 }
