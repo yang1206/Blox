@@ -16,16 +16,16 @@ export class MenusService {
   * 创建菜单
   * @param body
   */
-  async create(createMenuDto: CreateMenuDto, id?: number) {
-    if (id) {
-      const oldmenu = await this.menusRepository.findOneBy({ id })
+  async create(createMenuDto: CreateMenuDto) {
+    if (createMenuDto.parent_id) {
+      const oldmenu = await this.menusRepository.findOneBy({ id: createMenuDto.parent_id })
       if (!oldmenu)
-        throw new HttpException(`id为${id}的菜单不存在`, HttpStatus.BAD_REQUEST)
-      const subMenu = await this.menusRepository.create(createMenuDto)
+        throw new HttpException(`id为${createMenuDto.parent_id}的父菜单不存在`, HttpStatus.BAD_REQUEST)
+      const subMenu = this.menusRepository.create(createMenuDto)
       return await this.menusRepository.save({ ...subMenu, parent: oldmenu })
     }
     else {
-      const newMenu = await this.menusRepository.create(createMenuDto)
+      const newMenu = this.menusRepository.create(createMenuDto)
       return await this.menusRepository.save(newMenu)
     }
   }
@@ -55,7 +55,11 @@ export class MenusService {
     const oldmenu = await this.menusRepository.findOneBy({ id })
     if (!oldmenu)
       throw new HttpException(`id为${id}的菜单不存在`, HttpStatus.BAD_REQUEST)
-    const updateMenu = this.menusRepository.merge(oldmenu, updateMenuDto)
+    if (updateMenuDto.parent_id) {
+      const newParent = await this.menusRepository.findOneBy({ id: updateMenuDto.parent_id })
+      oldmenu.parent = newParent
+    }
+    const updateMenu = this.menusRepository.manager.merge(MenuEntity, oldmenu, updateMenuDto)
     return await this.menusRepository.save(updateMenu)
   }
 

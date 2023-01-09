@@ -3,6 +3,7 @@ import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
 import { compareSync } from 'bcryptjs'
 import { ConfigService } from '@nestjs/config'
+import type { SearchQuery } from 'src/types/interface/query.interface'
 import { UserEntity } from './entities/user.entity'
 import type { CreateUserDto, UserRo } from './dto/create-user.dto'
 
@@ -57,7 +58,7 @@ export class UserService {
    * @param queryParams
    * @returns
    */
-  async findAll(queryParams): Promise<UserRo> {
+  async findAll(queryParams: SearchQuery): Promise<UserRo> {
     const query = this.userRepository.createQueryBuilder('user')
     const { pageNum = 1, pageSize = 10, status, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {

@@ -6,9 +6,9 @@ import * as compression from 'compression'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { json, urlencoded } from 'express'
 import { AppModule } from './app.module'
-import { HttpExceptionFilter } from './core/filter/http-exception/http-exception.filter'
-import { TransformInterceptor } from './core/interceptor/transform/transform.interceptor'
-import { ValidationPipe } from './core/pipe/validation/validation.pipe'
+import { HttpExceptionFilter } from './core/filter/http-exception.filter'
+import { TransformInterceptor } from './core/interceptor/transform.interceptor'
+import { ValidationPipe } from './core/pipe/validation.pipe'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)

@@ -1,8 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { SearchQuery } from 'src/types/interface/query.interface'
-import { Roles } from '../auth/role.decorator'
-import { RolesGuard } from '../auth/role.guard'
+import { RolesGuard } from 'src/core/guards/role.guard'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/category.dto'
 import { CategoryEntity } from './entities/category.entity'
@@ -49,7 +49,7 @@ export class CategoryController {
  * @param id
  * @param category
  */
-  @Put(':id')
+  @Patch(':id')
   @Roles('admin')
   @ApiOperation({ summary: '更新分类信息' })
   updateById(@Param('id') id: number, @Body() category: CreateCategoryDto) {

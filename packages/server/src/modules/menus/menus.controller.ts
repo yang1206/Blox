@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Roles } from '../auth/role.decorator'
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'
-import { RolesGuard } from '../auth/role.guard'
+import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
+import { RolesGuard } from 'src/core/guards/role.guard'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { MenusService } from './menus.service'
 import { CreateMenuDto } from './dto/create-menu.dto'
 import { UpdateMenuDto } from './dto/update-menu.dto'
@@ -21,9 +21,9 @@ export class MenusController {
   @ApiOperation({ summary: '创建分类' })
   @ApiResponse({ type: MenuEntity })
   @Roles('admin')
-  @Post(':id')
-  create(@Body() createMenuDto: CreateMenuDto, @Param('id') id?: number) {
-    return this.menusService.create(createMenuDto, id)
+  @Post()
+  create(@Body() createMenuDto: CreateMenuDto) {
+    return this.menusService.create(createMenuDto)
   }
 
   /**

@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { getClientIP } from 'src/utils/ip'
-import { JwtAuthGuard } from 'src/modules/auth/jwt-auth.guard'
-import { Roles } from 'src/modules/auth/role.decorator'
-import { RolesGuard } from '../auth/role.guard'
+import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
+import { Roles } from 'src/core/decorators/role.decorator'
+import { RolesGuard } from 'src/core/guards/role.guard'
 import { ViewService } from './view.service'
 import { ViewEntity } from './entities/view.entity'
 

@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import { Roles } from '../auth/role.decorator'
-import { RolesGuard } from '../auth/role.guard'
+import { RolesGuard } from 'src/core/guards/role.guard'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { TagsService } from './tags.service'
 import type { TagsRo } from './dto/tag.dto'
 import { CreateTagDto } from './dto/tag.dto'
@@ -45,7 +45,7 @@ export class TagsController {
    * @param tag
    */
   @ApiOperation({ summary: '更新标签' })
-  @Put(':id')
+  @Patch(':id')
   @Roles('admin')
   updateById(@Param('id') id: number, @Body() tag: CreateTagDto) {
     return this.tagsService.updateById(id, tag)

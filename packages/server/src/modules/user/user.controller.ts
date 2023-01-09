@@ -1,9 +1,9 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, HttpException, HttpStatus, Post, Query, Request, UseGuards, UseInterceptors } from '@nestjs/common'
+import { Body, ClassSerializerInterceptor, Controller, Get, HttpException, HttpStatus, Patch, Post, Query, Request, UseGuards, UseInterceptors } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { RolesGuard } from 'src/modules/auth/role.guard'
+import { RolesGuard } from 'src/core/guards/role.guard'
 import { JwtService } from '@nestjs/jwt'
 import { SearchQuery } from 'src/types/interface/query.interface'
-import { Roles } from '../auth/role.decorator'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { CreateUserDto } from './dto/create-user.dto'
 import type { UserRo } from './dto/create-user.dto'
 import { UserEntity } from './entities/user.entity'
@@ -64,7 +64,7 @@ export class UserController {
   @ApiResponse({ status: 200, description: '更新用户成功', type: UserEntity })
   @UseInterceptors(ClassSerializerInterceptor)
   @ApiOperation({ summary: '更新用户信息' })
-  @Post('update')
+  @Patch('update')
   @Roles('admin')
   async update(@Request() req, @Body() user: Partial<UserEntity>): Promise<UserEntity> {
     await this.checkPermission(req, user)

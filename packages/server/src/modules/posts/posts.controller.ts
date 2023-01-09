@@ -12,10 +12,10 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { RolesGuard } from 'src/modules/auth/role.guard'
+import { RolesGuard } from 'src/core/guards/role.guard'
 import { Request } from 'express'
 import { SearchQuery } from 'src/types/interface/query.interface'
-import { Roles } from '../auth/role.decorator'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { CreatePostDto, LikePostDto, PostInfoDto, PostsRo } from './dto/post.dot'
 import { PostsService } from './posts.service'
 

@@ -19,4 +19,7 @@ export class CreateMenuDto {
 
   @ApiProperty({ description: '是否展示' })
   readonly show: boolean
+
+  @ApiProperty({ description: '是否展示' })
+  readonly parent_id: number
 }

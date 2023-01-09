@@ -1,8 +1,8 @@
 import { Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { LoginDto } from './dto/login.dto'
 import { AuthService } from './auth.service'
-import { Roles } from './role.decorator'
 
 @Controller('auth')
 @ApiTags('验证')
