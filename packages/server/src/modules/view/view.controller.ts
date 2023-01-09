@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { getClientIP } from 'src/utils/ip'
 import { JwtAuthGuard } from 'src/modules/auth/jwt-auth.guard'
 import { Roles } from 'src/modules/auth/role.decorator'
@@ -56,6 +56,7 @@ export class ViewController {
   @ApiResponse({ type: ViewEntity })
   @ApiOperation({ summary: '获取指定访问' })
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   findById(@Param('id') id: string) {
     return this.viewService.findById(id)
   }

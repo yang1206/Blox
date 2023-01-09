@@ -3,12 +3,14 @@ import { CategoryEntity } from 'src/modules/category/entities/category.entity'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm'
 import { Exclude } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
@@ -99,10 +101,18 @@ export class PostsEntity {
   @Column({ type: 'timestamp', name: 'publish_time', default: null })
   publishTime: Date
 
-  @Column({ type: 'timestamp', name: 'create_time', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({
+    type: 'timestamp',
+    comment: '创建时间',
+    name: 'create_time',
+  })
   createTime: Date
 
-  @Column({ type: 'timestamp', name: 'update_time', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    comment: '更新时间',
+    name: 'update_time',
+  })
   updateTime: Date
 
   toResponseObject(): PostInfoDto {

@@ -9,6 +9,8 @@ import { CategoryModule } from 'src/modules/category/category.module'
 import { TagsModule } from 'src/modules/tags/tags.module'
 import { FileModule } from 'src/modules/file/file.module'
 import { ViewModule } from 'src/modules/view/view.module'
+import { SearchModule } from 'src/modules/search/search.module'
+import { MenusModule } from 'src/modules/menus/menus.module'
 import { config } from '@my-blog/config'
 
 @Module({
@@ -40,6 +42,8 @@ import { config } from '@my-blog/config'
     TagsModule,
     FileModule,
     ViewModule,
+    SearchModule,
+    MenusModule,
   ],
   controllers: [],
   providers: [

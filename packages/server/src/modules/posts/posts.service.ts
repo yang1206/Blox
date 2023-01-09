@@ -276,6 +276,22 @@ export class PostsService {
     this.postsRepository.save(updatePost)
   }
 
+  /**
+   * 关键词搜索文章
+   * @param keyword
+   */
+  async search(keyword) {
+    const res = await this.postsRepository
+      .createQueryBuilder('article')
+      .where('article.title LIKE :keyword')
+      .orWhere('article.summary LIKE :keyword')
+      .orWhere('article.content LIKE :keyword')
+      .setParameter('keyword', `%${keyword}%`)
+      .getMany()
+
+    return res
+  }
+
   // 刪除文章
   async remove(id) {
     const existPost = await this.postsRepository.findOneBy({ id })
