@@ -9,8 +9,6 @@ importers:
       '@commitlint/config-conventional': ^17.4.0
       '@my-blog/config': workspace:^1.0.0
       '@types/node': ^18.11.18
-      '@vexip-ui/plugins': ^1.2.0
-      '@vitejs/plugin-vue': 4.0.0
       commitizen: ^4.2.6
       cz-git: ^1.4.1
       date-fns: ^2.29.3
@@ -30,8 +28,6 @@ importers:
       '@commitlint/config-conventional': 17.4.0
       '@my-blog/config': link:packages/config
       '@types/node': 18.11.18
-      '@vexip-ui/plugins': 1.2.0
-      '@vitejs/plugin-vue': 4.0.0
       commitizen: 4.2.6_@types+node@18.11.18
       cz-git: 1.4.1
       eslint: 8.31.0
@@ -47,6 +43,7 @@ importers:
       '@unocss/reset': 0.47.6
       '@vexip-ui/plugins': ^1.2.0
       '@vitejs/plugin-vue': 4.0.0
+      '@vue/runtime-core': ^3.2.45
       '@vueuse/core': ^9.10.0
       axios: ^1.2.2
       pinia: ^2.0.28
@@ -71,6 +68,7 @@ importers:
       '@types/node': 18.11.18
       '@vexip-ui/plugins': 1.2.0
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
+      '@vue/runtime-core': 3.2.45
       typescript: 4.9.4
       unocss: 0.47.6_vite@4.0.4
       unplugin-auto-import: 0.12.1_@vueuse+core@9.10.0
@@ -2400,14 +2398,6 @@ packages:
   /@vexip-ui/utils/1.9.1:
     resolution: {integrity: sha512-a/V+pbPYbmQzY1Hql4HGLLPcddcIHTSqNf3Qujzrv5vh7n9eO91Ah1IPQ/uWg0iobE9ima81zIJ8oyyqwH24KQ==}
     engines: {node: '>=14'}
-
-  /@vitejs/plugin-vue/4.0.0:
-    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.0.0
-      vue: ^3.2.25
-    dev: true
 
   /@vitejs/plugin-vue/4.0.0_vite@4.0.4+vue@3.2.45:
     resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}

@@ -62,6 +62,7 @@
       "eslint --fix"
     ]
   },
+  "packageManager": "pnpm@7.22.0",
   "eslintConfig": {
     "extends": "@antfu/eslint-config-ts"
   }
