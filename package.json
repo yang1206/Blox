@@ -11,13 +11,16 @@
     "clean": "npx rimraf ./node_modules ./packages/**/node_modules",
     "dev": "turbo run dev --parallel",
     "dev:server": "pnpm run --dir packages/server dev",
+    "dev:admin-vue": "pnpm run --dir packages/admin-vue dev",
     "build": "pnpm exec turbo run build",
     "build:server": "pnpm run --dir packages/server build",
+    "build:admin-vue": "pnpm run --dir packages/admin-vue build",
     "build:config": "pnpm run --dir packages/config build",
     "start": "pnpm exec turbo run start",
     "start:server": "pnpm run --dir packages/server start",
     "lint": "pnpm exec turbo run lint",
     "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
+    "lint:admin-vue": "eslint --fix './packages/admin-vue/src/**/*.{ts,js}'",
     "prepare": "husky install",
     "precommit": "lint-staged",
     "lint:lint-staged": "lint-staged",
@@ -28,7 +31,7 @@
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.34.0",
+    "@antfu/eslint-config": "^0.34.0",
     "@commitlint/cli": "^17.4.0",
     "@commitlint/config-conventional": "^17.4.0",
     "@types/node": "^18.11.18",
@@ -39,7 +42,8 @@
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",
     "turbo": "^1.6.3",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   },
   "config": {
     "commitizen": {
@@ -51,7 +55,7 @@
     "./packages/client/**/*.{ts,tsx,js,jsx}": [
       "eslint --fix"
     ],
-    "./packages/admin/**/*.{vue,ts,,js}": [
+    "./packages/admin-vue/**/*.{vue,ts,,js}": [
       "eslint --fix"
     ],
     "./packages/server/src/**/*.{ts,js}": [
