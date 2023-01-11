@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import type { Rule } from 'vexip-ui'
-import { Message } from 'vexip-ui'
+import type { Form, Rule } from 'vexip-ui'
 import { loginRequest } from '@/api/module/user'
+import { useUserStore } from '@/store'
+const userStore = useUserStore()
+const formRef = ref<InstanceType<typeof Form>>()
 const loginForm = ref({
   username: '',
   password: '',
@@ -18,16 +20,15 @@ const rules: { [key: string]: Rule } = {
 
 }
 const handleSubmit = async () => {
-  const data = await loginRequest(loginForm.value)
-  Message.error({
-    content: data.message,
-  })
+  const validated = await formRef.value?.validate()
+  if (validated!.length <= 0)
+    userStore.asyncLogin(loginForm.value)
 }
 </script>
 
 <template>
   <div class="login w-100vw h-100vh flex-center">
-    <Form ref="form" :rules="rules" mx-300px :model="loginForm" hide-label>
+    <Form ref="formRef" :rules="rules" mx-300px :model="loginForm" hide-label>
       <FormItem label="username" prop="username">
         <Input placeholder="请输入帐号">
           <template #prefix>

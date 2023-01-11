@@ -1,5 +1,4 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { Message } from 'vexip-ui'
 import Request from './request'
 import type { RequestConfig } from './request/types'
 export interface IResponse<T> {
@@ -18,13 +17,16 @@ const request = new Request({
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config: AxiosRequestConfig) => {
+      Loading.open(30)
       return config
     },
     // 响应拦截器
     responseInterceptors: (result: AxiosResponse) => {
+      Loading.open(100)
       return result
     },
     responseInterceptorsCatch: (error) => {
+      Loading.open(100)
       Message.error({
         content: error.response.data.message,
       })

@@ -8,7 +8,7 @@ import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { Repository } from 'typeorm'
 import { AuthService } from '../auth.service'
 
-export class JwtStorage extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -17,7 +17,7 @@ export class JwtStorage extends PassportStrategy(Strategy) {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get('SECRET'),
+      secretOrKey: configService.get('AUTH_SECRET'),
     } as StrategyOptions)
   }
 

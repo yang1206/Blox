@@ -6,5 +6,5 @@ export default defineConfig({
   outDir: './lib',
   format: ['esm', 'cjs'],
   dts: true,
-  minify: true,
+  minify: false,
 })

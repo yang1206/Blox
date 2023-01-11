@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
-import * as bcrypt from 'bcryptjs'
 import { ApiProperty } from '@nestjs/swagger'
 import { Exclude } from 'class-transformer'
+import { compare, decrypto, encrypto } from '@my-blog/config'
 @Entity('user')
 export class UserEntity {
   /**
@@ -9,12 +9,12 @@ export class UserEntity {
      * @param password0 加密前密码
      * @param password1 加密后密码
      */
-  static comparePassword(password0, password1) {
-    return bcrypt.compareSync(password0, password1)
+  static comparePassword(password0: string, password1: string, secret: string) {
+    return compare(password0, password1, secret)
   }
 
-  static encryptPassword(password) {
-    return bcrypt.hashSync(password, 10)
+  static encryptPassword(password: string, secret: string) {
+    return decrypto(password, secret)
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -70,6 +70,6 @@ export class UserEntity {
   async encryptPwd() {
     if (!this.password)
       return
-    this.password = await bcrypt.hashSync(this.password, 10)
+    this.password = encrypto(this.password, process.env.AUTH_SECRET)
   }
 }

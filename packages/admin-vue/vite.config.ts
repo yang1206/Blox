@@ -10,7 +10,10 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [VexipUIResolver()],
+      resolvers: [VexipUIResolver({
+        // importDarkTheme: true,
+        // importStyle: true,
+      })],
       imports: ['vue', 'vue-router', '@vueuse/core'],
       dirs: [path.resolve(pathSrc, 'composables')],
       vueTemplate: true,
@@ -28,4 +31,6 @@ export default defineConfig({
       '~': path.resolve(__dirname, './'),
     },
   },
+  envDir: '../../',
+  envPrefix: ['VITE_', 'AUTH_'],
 })

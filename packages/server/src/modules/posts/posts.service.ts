@@ -56,7 +56,7 @@ export class PostsService {
   /**
    * 获取文章列表
    */
-  async findAll(queryParams): Promise<PostsRo> {
+  async findAll(queryParams: SearchQuery): Promise<PostsRo> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.tags', 'tag')

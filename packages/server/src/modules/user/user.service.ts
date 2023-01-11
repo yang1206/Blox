@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
-import { compareSync } from 'bcryptjs'
 import { ConfigService } from '@nestjs/config'
 import type { SearchQuery } from 'src/types/interface/query.interface'
 import { UserEntity } from './entities/user.entity'
@@ -23,7 +22,7 @@ export class UserService {
       })
       .catch(async () => {
         const existAdminUser = await this.userRepository.findOne({ where: { username } })
-        const isDefaultPasswd = UserEntity.comparePassword(password, existAdminUser.password)
+        const isDefaultPasswd = UserEntity.comparePassword(password, existAdminUser.password, this.configService.get('AUTH_SECRET'))
         if (isDefaultPasswd)
           console.log(`管理员账户已经存在，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
       })
@@ -43,7 +42,6 @@ export class UserService {
     })
     if (existUser)
       throw new HttpException('用户名已存在', HttpStatus.BAD_REQUEST)
-
     const newUser = this.userRepository.create(createUser)
     newUser.nickname = newUser.nickname ? newUser.nickname : newUser.username
     return await this.userRepository.save(newUser)
@@ -124,7 +122,7 @@ export class UserService {
   async login(user: Partial<UserEntity>): Promise<UserEntity> {
     const { username, password } = user
     const existUser = await this.userRepository.findOne({ where: { username } })
-    if (!existUser || !(await UserEntity.comparePassword(password, existUser.password))) {
+    if (!existUser || !(await UserEntity.comparePassword(password, existUser.password, this.configService.get('AUTH_SECRET')))) {
       throw new HttpException(
         '用户名或密码错误',
         // tslint:disable-next-line: trailing-comma
@@ -151,22 +149,18 @@ export class UserService {
   async updatePassword(id, user): Promise<UserEntity> {
     const existUser = await this.userRepository.findOneBy({ id })
     const { oldPassword, newPassword } = user
-    if (!existUser || !(await UserEntity.comparePassword(oldPassword, existUser.password))) {
+    if (!existUser || !(await UserEntity.comparePassword(oldPassword, existUser.password, this.configService.get('AUTH_SECRET')))) {
       throw new HttpException(
         '用户名或密码错误',
         HttpStatus.BAD_REQUEST,
       )
     }
 
-    const hashNewPassword = UserEntity.encryptPassword(newPassword)
+    const hashNewPassword = UserEntity.encryptPassword(newPassword, this.configService.get('AUTH_SECRET'))
     const newUser = await this.userRepository.merge(existUser, {
       password: hashNewPassword,
     })
     const d = await this.userRepository.save(newUser)
     return d
-  }
-
-  comparePassword(password, libPassword) {
-    return compareSync(password, libPassword)
   }
 }
