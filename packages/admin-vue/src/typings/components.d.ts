@@ -8,7 +8,14 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Button: typeof import('vexip-ui')['Button']
+    Form: typeof import('vexip-ui')['Form']
+    FormItem: typeof import('vexip-ui')['FormItem']
+    FormReset: typeof import('vexip-ui')['FormReset']
+    FormSubmit: typeof import('vexip-ui')['FormSubmit']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
+    Icon: typeof import('vexip-ui')['Icon']
+    Input: typeof import('vexip-ui')['Input']
+    IUser: typeof import('@vexip-ui/icons')['User']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

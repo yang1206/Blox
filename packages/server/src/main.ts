@@ -20,6 +20,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor()) // 正常返回统一处理
   app.useGlobalPipes(new ValidationPipe()) // 验证管道
   app.use(helmet()) // 设置安全响应头
+  app.enableCors()
   app.useStaticAssets(join(__dirname, 'images'), {
     prefix: '/img',
   })// 访问静态资源
@@ -32,8 +33,8 @@ async function bootstrap() {
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('docs', app, document)
-  await app.listen(3000)
+  await app.listen(1206)
   /* eslint-disable no-console */
-  console.log('Server is running at http://localhost:3000')
+  console.log('Server is running at http://localhost:1206')
 }
 bootstrap()

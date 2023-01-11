@@ -39,6 +39,7 @@ importers:
 
   packages/admin-vue:
     specifiers:
+      '@iconify-json/carbon': ^1.1.13
       '@types/node': ^18.11.18
       '@unocss/reset': 0.47.6
       '@vexip-ui/plugins': ^1.2.0
@@ -51,7 +52,7 @@ importers:
       unocss: 0.47.6
       unplugin-auto-import: 0.12.1
       unplugin-vue-components: ^0.22.12
-      vexip-ui: ^2.0.19
+      vexip-ui: ^2.0.20
       vite: ^4.0.4
       vue: ^3.2.45
       vue-router: ^4.1.6
@@ -61,10 +62,11 @@ importers:
       '@vueuse/core': 9.10.0_vue@3.2.45
       axios: 1.2.2
       pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
-      vexip-ui: 2.0.19_vue@3.2.45
+      vexip-ui: 2.0.20_vue@3.2.45
       vue: 3.2.45
       vue-router: 4.1.6_vue@3.2.45
     devDependencies:
+      '@iconify-json/carbon': 1.1.13
       '@types/node': 18.11.18
       '@vexip-ui/plugins': 1.2.0
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
@@ -1156,6 +1158,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/carbon/1.1.13:
+    resolution: {integrity: sha512-qPR7n3JkCqIrvjxnyUPIejhn0wrZJsLmija59U/zwFm5SMOITCfLx+Jp6VecnL0Sm76zRE5Kv54VzolQljB97A==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types/2.0.0:
@@ -6141,8 +6149,8 @@ packages:
       - ts-node
     dev: true
 
-  /jiti/1.16.1:
-    resolution: {integrity: sha512-kJUp4Bj44uTaZAwG6R2/GjbodOWHULn8Swue0B7tY8v5BpTkUvDR+zBM5tsbC4x/jCeYDZ+mAdrUIScwIo4oPw==}
+  /jiti/1.16.2:
+    resolution: {integrity: sha512-OKBOVWmU3FxDt/UH4zSwiKPuc1nihFZiOD722FuJlngvLz2glX1v2/TJIgoA4+mrpnXxHV6dSAoCvPcYQtoG5A==}
     hasBin: true
     dev: true
 
@@ -8553,7 +8561,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.5.2
       defu: 6.1.1
-      jiti: 1.16.1
+      jiti: 1.16.2
     dev: true
 
   /undici/5.14.0:
@@ -8742,8 +8750,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  /vexip-ui/2.0.19_vue@3.2.45:
-    resolution: {integrity: sha512-kZwlEzns7fvxswNSINeqSUWRlZWTsjSmaCfIVqdeKYr5EphhqNVGKY3C6TjA7ffGOqCrvD71PLYxhkK3/E6QHA==}
+  /vexip-ui/2.0.20_vue@3.2.45:
+    resolution: {integrity: sha512-0zMkZR0T6wX4JRkqtI18wHo2p+jbN6hzn4FUVsKa1qYVRrExbvedZm0pqiSOed60Fanige9EmmfYjY9W0Foh+Q==}
     engines: {node: '>=16'}
     requiresBuild: true
     peerDependencies:

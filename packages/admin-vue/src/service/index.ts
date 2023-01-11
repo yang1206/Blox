@@ -1,8 +1,11 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { Message } from 'vexip-ui'
 import Request from './request'
 import type { RequestConfig } from './request/types'
 export interface IResponse<T> {
-  [x: string]: T
+  data: T
+  message: string
+  status: number
 }
 // 重写返回类型
 interface HttpRequestConfig<T, R> extends RequestConfig<IResponse<R>> {
@@ -22,9 +25,10 @@ const request = new Request({
       return result
     },
     responseInterceptorsCatch: (error) => {
-      // eslint-disable-next-line no-unused-expressions
-      error.response
-      return Promise.reject(new Error(error.response.data))
+      Message.error({
+        content: error.response.data.message,
+      })
+      return Promise.reject(error.response.data)
     },
   },
 })

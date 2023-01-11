@@ -14,11 +14,12 @@
     "@vueuse/core": "^9.10.0",
     "axios": "^1.2.2",
     "pinia": "^2.0.28",
-    "vexip-ui": "^2.0.19",
+    "vexip-ui": "^2.0.20",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.13",
     "@types/node": "^18.11.18",
     "@vexip-ui/plugins": "^1.2.0",
     "@vitejs/plugin-vue": "4.0.0",

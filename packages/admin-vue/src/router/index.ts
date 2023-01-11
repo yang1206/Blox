@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
-const routes: Array<RouteRecordRaw> = []
+import { routes } from './routes'
 
 const router = createRouter({
   history: createWebHashHistory(),
