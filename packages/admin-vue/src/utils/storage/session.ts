@@ -1,7 +1,7 @@
-import { decrypto, encrypto } from '@my-blog/config'
+import * as crypto from '@my-blog/utils'
 const SecretKey = import.meta.env.AUTH_SECRET
 export function setSession(key: string, value: unknown) {
-  const json = encrypto(value, SecretKey)
+  const json = crypto.encrypto(value, SecretKey)
   sessionStorage.setItem(key, json)
 }
 
@@ -10,9 +10,9 @@ export function getSession<T>(key: string) {
   let data: T | null = null
   if (json) {
     try {
-      data = decrypto(json, SecretKey) as any
+      data = crypto.decrypto(json, SecretKey) as any
     }
-    catch {}
+    catch { }
   }
   return data
 }

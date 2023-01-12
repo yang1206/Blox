@@ -1,4 +1,4 @@
-import { decrypto, encrypto } from '@my-blog/config'
+import * as crypto from '@my-blog/utils'
 
 const SecretKey = import.meta.env.AUTH_SECRET
 
@@ -19,7 +19,7 @@ export function setLocal(
     value,
     expire: expire !== null ? Date.now() + expire * 1000 : null,
   }
-  const json = encrypto(storageData, SecretKey)
+  const json = crypto.encrypto(storageData, SecretKey)
   window.localStorage.setItem(key, json)
 }
 
@@ -28,9 +28,9 @@ export function getLocal<T>(key: string) {
   if (json) {
     let storageData: StorageData | null = null
     try {
-      storageData = decrypto(json, SecretKey) as StorageData
+      storageData = crypto.decrypto(json, SecretKey) as StorageData
     }
-    catch {}
+    catch { }
     if (storageData) {
       const { value, expire } = storageData
       // 没有过期时间或者在有效期内则直接返回
@@ -48,9 +48,9 @@ export function getLocalExpire(key: string): number | null {
   if (json) {
     let storageData: StorageData | null = null
     try {
-      storageData = decrypto(json, SecretKey) as StorageData
+      storageData = crypto.decrypto(json, SecretKey) as StorageData
     }
-    catch {}
+    catch { }
     if (storageData) {
       const { expire } = storageData
       return expire

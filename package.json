@@ -27,7 +27,8 @@
     "commit": "git pull && git add -A && git-cz && git push"
   },
   "dependencies": {
-    "crypto-js": "^4.1.1",
+    "@my-blog/utils": "workspace:^1.0.0",
+    "@my-blog/config": "workspace:^1.0.0",
     "date-fns": "^2.29.3",
     "rimraf": "^3.0.2"
   },
@@ -35,12 +36,9 @@
     "@antfu/eslint-config": "^0.34.0",
     "@commitlint/cli": "^17.4.0",
     "@commitlint/config-conventional": "^17.4.0",
-    "@my-blog/config": "workspace:^1.0.0",
-    "@types/crypto-js": "^4.1.1",
     "@types/node": "^18.11.18",
     "commitizen": "^4.2.6",
     "cz-git": "^1.4.1",
-    "dotenv": "^16.0.3",
     "eslint": "^8.31.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",

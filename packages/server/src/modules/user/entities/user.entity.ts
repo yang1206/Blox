@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 import { ApiProperty } from '@nestjs/swagger'
 import { Exclude } from 'class-transformer'
-import { compare, decrypto, encrypto } from '@my-blog/config'
+import { compare, decrypto, encrypto } from '@my-blog/utils'
 @Entity('user')
 export class UserEntity {
   /**

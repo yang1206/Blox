@@ -2,7 +2,6 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
-  const I0: typeof import('@vexip-ui/icons')['I0']
   const Loading: typeof import('vexip-ui')['Loading']
   const Message: typeof import('vexip-ui')['Message']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -273,7 +272,6 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly I0: UnwrapRef<typeof import('@vexip-ui/icons')['I0']>
     readonly Loading: UnwrapRef<typeof import('vexip-ui')['Loading']>
     readonly Message: UnwrapRef<typeof import('vexip-ui')['Message']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>

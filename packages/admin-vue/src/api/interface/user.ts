@@ -14,3 +14,21 @@ export interface LoginData {
   updateTime: Date
   token: string
 }
+
+export interface RegisterForm {
+  username: string
+  password: string
+  confirm_password: string
+}
+export interface RegisterData {
+  id: string
+  username: string
+  nickname: string
+  password: string
+  avatar: string
+  email: string
+  role: string
+  status: string
+  createTime: Date
+  updateTime: Date
+}

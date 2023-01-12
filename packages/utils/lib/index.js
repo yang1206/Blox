@@ -25,28 +25,34 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  config: () => config,
-  filePath: () => filePath
+  compare: () => compare,
+  decrypto: () => decrypto,
+  encrypto: () => encrypto
 });
 module.exports = __toCommonJS(src_exports);
 
-// src/env.ts
-var fs = __toESM(require("fs"));
-var path = __toESM(require("path"));
-var dotenv = require("dotenv");
-var isProd = process.env.NODE_ENV === "production";
-function parseEnv() {
-  const localEnv = path.resolve("../../.env");
-  const prodEnv = path.resolve("../../.env.prod");
-  if (!fs.existsSync(localEnv) && !fs.existsSync(prodEnv))
-    throw new Error("\u7F3A\u5C11\u73AF\u5883\u914D\u7F6E\u6587\u4EF6");
-  const filePath2 = isProd && fs.existsSync(prodEnv) ? prodEnv : localEnv;
-  const config2 = dotenv.parse(fs.readFileSync(filePath2));
-  return { filePath: filePath2, config: config2 };
+// src/crypto.ts
+var CryptoJS = __toESM(require("crypto-js"));
+function encrypto(data, SecretKey) {
+  const newData = JSON.stringify(data);
+  return CryptoJS.AES.encrypt(newData, SecretKey).toString();
 }
-var { filePath, config } = parseEnv();
+function decrypto(cipherText, SecretKey) {
+  const bytes = CryptoJS.AES.decrypt(cipherText, SecretKey);
+  const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  if (originalText)
+    return JSON.parse(originalText);
+  return null;
+}
+function compare(password0, password1, SecretKey) {
+  const decryptoPwd = decrypto(password1, SecretKey);
+  if (decryptoPwd === password0)
+    return true;
+  return false;
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  config,
-  filePath
+  compare,
+  decrypto,
+  encrypto
 });

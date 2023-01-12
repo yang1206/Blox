@@ -5,7 +5,7 @@ import type { IStrategyOptions } from 'passport-local'
 import { Strategy } from 'passport-local'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { Repository } from 'typeorm'
-import { compare } from '@my-blog/config'
+import { compare } from '@my-blog/utils'
 import { ConfigService } from '@nestjs/config'
 
 export class LocalStrategy extends PassportStrategy(Strategy) {

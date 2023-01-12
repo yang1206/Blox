@@ -12,6 +12,7 @@
   "dependencies": {
     "@unocss/reset": "0.47.6",
     "@vueuse/core": "^9.10.0",
+    "@vueuse/motion": "2.0.0-beta.12",
     "axios": "^1.2.2",
     "pinia": "^2.0.28",
     "vexip-ui": "^2.0.20",
@@ -37,7 +38,7 @@
   "eslintConfig": {
     "extends": "@antfu",
     "rules": {
-      "@typescript-eslint/consistent-type-imports" :"off"
+      "@typescript-eslint/consistent-type-imports": "off"
     }
   }
 }

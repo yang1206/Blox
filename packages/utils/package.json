@@ -1,15 +1,17 @@
 {
-  "name": "@my-blog/config",
+  "name": "@my-blog/utils",
   "version": "1.0.0",
   "description": "",
   "author": "Yang1206",
   "license": "MIT",
-  "keywords": [],
   "sideEffects": false,
+  "keywords": [
+    "utils"
+  ],
   "exports": {
     ".": {
       "require": "./lib/index.js",
-      "import": "./lib/index.js"
+      "import": "./lib/index.mjs"
     }
   },
   "main": "./lib/index.mjs",
@@ -22,6 +24,9 @@
     "build": "tsup"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "crypto-js": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.1"
   }
 }

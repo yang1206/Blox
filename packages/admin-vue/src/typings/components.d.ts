@@ -7,6 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Button: typeof import('vexip-ui')['Button']
+    Checkbox: typeof import('vexip-ui')['Checkbox']
     Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
     FormReset: typeof import('vexip-ui')['FormReset']
