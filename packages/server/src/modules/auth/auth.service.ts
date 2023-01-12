@@ -10,11 +10,18 @@ export class AuthService {
     private userService: UserService,
   ) { }
 
-  // 生成token
+  /**
+   * 生成token
+   * @param user
+   */
   createToken(user: Partial<UserEntity>) {
     return this.jwtService.sign(user)
   }
 
+  /**
+  * 登录
+  * @param user
+  */
   async login(user: Partial<UserEntity>) {
     const data = await this.userService.login(user)
     const token = this.createToken({

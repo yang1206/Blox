@@ -4,10 +4,12 @@ import { Repository } from 'typeorm'
 import { CategoryService } from 'src/modules/category/category.service'
 import { TagsService } from 'src/modules/tags/tags.service'
 import { dateFormat } from 'src/utils/format'
-import type { SearchQuery } from 'src/types/interface/query.interface'
-import type { CreatePostDto, PostInfoDto, PostsRo } from './dto/post.dot'
+import type { SearchQuery } from 'src/common/interface/query.interface'
+import type { ResponseVo } from 'src/common/vo/res.vo'
+import type { CreatePostDto } from './dto/post.dto'
 import { extractProtectedArticle } from './posts.utils'
 import { PostsEntity } from './entities/posts.entity'
+import type { PostInfo } from './vo/post.vo'
 
 @Injectable()
 export class PostsService {
@@ -56,7 +58,7 @@ export class PostsService {
   /**
    * 获取文章列表
    */
-  async findAll(queryParams: SearchQuery): Promise<PostsRo> {
+  async findAll(queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.tags', 'tag')
@@ -93,7 +95,7 @@ export class PostsService {
      * @param category
      * @param queryParams
      */
-  async findArticlesByCategory(category: number, queryParams: SearchQuery): Promise<PostsRo> {
+  async findArticlesByCategory(category: number, queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
@@ -121,7 +123,7 @@ export class PostsService {
    * @param tag
    * @param queryParams
    */
-  async findArticlesByTag(tag: number, queryParams: SearchQuery): Promise<PostsRo> {
+  async findArticlesByTag(tag: number, queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.author', 'user')
@@ -155,7 +157,7 @@ export class PostsService {
   /**
    * 获取文章归档
    */
-  async getArchives(): Promise<{ [key: string]: PostInfoDto[] }> {
+  async getArchives(): Promise<{ [key: string]: PostInfo[] }> {
     const data = await this.postsRepository.find({
       where: { status: 'publish' },
       order: { publishTime: 'DESC' },
@@ -193,7 +195,7 @@ export class PostsService {
   /**
   * 获取推荐文章
   */
-  async getRecommendArticles(queryParams: SearchQuery): Promise<PostsRo> {
+  async getRecommendArticles(queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
     const { pageNum = 1, pageSize = 10 } = queryParams
     const query = await this.postsRepository
       .createQueryBuilder('post')
@@ -214,7 +216,7 @@ export class PostsService {
   /**
     * 根据id获取指定文章
     */
-  async findById(id): Promise<PostInfoDto> {
+  async findById(id): Promise<PostInfo> {
     const qb = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')

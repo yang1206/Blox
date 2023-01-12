@@ -7,7 +7,7 @@ import { PostsModule } from 'src/modules/posts/posts.module'
 import { AuthModule } from 'src/modules/auth/auth.module'
 import { CategoryModule } from 'src/modules/category/category.module'
 import { TagsModule } from 'src/modules/tags/tags.module'
-import { FileModule } from 'src/modules/file/file.module'
+import { PictureModule } from 'src/modules/picture/picture.module'
 import { ViewModule } from 'src/modules/view/view.module'
 import { SearchModule } from 'src/modules/search/search.module'
 import { MenusModule } from 'src/modules/menus/menus.module'
@@ -40,7 +40,7 @@ import { filePath } from '@my-blog/config'
     AuthModule,
     CategoryModule,
     TagsModule,
-    FileModule,
+    PictureModule,
     ViewModule,
     SearchModule,
     MenusModule,

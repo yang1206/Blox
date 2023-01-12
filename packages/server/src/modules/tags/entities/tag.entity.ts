@@ -1,15 +1,14 @@
+import { CommonEntity } from 'src/common/entity/common.entity'
 import { PostsEntity } from 'src/modules/posts/entities/posts.entity'
 import {
   Column,
-  CreateDateColumn,
   Entity,
   ManyToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm'
 
 @Entity('tag')
-export class TagEntity {
+export class TagEntity extends CommonEntity {
   @PrimaryGeneratedColumn()
   id: number
 
@@ -19,18 +18,4 @@ export class TagEntity {
 
   @ManyToMany(() => PostsEntity, post => post.tags)
   posts: Array<PostsEntity>
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    comment: '创建时间',
-    name: 'create_time',
-  })
-  createTime: Date
-
-  @UpdateDateColumn({
-    type: 'timestamp',
-    comment: '更新时间',
-    name: 'update_time',
-  })
-  updateTime: Date
 }

@@ -1,9 +1,10 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { ApiProperty } from '@nestjs/swagger'
 import { Exclude } from 'class-transformer'
 import { compare, decrypto, encrypto } from '@my-blog/utils'
+import { CommonEntity } from 'src/common/entity/common.entity'
 @Entity('user')
-export class UserEntity {
+export class UserEntity extends CommonEntity {
   /**
      * 检测密码是否一致
      * @param password0 加密前密码
@@ -18,7 +19,6 @@ export class UserEntity {
   }
 
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty({ description: '用户id' })
   id: string
 
   @ApiProperty()
@@ -29,10 +29,16 @@ export class UserEntity {
   @Column({ length: 100, nullable: true })
   nickname: string // 昵称
 
-  @ApiProperty()
   @Exclude()
   @Column({ nullable: true })
   password: string // 密码
+
+  @Exclude()
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  salt: string // 加密盐
 
   @ApiProperty()
   @Column({ default: null })
@@ -49,22 +55,6 @@ export class UserEntity {
   @ApiProperty()
   @Column('simple-enum', { enum: ['locked', 'active'], default: 'active' })
   status: string // 用户状态
-
-  @ApiProperty()
-  @CreateDateColumn({
-    name: 'create_time',
-    type: 'timestamp',
-    comment: '创建时间',
-  })
-  createTime: Date
-
-  @ApiProperty()
-  @UpdateDateColumn({
-    name: 'update_time',
-    type: 'timestamp',
-    comment: '更新时间',
-  })
-  updateTime: Date
 
   @BeforeInsert()
   async encryptPwd() {

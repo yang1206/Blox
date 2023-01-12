@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import type { SearchQuery } from 'src/types/interface/query.interface'
+import type { SearchQuery } from 'src/common/interface/query.interface'
 import { PostsService } from '../posts/posts.service'
 import { SearchEntity } from './entities/search.entity'
 import type { SearchRo } from './dto/search.dto'

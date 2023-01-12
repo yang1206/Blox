@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Param, Query, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 
-import { SearchQuery } from 'src/types/interface/query.interface'
+import { SearchQuery } from 'src/common/interface/query.interface'
 import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'

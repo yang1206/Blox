@@ -14,10 +14,12 @@ import {
 import { AuthGuard } from '@nestjs/passport'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Request } from 'express'
-import { SearchQuery } from 'src/types/interface/query.interface'
+import { SearchQuery } from 'src/common/interface/query.interface'
 import { Roles } from 'src/core/decorators/role.decorator'
-import { CreatePostDto, LikePostDto, PostInfoDto, PostsRo } from './dto/post.dot'
+import { ResponseVo } from 'src/common/vo/res.vo'
+import { CreatePostDto, LikePostDto } from './dto/post.dto'
 import { PostsService } from './posts.service'
+import { PostInfo } from './vo/post.vo'
 
 @ApiTags('文章')
 @Controller('posts')
@@ -39,7 +41,7 @@ export class PostsController {
   /**
    * 获取所有文章
    */
-  @ApiResponse({ status: 200, type: PostsRo })
+  @ApiResponse({ status: 200, type: ResponseVo<PostInfo> })
   @ApiOperation({ summary: '获取所有文章' })
   @Get()
   async findAll(@Query() query: SearchQuery) {
@@ -51,7 +53,7 @@ export class PostsController {
    */
   @Get('/recommend')
   @ApiOperation({ summary: '获取所有推荐文章' })
-  @ApiResponse({ status: 200, type: PostsRo })
+  @ApiResponse({ status: 200, type: ResponseVo<PostInfo> })
   getRecommendArticles(@Query() query: SearchQuery) {
     return this.postsService.getRecommendArticles(query)
   }
@@ -61,7 +63,7 @@ export class PostsController {
      */
   @Get('/category/:id')
   @ApiOperation({ summary: '获取分类下所有文章' })
-  @ApiResponse({ status: 200, type: PostsRo })
+  @ApiResponse({ status: 200, type: ResponseVo<PostInfo> })
   findArticlesByCategory(@Param('id') id: number, @Query() queryParams: SearchQuery) {
     return this.postsService.findArticlesByCategory(id, queryParams)
   }
@@ -69,7 +71,7 @@ export class PostsController {
   /**
    * 获取标签下所有文章
    */
-  @ApiResponse({ status: 200, type: PostsRo })
+  @ApiResponse({ status: 200, type: ResponseVo<PostInfo> })
   @Get('/tag/:id')
   @ApiOperation({ summary: '获取标签下所有文章' })
   findArticlesByTag(@Param('id') tag: number, @Query() queryParams: SearchQuery) {
@@ -81,7 +83,7 @@ export class PostsController {
    */
   @Get('/archives')
   @ApiOperation({ summary: '获取所有文章归档' })
-  getArchives(): Promise<{ [key: string]: PostInfoDto[] }> {
+  getArchives(): Promise<{ [key: string]: PostInfo[] }> {
     return this.postsService.getArchives()
   }
 
@@ -99,7 +101,7 @@ export class PostsController {
    * @param id
    */
   @ApiOperation({ summary: '获取指定文章' })
-  @ApiResponse({ status: 200, type: PostInfoDto })
+  @ApiResponse({ status: 200, type: PostInfo })
   @Get(':id')
   async findById(@Param('id') id: string) {
     return await this.postsService.findById(id)

@@ -3,24 +3,22 @@ import { CategoryEntity } from 'src/modules/category/entities/category.entity'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm'
 import { Exclude } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
-import type { PostInfoDto } from '../dto/post.dot'
+import { CommonEntity } from 'src/common/entity/common.entity'
+import type { PostInfo } from '../vo/post.vo'
 
 @Entity('posts')
-export class PostsEntity {
+export class PostsEntity extends CommonEntity {
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty()
-  id: string // 标记为主列，值自动生成
+  id: string
 
   // 文章标题
   @Column({ length: 50 })
@@ -101,22 +99,8 @@ export class PostsEntity {
   @Column({ type: 'timestamp', name: 'publish_time', default: null })
   publishTime: Date
 
-  @CreateDateColumn({
-    type: 'timestamp',
-    comment: '创建时间',
-    name: 'create_time',
-  })
-  createTime: Date
-
-  @UpdateDateColumn({
-    type: 'timestamp',
-    comment: '更新时间',
-    name: 'update_time',
-  })
-  updateTime: Date
-
-  toResponseObject(): PostInfoDto {
-    const responseObj: PostInfoDto = {
+  toResponseObject(): PostInfo {
+    const responseObj: PostInfo = {
       ...this,
       // userId: '',
       author: '',

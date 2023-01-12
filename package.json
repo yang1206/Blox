@@ -61,6 +61,12 @@
     ],
     "./packages/server/src/**/*.{ts,js}": [
       "eslint --fix"
+    ],
+    "./packages/config/src/**/*.{ts}": [
+      "eslint --fix"
+    ],
+    "./packages/utils/src/**/*.{ts}": [
+      "eslint --fix"
     ]
   },
   "packageManager": "pnpm@7.22.0",

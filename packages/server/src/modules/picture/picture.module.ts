@@ -1,10 +1,11 @@
 import { join } from 'path'
 import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
 import { MulterModule } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { ConfigModule } from '@nestjs/config'
-import { FileController } from './file.controller'
-import { FileService } from './file.service'
+import { PictureController } from './picture.controller'
+import { PictureService } from './picture.service'
+import { PictureEntity } from './entities/picture.entity'
 
 @Module({
   imports: [MulterModule.register({
@@ -15,8 +16,10 @@ import { FileService } from './file.service'
         return callback(null, fileName)
       },
     }),
-  }), ConfigModule],
-  controllers: [FileController],
-  providers: [FileService],
+  }),
+  TypeOrmModule.forFeature([PictureEntity]),
+  ],
+  controllers: [PictureController],
+  providers: [PictureService],
 })
-export class FileModule { }
+export class PictureModule { }

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { parseUserAgent } from 'src/utils/ua'
 import { parseIp } from 'src/utils/ip'
-import type { SearchQuery } from 'src/types/interface/query.interface'
+import type { SearchQuery } from 'src/common/interface/query.interface'
 import { ViewEntity } from './entities/view.entity'
 import type { ViewRo } from './dto/view.dto'
 

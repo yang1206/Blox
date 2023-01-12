@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { CommonEntity } from 'src/common/entity/common.entity'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('view')
-export class ViewEntity {
+export class ViewEntity extends CommonEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -41,20 +42,4 @@ export class ViewEntity {
   @ApiProperty()
   @Column({ type: 'text', default: null })
   device: string // 访问设备
-
-  @ApiProperty()
-  @CreateDateColumn({
-    name: 'create_time',
-    type: 'timestamp',
-    comment: '创建时间',
-  })
-  createTime: Date
-
-  @ApiProperty()
-  @UpdateDateColumn({
-    name: 'update_time',
-    type: 'timestamp',
-    comment: '更新时间',
-  })
-  updateTime: Date
 }

@@ -3,7 +3,7 @@ import request from '@/service'
 
 export const loginRequest = (data: LoginForm) => {
   return request<LoginForm, LoginData>({
-    url: '/auth/login',
+    url: '/login',
     method: 'POST',
     data,
   })

@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } f
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
+import type { ResponseVo } from 'src/common/vo/res.vo'
 import { TagsService } from './tags.service'
-import type { TagsRo } from './dto/tag.dto'
 import { CreateTagDto } from './dto/tag.dto'
 import type { TagEntity } from './entities/tag.entity'
 
@@ -25,7 +25,7 @@ export class TagsController {
     */
   @Get()
   @ApiOperation({ summary: '获取所有标签' })
-  findAll(@Query() queryParams): Promise<TagsRo> {
+  findAll(@Query() queryParams): Promise<ResponseVo<TagEntity>> {
     return this.tagsService.findAll(queryParams)
   }
 

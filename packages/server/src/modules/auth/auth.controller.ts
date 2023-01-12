@@ -4,7 +4,7 @@ import { Roles } from 'src/core/decorators/role.decorator'
 import { LoginDto } from './dto/login.dto'
 import { AuthService } from './auth.service'
 
-@Controller('auth')
+@Controller()
 @ApiTags('验证')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }

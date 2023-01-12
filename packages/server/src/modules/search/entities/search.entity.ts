@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { CommonEntity } from 'src/common/entity/common.entity'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('search')
-export class SearchEntity {
-  @ApiProperty()
+export class SearchEntity extends CommonEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -18,20 +18,4 @@ export class SearchEntity {
   @ApiProperty()
   @Column({ default: 1 })
   count: number
-
-  @ApiProperty()
-  @CreateDateColumn({
-    name: 'create_time',
-    type: 'timestamp',
-    comment: '创建时间',
-  })
-  createTime: Date
-
-  @ApiProperty()
-  @UpdateDateColumn({
-    name: 'update_time',
-    type: 'timestamp',
-    comment: '更新时间',
-  })
-  updateTime: Date
 }

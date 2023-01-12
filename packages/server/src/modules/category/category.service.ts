@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import type { SearchQuery } from 'src/types/interface/query.interface'
+import type { SearchQuery } from 'src/common/interface/query.interface'
+import type { ResponseVo } from 'src/common/vo/res.vo'
 import { CategoryEntity } from './entities/category.entity'
-import type { CateRo, CreateCategoryDto } from './dto/category.dto'
+import type { CreateCategoryDto } from './dto/category.dto'
 
 @Injectable()
 export class CategoryService {
@@ -44,7 +45,7 @@ export class CategoryService {
    * @param queryParams
    * @returns
    */
-  async findAll(queryParams: SearchQuery): Promise<CateRo> {
+  async findAll(queryParams: SearchQuery): Promise<ResponseVo<CategoryEntity>> {
     const { pageNum = 1, pageSize = 10, postStatus, ...params } = queryParams
     const query = this.categoryRepository
       .createQueryBuilder('category')

@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Column, CreateDateColumn, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent, UpdateDateColumn } from 'typeorm'
+import { CommonEntity } from 'src/common/entity/common.entity'
+import { Column, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
 
 @Entity('menu')
 @Tree('closure-table')
-export class MenuEntity {
+export class MenuEntity extends CommonEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number
@@ -43,20 +44,6 @@ export class MenuEntity {
     name: 'parent_id',
   })
   parent: MenuEntity
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    comment: '创建时间',
-    name: 'create_time',
-  })
-  createTime: Date
-
-  @UpdateDateColumn({
-    type: 'timestamp',
-    comment: '更新时间',
-    name: 'update_time',
-  })
-  updateTime: Date
 }
 
 export const Person2Id = (data) => {

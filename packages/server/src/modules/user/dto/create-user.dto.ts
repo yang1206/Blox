@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
-import type { UserEntity } from '../entities/user.entity'
 
 export class CreateUserDto {
   @ApiProperty({ description: '用户名' })
@@ -17,11 +16,4 @@ export class CreateUserDto {
 
   @ApiProperty({ description: '用户角色' })
   role?: 'admin' | 'visitor'
-}
-
-export interface UserRo {
-  list: UserEntity[]
-  total: number
-  pageNum: number
-  pageSize: number
 }
