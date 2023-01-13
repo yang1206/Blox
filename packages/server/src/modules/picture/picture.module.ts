@@ -8,16 +8,17 @@ import { PictureService } from './picture.service'
 import { PictureEntity } from './entities/picture.entity'
 
 @Module({
-  imports: [MulterModule.register({
-    storage: diskStorage({
-      destination: join(__dirname, '../images'),
-      filename: (_, file, callback) => {
-        const fileName = `${file.originalname}`
-        return callback(null, fileName)
-      },
+  imports: [
+    MulterModule.register({
+      storage: diskStorage({
+        destination: join(__dirname, '../../upload'),
+        filename: (_, file, callback) => {
+          const fileName = file.originalname
+          return callback(null, fileName)
+        },
+      }),
     }),
-  }),
-  TypeOrmModule.forFeature([PictureEntity]),
+    TypeOrmModule.forFeature([PictureEntity]),
   ],
   controllers: [PictureController],
   providers: [PictureService],

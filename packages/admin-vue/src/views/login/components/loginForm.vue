@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import type { Form, Rule } from 'vexip-ui'
+import type { Form } from 'vexip-ui'
 import Motion from '../utils/motion'
+import { loginRules } from '../utils/rules'
 import { useUserStore } from '@/store'
 import { getLocal, removeLocal, setLocal } from '@/utils'
 import type { LoginForm } from '@/api/interface/user'
@@ -16,17 +17,6 @@ if (localLoginInfo) {
   loginForm.username = localLoginInfo.username || ''
   loginForm.password = localLoginInfo.password || ''
 }
-const rules: { [key: string]: Rule } = {
-  username: {
-    required: true,
-    message: '请输入账号',
-  },
-  password: {
-    required: true,
-    message: '请输入密码',
-  },
-
-}
 const handleSubmit = async () => {
   const validated = await formRef.value?.validate()
   if (validated!.length <= 0) {
@@ -41,7 +31,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <Form ref="formRef" :rules="rules" flex-1 :model="loginForm" hide-label>
+  <Form ref="formRef" w-full :rules="loginRules" flex-1 :model="loginForm" hide-label>
     <Motion min-w-260 :delay="100">
       <FormItem label="username" prop="username">
         <Input clearable size="large" placeholder="请输入帐号">
@@ -81,9 +71,9 @@ const handleSubmit = async () => {
           </template>
           登 陆
         </FormSubmit>
-        <FormReset class="flex-1" type="warning">
+        <!-- <FormReset class="flex-1" type="warning">
           重 置
-        </FormReset>
+        </FormReset> -->
       </FormItem>
     </Motion>
   </Form>

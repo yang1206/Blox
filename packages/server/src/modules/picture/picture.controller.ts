@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common'
-import { ApiBody, ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiConsumes, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { ConfigService } from '@nestjs/config'
 import { PaginationDTO } from 'src/common/dto/pagination.dto'
+import { Roles } from 'src/core/decorators/role.decorator'
 import { PictureService } from './picture.service'
 
 export const ApiFile
@@ -21,16 +21,17 @@ export const ApiFile
       })(target, propertyKey, descriptor)
     }
 
-@ApiTags('图床模块')
+@ApiTags('图片')
 @Controller()
 export class PictureController {
   constructor(
     private readonly pictureService: PictureService,
-    private readonly configService: ConfigService,
   ) { }
 
   @Post('upload')
   @ApiFile()
+  @Roles('admin')
+  @ApiOperation({ summary: '上传图片' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
   async upload(
@@ -40,7 +41,9 @@ export class PictureController {
   }
 
   @ApiOkResponse({ description: '图片列表' })
+  @ApiOperation({ summary: '获取文件列表' })
   @Get('list')
+  @Roles('admin')
   async getMany(
     @Query() pageDto: PaginationDTO,
   ) {

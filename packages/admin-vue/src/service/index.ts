@@ -1,6 +1,7 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from 'axios'
 import Request from './request'
 import type { RequestConfig } from './request/types'
+import { getLocal } from '@/utils'
 export interface IResponse<T> {
   data: T
   message: string
@@ -13,11 +14,14 @@ interface HttpRequestConfig<T, R> extends RequestConfig<IResponse<R>> {
 const request = new Request({
   baseURL: import.meta.env.VITE_APP_GLOB_BASE_API,
   timeout: 1000 * 60 * 5,
-  // withCredentials: true,
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config: AxiosRequestConfig) => {
-      Loading.open(30)
+      Loading.open(10)
+      const token = getLocal('token')
+      if (token)
+        (config.headers! as RawAxiosRequestHeaders).Authorization = `Bearer ${token}`
+
       return config
     },
     // 响应拦截器

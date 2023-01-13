@@ -2,5 +2,6 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "cSpell.words": [
         "pinia"
-    ]
+    ],
+    "unocss.root": "packages/admin-vue"
 }

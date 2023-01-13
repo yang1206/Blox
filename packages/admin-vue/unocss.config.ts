@@ -39,6 +39,9 @@ export default defineConfig({
     ],
     ['flex-center', 'items-center  flex justify-center'],
   ],
+  rules: [
+    ['card-shadow', { 'box-shadow': '0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017' }],
+  ],
   presets: [
     presetUno(),
     presetAttributify(),

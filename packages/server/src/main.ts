@@ -21,10 +21,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe()) // 验证管道
   app.use(helmet()) // 设置安全响应头
   app.enableCors()
-  // 静态文件路径
-  app.useStaticAssets(join(__dirname, '..', process.env.SERVE_UPLOAD_FOLDER), {
+  app.useStaticAssets(join(__dirname, process.env.SERVE_UPLOAD_FOLDER), {
     prefix: `/${process.env.SERVE_UPLOAD_FOLDER}`,
-  })
+  })// 访问静态资源
   // 设置swagger文档
   const config = new DocumentBuilder()
     .setTitle('博客Api')

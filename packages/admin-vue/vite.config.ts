@@ -12,7 +12,7 @@ export default defineConfig({
     AutoImport({
       resolvers: [VexipUIResolver({
         // importDarkTheme: true,
-        // importStyle: true,
+        importStyle: true,
       })],
       imports: ['vue', 'vue-router', '@vueuse/core'],
       dirs: [path.resolve(pathSrc, 'composables')],

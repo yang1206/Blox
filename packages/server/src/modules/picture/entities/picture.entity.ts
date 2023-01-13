@@ -12,7 +12,7 @@ export class PictureEntity extends CommonEntity {
   @Column('text')
   src: string
 
-  // 文件签名
+  // 文件名称
   @Column('text')
-  sign: string
+  name: string
 }

@@ -1,45 +1,22 @@
 <script lang="ts" setup>
-import type { Form, Rule } from 'vexip-ui'
+import { Form } from 'vexip-ui'
 import Motion from '../utils/motion'
-import type { RegisterForm } from '@/api/interface/user'
+import { registerForm, registerRules } from '../utils/rules'
+import { registerRequest } from '@/api'
 const formRef = ref<InstanceType<typeof Form>>()
-const registerForm = reactive<RegisterForm>({
-  username: '',
-  password: '',
-  confirm_password: '',
-})
-const rules: { [key: string]: Rule } = {
-  username: {
-    required: true,
-    message: '请输入账号',
-  },
-  password: {
-    required: true,
-    message: '请输入密码',
-  },
-  confirm_password: [
-    {
-      required: true,
-      message: '请确认密码',
-    },
-    {
-      validator: (val: string) => {
-        if (val !== registerForm.password)
-          return false
-        return true
-      },
-      message: '两次密码不一致',
-    },
-  ],
-
-}
 const handleSubmit = async () => {
   const validated = await formRef.value?.validate()
+  if (validated!.length <= 0) {
+    registerRequest(registerForm).then((res) => {
+      if (res.message === 'success')
+        Notice.success('注册成功，去登陆吧！')
+    })
+  }
 }
 </script>
 
 <template>
-  <Form ref="formRef" :rules="rules" flex-1 :model="registerForm" hide-label>
+  <Form ref="formRef" w-full :rules="registerRules" :model="registerForm" hide-label>
     <Motion min-w-260 :delay="100">
       <FormItem label="username" prop="username">
         <Input clearable size="large" placeholder="请输入帐号">
@@ -83,9 +60,9 @@ const handleSubmit = async () => {
           </template>
           注册
         </FormSubmit>
-        <FormReset class="flex-1" type="warning">
+        <!-- <FormReset class="flex-1" type="warning">
           重 置
-        </FormReset>
+        </FormReset> -->
       </FormItem>
     </Motion>
   </Form>

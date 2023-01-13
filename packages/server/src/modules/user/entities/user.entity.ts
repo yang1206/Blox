@@ -33,12 +33,12 @@ export class UserEntity extends CommonEntity {
   @Column({ nullable: true })
   password: string // 密码
 
-  @Exclude()
-  @Column({
-    type: 'text',
-    nullable: false,
-  })
-  salt: string // 加密盐
+  // @Exclude()
+  // @Column({
+  //   type: 'text',
+  //   nullable: false,
+  // })
+  // salt: string // 加密盐
 
   @ApiProperty()
   @Column({ default: null })

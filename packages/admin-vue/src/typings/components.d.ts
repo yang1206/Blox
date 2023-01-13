@@ -17,5 +17,6 @@ declare module '@vue/runtime-core' {
     Input: typeof import('vexip-ui')['Input']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Switch: typeof import('vexip-ui')['Switch']
   }
 }
