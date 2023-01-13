@@ -11,12 +11,12 @@ declare module '@vue/runtime-core' {
     Checkbox: typeof import('vexip-ui')['Checkbox']
     Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
-    FormReset: typeof import('vexip-ui')['FormReset']
     FormSubmit: typeof import('vexip-ui')['FormSubmit']
     Icon: typeof import('vexip-ui')['Icon']
     Input: typeof import('vexip-ui')['Input']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Switch: typeof import('vexip-ui')['Switch']
+    UIcon: typeof import('./../components/UIcon.vue')['default']
   }
 }

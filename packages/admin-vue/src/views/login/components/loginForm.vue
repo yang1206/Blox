@@ -5,6 +5,7 @@ import { loginRules } from '../utils/rules'
 import { useUserStore } from '@/store'
 import { getLocal, removeLocal, setLocal } from '@/utils'
 import type { LoginForm } from '@/api/interface/user'
+import { useFormValid } from '@/composables/useFormValid'
 const userStore = useUserStore()
 const formRef = ref<InstanceType<typeof Form>>()
 const isRemember = useStorage('isRemember', false)
@@ -18,8 +19,8 @@ if (localLoginInfo) {
   loginForm.password = localLoginInfo.password || ''
 }
 const handleSubmit = async () => {
-  const validated = await formRef.value?.validate()
-  if (validated!.length <= 0) {
+  const validated = await useFormValid(formRef).validForm()
+  if (validated) {
     if (isRemember)
       setLocal('loginInfo', loginForm)
   }

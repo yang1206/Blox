@@ -5,7 +5,6 @@ import { LoginData, LoginForm } from '@/api/interface/user'
 interface User {
   token?: string
   userInfo: LoginData
-  menuInfo?: Array<unknown> | unknown
   role: string
 }
 export const useUserStore = defineStore('user', {
@@ -13,16 +12,12 @@ export const useUserStore = defineStore('user', {
     return {
       token: getLocal('token') || '',
       userInfo: getLocal('userinfo') as LoginData || null,
-      menuInfo: getLocal('menuinfo') || Array<unknown>,
       role: '',
     }
   },
   getters: {
     getId(): string {
       return this.userInfo.id as string
-    },
-    getMenu(): Array<unknown> {
-      return this.menuInfo as Array<unknown>
     },
     getToken(): string {
       return this.token as string

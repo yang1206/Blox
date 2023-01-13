@@ -4,11 +4,13 @@ import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VexipUIResolver } from '@vexip-ui/plugins'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 import Unocss from 'unocss/vite'
 const pathSrc = path.resolve(__dirname, 'src')
 export default defineConfig({
   plugins: [
     vue(),
+    DefineOptions(),
     AutoImport({
       resolvers: [VexipUIResolver({
         // importDarkTheme: true,

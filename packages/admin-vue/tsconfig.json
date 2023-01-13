@@ -17,8 +17,10 @@
     "paths": {
       "@/*": ["src/*"],
       "~/*": ["./*"]
-    }
+    },
+    "types": ["unplugin-vue-define-options/macros-global", "vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }

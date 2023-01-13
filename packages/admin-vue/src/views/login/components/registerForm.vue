@@ -3,10 +3,11 @@ import { Form } from 'vexip-ui'
 import Motion from '../utils/motion'
 import { registerForm, registerRules } from '../utils/rules'
 import { registerRequest } from '@/api'
+import { useFormValid } from '@/composables/useFormValid'
 const formRef = ref<InstanceType<typeof Form>>()
 const handleSubmit = async () => {
-  const validated = await formRef.value?.validate()
-  if (validated!.length <= 0) {
+  const validated = await useFormValid(formRef).validForm()
+  if (validated) {
     registerRequest(registerForm).then((res) => {
       if (res.message === 'success')
         Notice.success('注册成功，去登陆吧！')
