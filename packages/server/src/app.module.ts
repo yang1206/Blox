@@ -1,7 +1,7 @@
 import { Module, ValidationPipe } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule, ConfigService } from '@nestjs/config'
-import { APP_PIPE } from '@nestjs/core'
+import { APP_GUARD, APP_PIPE } from '@nestjs/core'
 import { UserModule } from 'src/modules/user/user.module'
 import { PostsModule } from 'src/modules/posts/posts.module'
 import { AuthModule } from 'src/modules/auth/auth.module'
@@ -12,12 +12,17 @@ import { ViewModule } from 'src/modules/view/view.module'
 import { SearchModule } from 'src/modules/search/search.module'
 import { MenusModule } from 'src/modules/menus/menus.module'
 import { filePath } from '@my-blog/config'
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // 设置为全局
       envFilePath: [filePath],
+    }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 20,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -50,6 +55,10 @@ import { filePath } from '@my-blog/config'
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
   ],
 })

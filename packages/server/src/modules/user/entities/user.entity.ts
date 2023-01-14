@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { ApiProperty } from '@nestjs/swagger'
 import { Exclude } from 'class-transformer'
-import { compare, decrypto, encrypto } from '@my-blog/utils'
+import * as bcrypt from 'bcrypt'
 import { CommonEntity } from 'src/common/entity/common.entity'
 @Entity('user')
 export class UserEntity extends CommonEntity {
@@ -10,12 +10,13 @@ export class UserEntity extends CommonEntity {
      * @param password0 加密前密码
      * @param password1 加密后密码
      */
-  static comparePassword(password0: string, password1: string, secret: string) {
-    return compare(password0, password1, secret)
+  static comparePassword(password0: string, password1: string) {
+    return bcrypt.compareSync(password0, password1)
   }
 
-  static encryptPassword(password: string, secret: string) {
-    return decrypto(password, secret)
+  static async encryptPassword(password: string) {
+    const salt = await bcrypt.genSalt()
+    return bcrypt.hashSync(password, salt)
   }
 
   @PrimaryGeneratedColumn('uuid')
@@ -33,12 +34,12 @@ export class UserEntity extends CommonEntity {
   @Column({ nullable: true })
   password: string // 密码
 
-  // @Exclude()
-  // @Column({
-  //   type: 'text',
-  //   nullable: false,
-  // })
-  // salt: string // 加密盐
+  @Exclude()
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  salt: string // 加密盐
 
   @ApiProperty()
   @Column({ default: null })
@@ -60,6 +61,8 @@ export class UserEntity extends CommonEntity {
   async encryptPwd() {
     if (!this.password)
       return
-    this.password = encrypto(this.password, process.env.AUTH_SECRET)
+      // 生成随机盐
+    this.salt = await bcrypt.genSalt()
+    this.password = bcrypt.hashSync(this.password, this.salt)
   }
 }

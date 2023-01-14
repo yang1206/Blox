@@ -23,7 +23,7 @@ export class UserService {
       })
       .catch(async () => {
         const existAdminUser = await this.userRepository.findOne({ where: { username } })
-        const isDefaultPasswd = UserEntity.comparePassword(password, existAdminUser.password, this.configService.get('AUTH_SECRET'))
+        const isDefaultPasswd = UserEntity.comparePassword(password, existAdminUser.password)
         if (isDefaultPasswd)
           console.log(`管理员账户已经存在，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
       })
@@ -123,7 +123,7 @@ export class UserService {
   async login(user: Partial<UserEntity>): Promise<UserEntity> {
     const { username, password } = user
     const existUser = await this.userRepository.findOne({ where: { username } })
-    if (!existUser || !(await UserEntity.comparePassword(password, existUser.password, this.configService.get('AUTH_SECRET')))) {
+    if (!existUser || !(await UserEntity.comparePassword(password, existUser.password))) {
       throw new HttpException(
         '用户名或密码错误',
         // tslint:disable-next-line: trailing-comma
@@ -150,14 +150,14 @@ export class UserService {
   async updatePassword(id, user): Promise<UserEntity> {
     const existUser = await this.userRepository.findOneBy({ id })
     const { oldPassword, newPassword } = user
-    if (!existUser || !(await UserEntity.comparePassword(oldPassword, existUser.password, this.configService.get('AUTH_SECRET')))) {
+    if (!existUser || !(await UserEntity.comparePassword(oldPassword, existUser.password))) {
       throw new HttpException(
         '用户名或密码错误',
         HttpStatus.BAD_REQUEST,
       )
     }
 
-    const hashNewPassword = UserEntity.encryptPassword(newPassword, this.configService.get('AUTH_SECRET'))
+    const hashNewPassword = await UserEntity.encryptPassword(newPassword)
     const newUser = await this.userRepository.merge(existUser, {
       password: hashNewPassword,
     })
