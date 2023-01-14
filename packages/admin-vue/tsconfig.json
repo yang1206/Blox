@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "allowSyntheticDefaultImports": false,
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,

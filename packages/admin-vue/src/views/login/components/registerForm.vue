@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Form } from 'vexip-ui'
+import { Form, Notice } from 'vexip-ui'
 import Motion from '../utils/motion'
 import { registerForm, registerRules } from '../utils/rules'
 import { registerRequest } from '@/api'

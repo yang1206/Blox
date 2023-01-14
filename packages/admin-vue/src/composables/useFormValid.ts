@@ -1,4 +1,6 @@
-export function useFormValid<T extends Array = any>(formRef: Ref<any>) {
+import { Ref } from 'vue'
+
+export function useFormValid<T extends Array<T> = any>(formRef: Ref<any>) {
   async function validForm() {
     const form = unref(formRef)
     if (!form)

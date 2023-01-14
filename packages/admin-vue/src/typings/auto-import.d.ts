@@ -4,7 +4,6 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const Loading: typeof import('vexip-ui')['Loading']
   const Message: typeof import('vexip-ui')['Message']
-  const Notice: typeof import('vexip-ui')['Notice']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -276,7 +275,6 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Loading: UnwrapRef<typeof import('vexip-ui')['Loading']>
     readonly Message: UnwrapRef<typeof import('vexip-ui')['Message']>
-    readonly Notice: UnwrapRef<typeof import('vexip-ui')['Notice']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
