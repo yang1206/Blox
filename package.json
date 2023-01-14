@@ -15,7 +15,7 @@
     "build": "pnpm exec turbo run build",
     "build:server": "pnpm run --dir packages/server build",
     "build:admin-vue": "pnpm run --dir packages/admin-vue build",
-    "build:config": "pnpm run --dir packages/config build",
+    "build:config": "pnpm run --dir packages/config build:config",
     "start": "pnpm exec turbo run start",
     "start:server": "pnpm run --dir packages/server start",
     "lint": "pnpm exec turbo run lint",
@@ -62,10 +62,10 @@
     "./packages/server/src/**/*.{ts,js}": [
       "eslint --fix"
     ],
-    "./packages/config/src/**/*.{ts}": [
+    "./packages/config/src/**/*.ts": [
       "eslint --fix"
     ],
-    "./packages/utils/src/**/*.{ts}": [
+    "./packages/utils/src/**/*.ts": [
       "eslint --fix"
     ]
   },

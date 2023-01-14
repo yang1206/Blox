@@ -19,7 +19,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup"
+    "build:config": "tsup"
   },
   "dependencies": {
     "dotenv": "^16.0.3"
