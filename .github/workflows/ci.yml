@@ -33,13 +33,11 @@ jobs:
         run: nci
 
       - name: build
-        run: nr build:common
+        run: nr build
 
       - name: Lint
         run: nr lint
 
-      - name: Style lint
-        run: nr lint:style
 
   test:
     runs-on: ${{ matrix.os }}
@@ -71,7 +69,7 @@ jobs:
         run: nci
 
       - name: build
-        run: nr build:common
+        run: nr build
 
       - name: Test
         run: nr test
