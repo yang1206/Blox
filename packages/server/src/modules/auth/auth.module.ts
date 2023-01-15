@@ -5,6 +5,7 @@ import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { UserModule } from 'src/modules/user/user.module'
+import { RedisCacheModule } from '../redis/redis-cache.module'
 import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { LocalStrategy } from './strategies/local.strategy'
@@ -16,7 +17,7 @@ const jwtModule = JwtModule.registerAsync({
   useFactory: async (configService: ConfigService) => {
     return {
       secret: configService.get('AUTH_SECRET'),
-      signOptions: { expiresIn: '3d' },
+      // signOptions: { expiresIn: '3d' },
     }
   },
 })
@@ -26,6 +27,7 @@ const jwtModule = JwtModule.registerAsync({
     TypeOrmModule.forFeature([UserEntity]),
     passModule,
     jwtModule,
+    RedisCacheModule,
     forwardRef(() => UserModule)],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
