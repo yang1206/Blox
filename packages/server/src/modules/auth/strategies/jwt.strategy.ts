@@ -6,7 +6,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { Repository } from 'typeorm'
-import { RedisCacheService } from 'src/modules/redis/redis-cache.service'
+import { RedisCacheService } from 'src/core/cache/redis.service'
 import { AuthService } from '../auth.service'
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -27,7 +27,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(req, payload: UserEntity) {
     const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req)
 
-    const cacheToken = await this.redisCacheService.cacheGet(
+    const cacheToken = await this.redisCacheService.get(
            `${payload.id}&${payload.username}&${payload.role}`,
     )
 
@@ -39,7 +39,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const existUser = await this.authService.getUser(payload)
     if (!existUser)
       throw new UnauthorizedException('身份验证失败')
-    this.redisCacheService.cacheSet(
+    // 重置token过期时间
+    this.redisCacheService.set(
            `${payload.id}&${payload.username}&${payload.role}`,
            token,
            1800,

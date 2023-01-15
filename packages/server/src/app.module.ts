@@ -11,9 +11,9 @@ import { PictureModule } from 'src/modules/picture/picture.module'
 import { ViewModule } from 'src/modules/view/view.module'
 import { SearchModule } from 'src/modules/search/search.module'
 import { MenusModule } from 'src/modules/menus/menus.module'
-import { RedisCacheModule } from 'src/modules/redis/redis-cache.module'
 import { filePath } from '@my-blog/config'
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
+import { RedisCacheModule } from './core/cache/redis.module'
 
 @Module({
   imports: [
@@ -41,6 +41,21 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
         autoLoadEntities: true,
       }),
     }),
+    RedisCacheModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory(configService: ConfigService) {
+        return {
+          readyLog: true,
+          config: {
+            host: configService.get('REDIS_HOST'),
+            port: configService.get('REDIS_PORT'),
+            password: configService.get('REDIS_PASSWORD'),
+            db: 0,
+          },
+        }
+      },
+    }),
     PostsModule,
     UserModule,
     AuthModule,
@@ -50,7 +65,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
     ViewModule,
     SearchModule,
     MenusModule,
-    RedisCacheModule,
+    // RedisCacheModule,
   ],
   controllers: [],
   providers: [

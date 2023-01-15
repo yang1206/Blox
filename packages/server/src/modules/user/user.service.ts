@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ConfigService } from '@nestjs/config'
@@ -6,7 +6,7 @@ import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { UserEntity } from './entities/user.entity'
 import type { CreateUserDto } from './dto/create-user.dto'
-
+const logger = new Logger('user.service.ts')
 @Injectable()
 export class UserService {
   constructor(
@@ -18,14 +18,13 @@ export class UserService {
     const password = this.configService.get('ADMIN_PASSWD', 'admin')
     this.register({ username, password, role: 'admin' })
       .then(() => {
-        /* eslint-disable no-console */
-        console.log(`管理员账户创建成功，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
+        logger.verbose(`管理员账户创建成功，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
       })
       .catch(async () => {
         const existAdminUser = await this.userRepository.findOne({ where: { username } })
         const isDefaultPasswd = UserEntity.comparePassword(password, existAdminUser.password)
         if (isDefaultPasswd)
-          console.log(`管理员账户已经存在，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
+          logger.verbose(`管理员账户已经存在，用户名：${username}，密码：${password}，请及时登录系统修改默认密码`)
       })
   }
 
