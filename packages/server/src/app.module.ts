@@ -11,6 +11,7 @@ import { PictureModule } from 'src/modules/picture/picture.module'
 import { ViewModule } from 'src/modules/view/view.module'
 import { SearchModule } from 'src/modules/search/search.module'
 import { MenusModule } from 'src/modules/menus/menus.module'
+import { RedisCacheModule } from 'src/modules/redis/redis-cache.module'
 import { filePath } from '@my-blog/config'
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 
@@ -20,9 +21,9 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
       isGlobal: true, // 设置为全局
       envFilePath: [filePath],
     }),
-    ThrottlerModule.forRoot({
+    ThrottlerModule.forRoot({ // 限速
       ttl: 60,
-      limit: 20,
+      limit: 50,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -49,6 +50,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
     ViewModule,
     SearchModule,
     MenusModule,
+    RedisCacheModule,
   ],
   controllers: [],
   providers: [
