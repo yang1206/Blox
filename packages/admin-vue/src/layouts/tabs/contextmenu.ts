@@ -1,4 +1,4 @@
-import { Contextmenu } from 'vexip-ui'
+// import { Contextmenu } from 'vexip-ui'
 import { useAppStore, useTabStore } from '@/store'
 const tabStore = useTabStore()
 const appStore = useAppStore()

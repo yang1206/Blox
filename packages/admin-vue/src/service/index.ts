@@ -1,8 +1,9 @@
-import type { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from 'axios'
+import type { AxiosResponse, RawAxiosRequestConfig, RawAxiosRequestHeaders } from 'axios'
 import Request from './request'
 import type { RequestConfig } from './request/types'
+import { resolveResError } from './request/helpers'
 import { getLocal } from '@/utils'
-import { useUserStore } from '@/store'
+// import { useUserStore } from '@/store'
 export interface IResponse<T> {
   data: T
   message: string
@@ -17,7 +18,7 @@ const request = new Request({
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
-    requestInterceptors: (config: AxiosRequestConfig) => {
+    requestInterceptors: (config: RawAxiosRequestConfig) => {
       Loading.open(10)
       const token = getLocal('token')
       if (token)
@@ -36,13 +37,14 @@ const request = new Request({
         maxPercent: 100,
         state: 'error',
       })
+      const message = resolveResError(error.response.status, error.response.data.message)
       Message.error({
-        content: error.response.data.message,
+        content: message,
       })
-      if (error.response.status === 401) {
-        const userStore = useUserStore()
-        userStore.logout()
-      }
+      // if (error.response.status === 401) {
+      //   const userStore = useUserStore()
+      //   userStore.logout()
+      // }
       return Promise.reject(new Error(error))
     },
   },

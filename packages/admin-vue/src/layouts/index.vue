@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GithubB, Indent, Outdent } from '@vexip-ui/icons'
+import { Indent, Outdent } from '@vexip-ui/icons'
 import Menu from './menu/index.vue'
 import ThemeSwitch from './header/theme-switch.vue'
 import BreadCrumb from './header/breadCrumb.vue'
@@ -32,7 +32,7 @@ function handleUserAction(label: string) {
     </template> -->
     <template #header-left="{ reduced, toggleReduce }">
       <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduce()">
-        <Icon :icon="reduced ? Indent : Outdent" />
+        <Icon scale="1.5" :icon="reduced ? Indent : Outdent" />
       </div>
     </template>
     <template #header-main>
@@ -46,7 +46,7 @@ function handleUserAction(label: string) {
       </span>
       <Linker to="https://github.com/yang1206/my-blog" style="display: flex; margin-right: 16px;">
         <Icon :scale="1.6">
-          <GithubB />
+          <div i-carbon:logo-github />
         </Icon>
       </Linker>
     </template>
@@ -57,9 +57,11 @@ function handleUserAction(label: string) {
       <div v-if="isXsScreen" fixed top-54px h-40px flex items-center w-full class="tabs">
         <Tab />
       </div>
-      <main class="bg-rgba(245,246,251,1) main" :class="isXsScreen ? 'pt-94px' : 'pt-54'" dark:bg-dark wh-full>
+      <main class="bg-#F3F5FA main" :class="isXsScreen ? 'pt-94px' : 'pt-54'" dark:bg-dark wh-full>
         <router-view v-slot="{ Component, route }">
-          <component :is="Component" v-if="appStore.reloadFlag" :key="route.path" />
+          <transition name="fade-slide" mode="out-in" appear>
+            <component :is="Component" v-if="appStore.reloadFlag" :key="route.path" />
+          </transition>
         </router-view>
       </main>
     </template>

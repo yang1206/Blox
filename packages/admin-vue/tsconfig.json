@@ -13,13 +13,12 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["src/*"],
       "~/*": ["./*"]
     },
-    "types": ["unplugin-vue-define-options/macros-global", "vite/client"]
+    "types": ["unplugin-vue-define-options/macros-global", "vite/client","node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

@@ -40,6 +40,9 @@ export class TagsService {
     }
     if (params) {
       Object.keys(params).forEach((key) => {
+        const data = new TagEntity()
+        if (!(key in data))
+          return
         query.andWhere(`tag.${key} LIKE :${key}`).setParameter(`${key}`, `%${params[key]}%`)
       })
     }

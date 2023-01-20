@@ -53,6 +53,9 @@ export class CategoryService {
 
     if (params) {
       Object.keys(params).forEach((key) => {
+        const data = new CategoryEntity()
+        if (!(key in data))
+          return
         query.andWhere(`category.${key} LIKE :${key}`).setParameter(`${key}`, `%${params[key]}%`)
       })
     }

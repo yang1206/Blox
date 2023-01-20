@@ -71,10 +71,10 @@ onBeforeUnmount(() => {
   <div ref="wrapper" class="wrapper" @mousewheel.prevent="handleMouseWheel">
     <template v-if="showArrow && isOverflow">
       <div class="left" @click="handleMouseWheel({ wheelDelta: 120 })">
-        <div i-ic:baseline-keyboard-arrow-left />
+        <TheIcon icon="ic:baseline-keyboard-arrow-left" />
       </div>
       <div class="right" @click="handleMouseWheel({ wheelDelta: -120 })">
-        <div i-ic:baseline-keyboard-arrow-right />
+        <TheIcon icon="ic:baseline-keyboard-arrow-right" />
       </div>
     </template>
 

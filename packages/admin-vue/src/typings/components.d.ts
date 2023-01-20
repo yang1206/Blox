@@ -13,7 +13,6 @@ declare module '@vue/runtime-core' {
     Checkbox: typeof import('vexip-ui')['Checkbox']
     Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
-    FormReset: typeof import('vexip-ui')['FormReset']
     FormSubmit: typeof import('vexip-ui')['FormSubmit']
     Icon: typeof import('vexip-ui')['Icon']
     Input: typeof import('vexip-ui')['Input']
@@ -23,11 +22,8 @@ declare module '@vue/runtime-core' {
     MenuItem: typeof import('vexip-ui')['MenuItem']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Scroll: typeof import('vexip-ui')['Scroll']
     ScrollX: typeof import('./../components/ScrollX.vue')['default']
-    Switch: typeof import('vexip-ui')['Switch']
     Tag: typeof import('vexip-ui')['Tag']
     TheIcon: typeof import('./../components/TheIcon.vue')['default']
-    UIcon: typeof import('./../components/UIcon.vue')['default']
   }
 }

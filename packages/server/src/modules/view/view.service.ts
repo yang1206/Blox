@@ -5,7 +5,7 @@ import { parseUserAgent } from 'src/utils/ua'
 import { parseIp } from 'src/utils/ip'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import { ViewEntity } from './entities/view.entity'
-import type { ViewRo } from './dto/view.dto'
+import { ViewRo } from './dto/view.dto'
 
 @Injectable()
 export class ViewService {
@@ -49,6 +49,9 @@ export class ViewService {
 
       if (otherParams) {
         Object.keys(otherParams).forEach((key) => {
+          const data = new ViewRo()
+          if (!(key in data))
+            return
           query.andWhere(`view.${key} LIKE :${key}`).setParameter(`${key}`, `%${otherParams[key]}%`)
         })
       }

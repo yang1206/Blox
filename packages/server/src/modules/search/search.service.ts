@@ -4,7 +4,7 @@ import { Repository } from 'typeorm'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import { PostsService } from '../posts/posts.service'
 import { SearchEntity } from './entities/search.entity'
-import type { SearchRo } from './dto/search.dto'
+import { SearchRo } from './dto/search.dto'
 
 @Injectable()
 export class SearchService {
@@ -55,6 +55,9 @@ export class SearchService {
 
       if (otherParams) {
         Object.keys(otherParams).forEach((key) => {
+          const data = new SearchRo()
+          if (!(key in data))
+            return
           query.andWhere(`search.${key} LIKE :${key}`).setParameter(`${key}`, `%${otherParams[key]}%`)
         })
       }

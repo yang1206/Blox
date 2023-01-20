@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const props = defineProps<{
-  modelValue?: boolean
-}>()
+import { postsRequest } from '@/api'
+const params = { pageNum: 1, pageSize: 100 }
 </script>
 
 <template>

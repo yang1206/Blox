@@ -68,6 +68,9 @@ export class UserService {
 
       if (otherParams) {
         Object.keys(otherParams).forEach((key) => {
+          const data = new UserEntity()
+          if (!(key in data))
+            return
           query.andWhere(`user.${key} LIKE :${key}`).setParameter(`${key}`, `%${otherParams[key]}%`)
         })
       }

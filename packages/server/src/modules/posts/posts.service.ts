@@ -9,7 +9,7 @@ import type { ResponseVo } from 'src/common/vo/res.vo'
 import type { CreatePostDto } from './dto/post.dto'
 import { extractProtectedArticle } from './posts.utils'
 import { PostsEntity } from './entities/posts.entity'
-import type { PostInfo } from './vo/post.vo'
+import { PostInfo } from './vo/post.vo'
 
 @Injectable()
 export class PostsService {
@@ -70,9 +70,11 @@ export class PostsService {
     query.take(+pageSize)
     if (status)
       query.andWhere('post.status=:status').setParameter('status', status)
-
     if (params) {
       Object.keys(params).forEach((key) => {
+        const posts = new PostInfo()
+        if (!(key in posts))
+          return
         query.andWhere(`post.${key} LIKE :${key}`).setParameter(`${key}`, `%${params[key]}%`)
       })
     }
