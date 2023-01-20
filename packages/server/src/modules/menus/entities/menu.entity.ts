@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { CommonEntity } from 'src/common/entity/common.entity'
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
+import { BeforeInsert, Column, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
 
 @Entity('menu')
 @Tree('closure-table')
@@ -16,6 +16,10 @@ export class MenuEntity extends CommonEntity {
   // 路由
   @Column()
   path: string
+
+  // 路由
+  @Column()
+  label: string
 
   // 排序
   @Column()
@@ -44,6 +48,12 @@ export class MenuEntity extends CommonEntity {
     name: 'parent_id',
   })
   parent: MenuEntity
+
+  @BeforeInsert()
+  async setLabel() {
+    if (this.path)
+      this.label = this.path
+  }
 }
 
 export const Person2Id = (data) => {
@@ -54,6 +64,8 @@ export const Person2Id = (data) => {
     delete item.parent
     if (item?.children?.length > 0)
       Person2Id(item.children)
+    if (item.children.length === 0)
+      delete item.children
   })
   return responseObj
 }

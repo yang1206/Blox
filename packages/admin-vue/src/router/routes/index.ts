@@ -4,7 +4,6 @@ export const basicRoutes: RoutesType = [
     name: '404',
     path: '/404',
     component: () => import('@/views/error/404.vue'),
-    isHidden: true,
   },
   {
     path: '/login',
@@ -14,13 +13,23 @@ export const basicRoutes: RoutesType = [
     },
     component: () => import('@/views/login/index.vue'),
   },
+  {
+    path: '/',
+    redirect: '/workbench',
+    name: 'layout',
+    meta: {
+      title: '首页',
+      icon: 'carbon:home',
+    },
+    component: () => import('@/layouts/index.vue'),
+    children: [],
+  },
 ]
 
 export const NOT_FOUND_ROUTE: RouteType = {
   name: 'NotFound',
   path: '/:pathMatch(.*)*',
   redirect: '/404',
-  isHidden: true,
 }
 
 export const EMPTY_ROUTE: RouteType = {
@@ -33,7 +42,14 @@ const modules = import.meta.glob('./modules/**/*.ts', { eager: true }) as RouteM
 const asyncRoutes: RoutesType = []
 
 Object.keys(modules).forEach((key) => {
-  asyncRoutes.push(modules[key].default)
+  if ((modules[key].default as RouteType[]).length) {
+    (modules[key].default as RouteType[]).forEach((item) => {
+      asyncRoutes.push(item as RouteType)
+    })
+  }
+  else {
+    asyncRoutes.push(modules[key].default as RouteType)
+  }
 })
 
 export { asyncRoutes }

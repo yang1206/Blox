@@ -8,8 +8,6 @@ export default {
   redirect: '/error-page/404',
   meta: {
     title: 'ErrorPage',
-    order: 99,
-    icon: 'mdi:alert-circle-outline',
   },
   children: [
     {
@@ -18,7 +16,6 @@ export default {
       component: () => import('@/views/error/404.vue'),
       meta: {
         title: '404',
-        icon: 'tabler:error-404',
       },
     },
   ],

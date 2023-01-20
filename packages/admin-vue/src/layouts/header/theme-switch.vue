@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { Moon, Sun } from '@vexip-ui/icons'
+withDefaults(defineProps<{ size?: number }>(), {
+  size: 1.5,
+})
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <Switch
-    :value="isDark" class="theme-switch" :open-icon="Moon" :close-icon="Sun" aria-label="theme"
-    @change="toggleDark"
-  />
+  <TheIcon dark:bg-dark :size="size" :icon="isDark ? 'carbon:moon' : 'carbon:sun'" @click="toggleDark()" />
 </template>
-
-<style>
-.theme-switch {
-  border: 1px solid var(--vxp-border-color-base);
-}
-</style>

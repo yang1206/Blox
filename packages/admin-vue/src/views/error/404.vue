@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="flex justify-center items-center flex-col h-[640px]">
+  <div class="flex-center dark:bg-dark  flex-col h-100vh">
     <img src="@/assets/img/404.webp" width="500">
     <div class="ml-12">
       <p

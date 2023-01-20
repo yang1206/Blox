@@ -21,14 +21,15 @@
     "lint": "pnpm exec turbo run lint",
     "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
     "lint:admin-vue": "eslint --fix './packages/admin-vue/src/**/*.{ts,js}'",
+    "nibble": "eslint-nibble './packages/**/src/*.{ts,js,tsx,vue}'",
     "prepare": "husky install",
     "precommit": "lint-staged",
     "lint:lint-staged": "lint-staged",
     "commit": "git pull && git add -A && git-cz && git push"
   },
   "dependencies": {
-    "@my-blog/utils": "workspace:^1.0.0",
     "@my-blog/config": "workspace:^1.0.0",
+    "@my-blog/utils": "workspace:^1.0.0",
     "date-fns": "^2.29.3",
     "rimraf": "^3.0.2"
   },
@@ -40,6 +41,7 @@
     "commitizen": "^4.2.6",
     "cz-git": "^1.4.1",
     "eslint": "^8.31.0",
+    "eslint-nibble": "^8.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",

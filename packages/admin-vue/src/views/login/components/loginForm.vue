@@ -6,6 +6,9 @@ import { useUserStore } from '@/store'
 import { getLocal, removeLocal, setLocal } from '@/utils'
 import type { LoginForm } from '@/api/interface/user'
 import { useFormValid } from '@/composables/useFormValid'
+import { addDynamicRoutes, router } from '@/router'
+const route = useRoute()
+const query = route.query
 const userStore = useUserStore()
 const formRef = ref<InstanceType<typeof Form>>()
 const isRemember = useStorage('isRemember', false)
@@ -13,12 +16,14 @@ const loginForm = reactive<LoginForm>({
   username: '',
   password: '',
 })
+const loadingState = ref(false)
 const localLoginInfo = getLocal('loginInfo') as LoginForm
 if (localLoginInfo) {
   loginForm.username = localLoginInfo.username || ''
   loginForm.password = localLoginInfo.password || ''
 }
 const handleSubmit = async () => {
+  loadingState.value = true
   const validated = await useFormValid(formRef).validForm()
   if (validated) {
     if (isRemember)
@@ -27,7 +32,21 @@ const handleSubmit = async () => {
   if (isRemember.value)
     setLocal('loginInfo', loginForm)
   else removeLocal('loginInfo')
-  userStore.asyncLogin(loginForm)
+  userStore.asyncLogin(loginForm).then(async () => {
+    await addDynamicRoutes()
+    if (query.redirect) {
+      const path = query.redirect as string
+      Reflect.deleteProperty(query, 'redirect')
+      router.push({ path, query })
+    }
+    else {
+      router.push(localStorage.getItem('menuActive') as string || '/')
+    }
+    loadingState.value = false
+    Notice.success('登录成功')
+  }).catch(() => {
+    loadingState.value = false
+  })
 }
 </script>
 
@@ -64,12 +83,7 @@ const handleSubmit = async () => {
     </Motion>
     <Motion min-w-260 :delay="200">
       <FormItem>
-        <FormSubmit size="default" class="flex-1" type="success" @submit="handleSubmit">
-          <template #icon>
-            <Icon>
-              <div i-carbon:checkmark />
-            </Icon>
-          </template>
+        <FormSubmit :loading="loadingState" size="default" class="flex-1" type="success" @submit="handleSubmit">
           登 陆
         </FormSubmit>
         <!-- <FormReset class="flex-1" type="warning">

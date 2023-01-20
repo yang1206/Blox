@@ -1,4 +1,4 @@
-import type { LoginData, LoginForm, RegisterData, RegisterForm } from '../interface/user'
+import type { LoginData, LoginForm, MenuData, RegisterData, RegisterForm } from '../interface/user'
 import request from '@/service'
 
 export const loginRequest = (data: LoginForm) => {
@@ -14,5 +14,12 @@ export const registerRequest = (data: RegisterForm) => {
     url: '/user/register',
     method: 'POST',
     data,
+  })
+}
+
+export const menuRequest = () => {
+  return request<any, MenuData[]>({
+    url: '/menus',
+    method: 'GET',
   })
 }

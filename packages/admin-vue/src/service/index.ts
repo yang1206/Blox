@@ -2,6 +2,7 @@ import type { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from '
 import Request from './request'
 import type { RequestConfig } from './request/types'
 import { getLocal } from '@/utils'
+import { useUserStore } from '@/store'
 export interface IResponse<T> {
   data: T
   message: string
@@ -30,11 +31,19 @@ const request = new Request({
       return result
     },
     responseInterceptorsCatch: (error) => {
-      Loading.open(100)
+      Loading.open({
+        percent: 100,
+        maxPercent: 100,
+        state: 'error',
+      })
       Message.error({
         content: error.response.data.message,
       })
-      return Promise.reject(error.response.data)
+      if (error.response.status === 401) {
+        const userStore = useUserStore()
+        userStore.logout()
+      }
+      return Promise.reject(new Error(error))
     },
   },
 })

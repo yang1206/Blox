@@ -18,7 +18,7 @@ export class MenusController {
  * 创建菜单
  * @param body
  */
-  @ApiOperation({ summary: '创建分类' })
+  @ApiOperation({ summary: '创建菜单', description: '如果传parent_id则是添加子菜单' })
   @ApiResponse({ type: MenuEntity })
   @Roles('admin')
   @Post()

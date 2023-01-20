@@ -7,16 +7,27 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Breadcrumb: typeof import('vexip-ui')['Breadcrumb']
+    BreadcrumbItem: typeof import('vexip-ui')['BreadcrumbItem']
     Button: typeof import('vexip-ui')['Button']
     Checkbox: typeof import('vexip-ui')['Checkbox']
     Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
+    FormReset: typeof import('vexip-ui')['FormReset']
     FormSubmit: typeof import('vexip-ui')['FormSubmit']
     Icon: typeof import('vexip-ui')['Icon']
     Input: typeof import('vexip-ui')['Input']
+    Layout: typeof import('vexip-ui')['Layout']
+    Linker: typeof import('vexip-ui')['Linker']
+    Menu: typeof import('vexip-ui')['Menu']
+    MenuItem: typeof import('vexip-ui')['MenuItem']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scroll: typeof import('vexip-ui')['Scroll']
+    ScrollX: typeof import('./../components/ScrollX.vue')['default']
     Switch: typeof import('vexip-ui')['Switch']
+    Tag: typeof import('vexip-ui')['Tag']
+    TheIcon: typeof import('./../components/TheIcon.vue')['default']
     UIcon: typeof import('./../components/UIcon.vue')['default']
   }
 }

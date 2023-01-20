@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
+import { usePermissionStore } from '../permission'
 import { loginRequest } from '@/api'
-import { clearLocal, getLocal, setLocal } from '@/utils'
+import { getLocal, removeLocal, setLocal } from '@/utils'
 import { LoginData, LoginForm } from '@/api/interface/user'
+import { router } from '@/router'
 interface User {
   token?: string
   userInfo: LoginData
@@ -17,7 +19,7 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     getId(): string {
-      return this.userInfo.id as string
+      return this.userInfo?.id as string
     },
     getToken(): string {
       return this.token as string
@@ -27,24 +29,19 @@ export const useUserStore = defineStore('user', {
     async asyncLogin(loginFrom: LoginForm) {
       const res = await loginRequest(loginFrom)
       const { token } = res.data
-
       this.token = token
       setLocal('token', token)
       this.userInfo = res.data
       this.role = String(res.data.role)
       setLocal('userinfo', this.userInfo)
-    //   this.asyncGetMenu()
+      const usePermission = usePermissionStore()
+      await usePermission.asyncGetMenu()
     },
-    // async asyncGetMenu() {
-    //   const menuInfo = await menuListRequest()
-    //   this.menuInfo = menuInfo.data
-    //   setLocal('menuinfo', menuInfo.data)
-    // },
     logout() {
       // const { resetTabs } = useTabStore()
-
-      clearLocal()
-    //   toLogin()
+      removeLocal('userinfo')
+      removeLocal('token')
+      router.push('/login')
     },
   },
 })

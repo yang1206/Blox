@@ -9,7 +9,7 @@ const isLogin = ref(true)
 <template>
   <div class="login dark:bg-dark wh-full flex-center">
     <div absolute top-15 right-25>
-      <ThemeSwitch />
+      <ThemeSwitch :size="6" />
     </div>
     <div m-auto p-15 f-c-c min-w-345 rounded-10 card-shadow bg-white dark:bg-dark bg-opacity-60 flex>
       <div w-380 hidden md:block py-35>
