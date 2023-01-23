@@ -3,7 +3,10 @@ import { SearchQuery, resData } from './common'
 export interface postsParams extends Partial<SearchQuery> {
   status?: 'draft' | 'publish' | ''
   tag?: number
+  category?: number
   title?: string
+  publishTimeStart?: string
+  publishTimeEnd?: string
 }
 
 export interface postInfo {
@@ -28,4 +31,16 @@ export interface postInfo {
 }
 export interface postsData extends resData {
   list: postInfo[]
+}
+
+export interface cateInfo {
+  id: number
+  createTime: Date
+  updateTime: Date
+  name: string
+  postsCount: number
+  label: string
+}
+export interface categoryData extends resData {
+  list: cateInfo[]
 }

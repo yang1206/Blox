@@ -66,7 +66,7 @@ export class PostsService {
       .leftJoinAndSelect('post.category', 'category')
       .leftJoinAndSelect('post.author', 'user')
       .orderBy('post.publishTime', 'DESC')
-    const { page = 1, size = 10, status, updateTimeStart, updateTimeEnd, ...params } = queryParams
+    const { page = 1, size = 10, status, updateTimeStart, updateTimeEnd, createTimeStart, createTimeEnd, publishTimeStart, publishTimeEnd, ...params } = queryParams
     if (page <= 0 || size <= 0)
       throw new HttpException('分页查询出错', HttpStatus.BAD_REQUEST)
     // 分页查询
@@ -75,16 +75,28 @@ export class PostsService {
 
     // 根据标签查询
     if (queryParams.tag)
-      query.where('tag.id=:value', { value: queryParams.tag })
+      query.andWhere('tag.id=:value', { value: queryParams.tag })
     // 根据分类查询
     if (queryParams.category)
-      query.where('category.id=:value', { value: queryParams.category })
+      query.andWhere('category.id=:value', { value: queryParams.category })
 
     // 时间段查询
     if (updateTimeStart && updateTimeEnd) {
       query.andWhere('post.update_time BETWEEN :start AND :end', {
         start: updateTimeStart,
         end: updateTimeEnd,
+      })
+    }
+    if (createTimeStart && createTimeEnd) {
+      query.andWhere('post.create_time BETWEEN :start AND :end', {
+        start: createTimeStart,
+        end: createTimeEnd,
+      })
+    }
+    if (publishTimeStart && publishTimeEnd) {
+      query.andWhere('post.publish_time BETWEEN :start AND :end', {
+        start: publishTimeStart,
+        end: publishTimeEnd,
       })
     }
     if (status)
@@ -283,7 +295,8 @@ export class PostsService {
       throw new HttpException(`id为${id}的文章不存在`, HttpStatus.BAD_REQUEST)
 
     const { category, tag, status } = post
-    const tags = await this.tagsService.findByIds((`${tag}`).split(','))
+
+    const tags = await this.tagsService.findByIds((`${JSON.parse(tag)}`).split(','))
     const categoryDoc = await this.categoryService.findById(category)
     const newPost = {
       ...post,

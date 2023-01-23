@@ -3,5 +3,7 @@ export interface SearchQuery {
   size: number
   updateTimeStart: string
   updateTimeEnd: string
+  createTimeStart: string
+  createTimeEnd: string
   [key: string]: unknown
 }
