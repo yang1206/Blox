@@ -11,6 +11,7 @@ import { HttpExceptionFilter } from 'src/core/filters/http-exception.filter'
 import { TransformInterceptor } from 'src/core/interceptors/transform.interceptor'
 import { ValidationPipe } from 'src/core/pipe/validation.pipe'
 import { AppModule } from './app.module'
+// import { logger } from './core/logger/logger.middleware'
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(compression()) // 启用 gzip 压缩

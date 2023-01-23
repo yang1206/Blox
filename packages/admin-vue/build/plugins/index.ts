@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import unocss from 'unocss/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
 import viteCompression from 'vite-plugin-compression'
-
+import viteImagemin from 'vite-plugin-imagemin'
 import unplugins from './unplugin'
 import { setupHtmlPlugin } from './html'
 
@@ -13,6 +13,15 @@ export function setupVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOpti
   if (viteEnv.VITE_USE_COMPRESS) {
     plugins.push(
       viteCompression({ algorithm: viteEnv.VITE_COMPRESS_TYPE || 'gzip' }),
+      viteImagemin({
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4,
+        },
+        webp: {
+          quality: 0.8,
+        },
+      }),
     )
   }
 

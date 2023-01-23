@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import type { SearchQuery } from 'src/common/interface/query.interface'
+import { getPagination } from 'src/utils/pagination'
 import { PostsService } from '../posts/posts.service'
 import { SearchEntity } from './entities/search.entity'
 import { SearchRo } from './dto/search.dto'
@@ -48,10 +49,10 @@ export class SearchService {
    */
   async findAll(queryParams: SearchQuery): Promise<SearchRo> {
     const query = this.searchRepository.createQueryBuilder('search').orderBy('search.updateTime', 'DESC')
-    const { pageNum = 1, pageSize = 10, ...otherParams } = queryParams
+    const { page = 1, size = 10, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {
-      query.skip((+pageNum - 1) * +pageSize)
-      query.take(+pageSize)
+      query.skip((+page - 1) * +size)
+      query.take(+size)
 
       if (otherParams) {
         Object.keys(otherParams).forEach((key) => {
@@ -64,11 +65,10 @@ export class SearchService {
     }
 
     const [list, total] = await query.getManyAndCount()
+    const pageData = getPagination(total, page, size)
     return {
       list,
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 

@@ -9,8 +9,11 @@ export class SearchRo {
   total: number
 
   @ApiProperty()
-  pageNum: number
+  pageNumber: number
 
   @ApiProperty()
   pageSize: number
+
+  @ApiProperty()
+  pages: number
 }

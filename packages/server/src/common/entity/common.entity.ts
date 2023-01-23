@@ -1,3 +1,5 @@
+import type { TransformFnParams } from 'class-transformer'
+import { Transform } from 'class-transformer'
 import {
   Column,
   CreateDateColumn,
@@ -6,13 +8,16 @@ import {
 } from 'typeorm'
 
 export abstract class CommonEntity {
+  @Transform((row: TransformFnParams) => +new Date(row.value))
   @CreateDateColumn({
     type: 'timestamp',
+    nullable: false,
     comment: '创建时间',
     name: 'create_time',
   })
   createTime: Date
 
+  @Transform((row: TransformFnParams) => +new Date(row.value))
   @UpdateDateColumn({
     type: 'timestamp',
     comment: '更新时间',

@@ -1,5 +1,7 @@
 export interface SearchQuery {
-  pageNum: number
-  pageSize: number
+  page: number
+  size: number
+  updateTimeStart: string
+  updateTimeEnd: string
   [key: string]: unknown
 }

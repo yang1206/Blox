@@ -1,4 +1,5 @@
 import * as CryptoJS from 'crypto-js'
+
 /**
  * 加密数据
  * @param data - 数据

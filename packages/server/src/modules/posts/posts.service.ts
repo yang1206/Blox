@@ -6,6 +6,7 @@ import { TagsService } from 'src/modules/tags/tags.service'
 import { dateFormat } from 'src/utils/format'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
+import { getPagination } from 'src/utils/pagination'
 import type { CreatePostDto } from './dto/post.dto'
 import { extractProtectedArticle } from './posts.utils'
 import { PostsEntity } from './entities/posts.entity'
@@ -65,9 +66,27 @@ export class PostsService {
       .leftJoinAndSelect('post.category', 'category')
       .leftJoinAndSelect('post.author', 'user')
       .orderBy('post.publishTime', 'DESC')
-    const { pageNum = 1, pageSize = 10, status, ...params } = queryParams
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
+    const { page = 1, size = 10, status, updateTimeStart, updateTimeEnd, ...params } = queryParams
+    if (page <= 0 || size <= 0)
+      throw new HttpException('分页查询出错', HttpStatus.BAD_REQUEST)
+    // 分页查询
+    query.skip((+page - 1) * +size)
+    query.take(+size)
+
+    // 根据标签查询
+    if (queryParams.tag)
+      query.where('tag.id=:value', { value: queryParams.tag })
+    // 根据分类查询
+    if (queryParams.category)
+      query.where('category.id=:value', { value: queryParams.category })
+
+    // 时间段查询
+    if (updateTimeStart && updateTimeEnd) {
+      query.andWhere('post.update_time BETWEEN :start AND :end', {
+        start: updateTimeStart,
+        end: updateTimeEnd,
+      })
+    }
     if (status)
       query.andWhere('post.status=:status').setParameter('status', status)
     if (params) {
@@ -84,11 +103,10 @@ export class PostsService {
       if (d.needPassword)
         extractProtectedArticle(d)
     })
+    const pageData = getPagination(total, page, size)
     return {
       list: data.map(item => item.toResponseObject()),
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 
@@ -105,9 +123,11 @@ export class PostsService {
       .where('category.id=:value', { value: category })
       .orderBy('post.publishTime', 'DESC')
 
-    const { pageNum = 1, pageSize = 10, status } = queryParams
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
+    const { page = 1, size = 10, status } = queryParams
+    if (page <= 0 || size <= 0)
+      throw new HttpException('分页查询出错', HttpStatus.BAD_REQUEST)
+    query.skip((+page - 1) * +size)
+    query.take(+size)
 
     if (status)
       query.andWhere('post.status=:status').setParameter('status', status)
@@ -117,7 +137,8 @@ export class PostsService {
       if (d.needPassword)
         extractProtectedArticle(d)
     })
-    return { list: data.map(item => item.toResponseObject()), total, pageNum, pageSize }
+    const pageData = getPagination(total, page, size)
+    return { list: data.map(item => item.toResponseObject()), ...pageData }
   }
 
   /**
@@ -134,10 +155,18 @@ export class PostsService {
       })
       .orderBy('post.publishTime', 'DESC')
 
-    const { pageNum = 1, pageSize = 10, status } = queryParams
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
-
+    const { page = 1, size = 10, updateTimeStart, updateTimeEnd, status } = queryParams
+    if (page <= 0 || size <= 0)
+      throw new HttpException('分页查询出错', HttpStatus.BAD_REQUEST)
+    query.skip((+page - 1) * +size)
+    query.take(+page)
+    // 时间段查询
+    if (updateTimeStart && updateTimeEnd) {
+      query.andWhere('post.update_time BETWEEN :start AND :end', {
+        start: updateTimeStart,
+        end: updateTimeEnd,
+      })
+    }
     if (status)
       query.andWhere('post.status=:status').setParameter('status', status)
 
@@ -147,12 +176,10 @@ export class PostsService {
       if (d.needPassword)
         extractProtectedArticle(d)
     })
-
+    const pageData = getPagination(total, page, size)
     return {
       list: data.map(item => item.toResponseObject()),
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 
@@ -198,27 +225,26 @@ export class PostsService {
   * 获取推荐文章
   */
   async getRecommendArticles(queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
-    const { pageNum = 1, pageSize = 10 } = queryParams
-    const query = await this.postsRepository
+    const { page = 1, size = 10 } = queryParams
+    const query = this.postsRepository
       .createQueryBuilder('post')
-      .where('post.isRecommend=:value', { value: 1 })
+      .where('post.isRecommend=:value', { value: 0 })
       .leftJoinAndSelect('post.author', 'user')
       .orderBy('post.publishTime', 'DESC')
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
+    query.skip((+page - 1) * +size)
+    query.take(+size)
     const [data, total] = await query.getManyAndCount()
+    const pageData = getPagination(total, page, size)
     return {
       list: data.map(item => item.toResponseObject()),
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 
   /**
     * 根据id获取指定文章
     */
-  async findById(id): Promise<PostInfo> {
+  async findById(id: string): Promise<PostInfo> {
     const qb = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')

@@ -7,7 +7,7 @@ export class PaginationDTO {
    */
   @IsOptional()
   @Matches(regPositiveOrEmpty, { message: 'page 不可小于 0' })
-  readonly pageNum?: number
+  readonly pageNumber?: number
 
   /**
    * 每页数据条数

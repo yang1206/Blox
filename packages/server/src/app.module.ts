@@ -35,7 +35,7 @@ import { RedisCacheModule } from './core/cache/redis.module'
         username: configService.get('DB_USER'), // 用户名
         password: configService.get('DB_PASSWORD'), // 密码
         database: configService.get('DB_DATABASE'), // 数据库名
-        timezone: 'local', // 服务器上配置的时区
+        timezone: '+8', // 服务器上配置的时区
         charset: 'utf8mb4',
         synchronize: true, // 根据实体自动创建数据库表， 生产环境建议关闭
         autoLoadEntities: true,

@@ -1,7 +1,9 @@
 import { SearchQuery, resData } from './common'
 
-export interface postsParams extends SearchQuery {
-  status: 'draft' | 'publish'
+export interface postsParams extends Partial<SearchQuery> {
+  status?: 'draft' | 'publish' | ''
+  tag?: number
+  title?: string
 }
 
 export interface postInfo {
@@ -22,6 +24,7 @@ export interface postInfo {
   publishTime: Date
   createTime: Date
   updateTime: Date
+  [x: string]: unknown
 }
 export interface postsData extends resData {
   list: postInfo[]

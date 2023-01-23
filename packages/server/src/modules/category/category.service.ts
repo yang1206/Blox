@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
+import { getPagination } from 'src/utils/pagination'
 import { CategoryEntity } from './entities/category.entity'
 import type { CreateCategoryDto } from './dto/category.dto'
 
@@ -46,7 +47,7 @@ export class CategoryService {
    * @returns
    */
   async findAll(queryParams: SearchQuery): Promise<ResponseVo<CategoryEntity>> {
-    const { pageNum = 1, pageSize = 10, postStatus, ...params } = queryParams
+    const { page = 1, size = 10, postStatus, ...params } = queryParams
     const query = this.categoryRepository
       .createQueryBuilder('category')
       .orderBy('category.createTime', 'ASC')
@@ -67,18 +68,17 @@ export class CategoryService {
     else {
       query.leftJoinAndSelect('category.posts', 'post')
     }
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
+    query.skip((+page - 1) * +size)
+    query.take(+size)
     const [data, total] = await query.getManyAndCount()
     data.forEach((d) => {
       Object.assign(d, { postsCount: d.posts.length })
       delete d.posts
     })
+    const pageData = getPagination(total, page, size)
     return {
       list: data,
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 

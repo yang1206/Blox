@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
+import { getPagination } from 'src/utils/pagination'
 import { TagEntity } from './entities/tag.entity'
 import type { CreateTagDto } from './dto/tag.dto'
 @Injectable()
@@ -27,7 +28,7 @@ export class TagsService {
    * 获取所有标签
    */
   async findAll(queryParams: SearchQuery): Promise<ResponseVo<TagEntity>> {
-    const { pageNum = 1, pageSize = 10, postsStatus, ...params } = queryParams
+    const { page = 1, size = 10, postsStatus, ...params } = queryParams
     const query = this.tagsRepository.createQueryBuilder('tag').orderBy('tag.createTime', 'ASC')
 
     if (postsStatus) {
@@ -46,18 +47,18 @@ export class TagsService {
         query.andWhere(`tag.${key} LIKE :${key}`).setParameter(`${key}`, `%${params[key]}%`)
       })
     }
-    query.skip((+pageNum - 1) * +pageSize)
-    query.take(+pageSize)
+    query.skip((+page - 1) * +size)
+    query.take(+size)
     const [data, total] = await query.getManyAndCount()
     data.forEach((d) => {
       Object.assign(d, { postsCount: d.posts.length })
       delete d.posts
     })
+    const pageData = getPagination(total, page, size)
+
     return {
       list: data,
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 

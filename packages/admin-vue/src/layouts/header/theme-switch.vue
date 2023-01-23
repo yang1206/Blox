@@ -7,5 +7,5 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <TheIcon dark:bg-dark :size="size" :icon="isDark ? 'carbon:moon' : 'carbon:sun'" @click.stop="toggleDark()" />
+  <TheIcon v-auto-animate dark:bg-dark :size="size" :icon="isDark ? 'carbon:moon' : 'carbon:sun'" @click.stop="toggleDark()" />
 </template>

@@ -57,7 +57,7 @@ function handleUserAction(label: string) {
       <div v-if="isXsScreen" fixed top-54px h-40px flex items-center w-full class="tabs">
         <Tab />
       </div>
-      <main class="bg-#F3F5FA main" :class="isXsScreen ? 'pt-94px' : 'pt-54'" dark:bg-dark wh-full>
+      <main class="bg-#F3F5FA main" :class="isXsScreen ? 'pt-114px' : 'pt-74'" dark:bg-dark wh-full p-20px>
         <router-view v-slot="{ Component, route }">
           <transition name="fade-slide" mode="out-in" appear>
             <component :is="Component" v-if="appStore.reloadFlag" :key="route.path" />

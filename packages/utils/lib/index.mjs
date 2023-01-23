@@ -17,7 +17,15 @@ function compare(password0, password1, SecretKey) {
     return true;
   return false;
 }
+
+// src/date.ts
+import * as dateFn from "date-fns";
+import { zhCN } from "date-fns/locale";
+var LocalDate = (date, formatString = "yyyy-MM-dd HH:mm:ss", locale = zhCN) => {
+  return dateFn.format(new Date(date), formatString, { locale });
+};
 export {
+  LocalDate,
   compare,
   decrypto,
   encrypto

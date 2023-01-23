@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
-import { IsNotEmpty, IsNumber } from 'class-validator'
+import { IsEmpty, IsNotEmpty } from 'class-validator'
 export class CreatePostDto {
   @ApiProperty({ description: '文章标题' })
   @IsNotEmpty({ message: '文章标题必填' })
@@ -13,9 +13,10 @@ export class CreatePostDto {
 
   @IsNotEmpty({ message: '文章状态必填' })
   @ApiPropertyOptional({ description: '文章状态' })
-  readonly status: string
+  readonly status: 'draft' | 'publish' | ''
 
-  @IsNumber()
+  @IsEmpty()
+  // @IsNumber()
   @ApiProperty({ description: '文章分类' })
   readonly category: number
 

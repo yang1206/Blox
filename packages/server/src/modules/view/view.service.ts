@@ -4,6 +4,7 @@ import { Repository } from 'typeorm'
 import { parseUserAgent } from 'src/utils/ua'
 import { parseIp } from 'src/utils/ip'
 import type { SearchQuery } from 'src/common/interface/query.interface'
+import { getPagination } from 'src/utils/pagination'
 import { ViewEntity } from './entities/view.entity'
 import { ViewRo } from './dto/view.dto'
 
@@ -42,10 +43,10 @@ export class ViewService {
  */
   async findAll(queryParams: SearchQuery): Promise<ViewRo> {
     const query = this.viewRepository.createQueryBuilder('view').orderBy('view.createTime', 'DESC')
-    const { pageNum = 1, pageSize = 10, ...otherParams } = queryParams
+    const { page = 1, size = 10, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {
-      query.skip((+pageNum - 1) * +pageSize)
-      query.take(+pageSize)
+      query.skip((+page - 1) * +size)
+      query.take(+size)
 
       if (otherParams) {
         Object.keys(otherParams).forEach((key) => {
@@ -57,11 +58,10 @@ export class ViewService {
       }
     }
     const [list, total] = await query.getManyAndCount()
+    const pageData = getPagination(total, page, size)
     return {
       list,
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 

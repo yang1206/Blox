@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { ConfigService } from '@nestjs/config'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
+import { getPagination } from 'src/utils/pagination'
 import { UserEntity } from './entities/user.entity'
 import type { CreateUserDto } from './dto/create-user.dto'
 const logger = new Logger('user.service.ts')
@@ -58,10 +59,10 @@ export class UserService {
    */
   async findAll(queryParams: SearchQuery): Promise<ResponseVo<UserEntity>> {
     const query = this.userRepository.createQueryBuilder('user')
-    const { pageNum = 1, pageSize = 10, status, ...otherParams } = queryParams
+    const { page = 1, size = 10, status, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {
-      query.skip((+pageNum - 1) * +pageSize)
-      query.take(+pageSize)
+      query.skip((+page - 1) * +size)
+      query.take(+size)
 
       if (status)
         query.andWhere('user.status=:status').setParameter('status', status)
@@ -77,11 +78,11 @@ export class UserService {
     }
 
     const [data, total] = await query.getManyAndCount()
+    const pageData = getPagination(total, page, size)
+
     return {
       list: data,
-      total,
-      pageNum,
-      pageSize,
+      ...pageData,
     }
   }
 

@@ -10,7 +10,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import { Exclude } from 'class-transformer'
+import type { TransformFnParams } from 'class-transformer'
+import { Exclude, Transform } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 import { CommonEntity } from 'src/common/entity/common.entity'
 import type { PostInfo } from '../vo/post.vo'
@@ -96,6 +97,7 @@ export class PostsEntity extends CommonEntity {
   @Column({ type: 'boolean', default: true })
   isCommentable: boolean
 
+  @Transform((row: TransformFnParams) => +new Date(row.value))
   @Column({ type: 'timestamp', name: 'publish_time', default: null })
   publishTime: Date
 

@@ -1,10 +1,12 @@
 export interface SearchQuery {
-  pageNum: number
-  pageSize: number
+  page: number
+  size: number
+  updateTimeStart?: number | string
+  updateTimeEnd?: number | string
 }
 
 export interface resData {
   total: number
-  pageNum: number
+  pageNumber: number
   pageSize: number
 }

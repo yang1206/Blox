@@ -28,10 +28,11 @@ watch(
 
 <template>
   <div class="tabs" bg-white dark:bg-dark w-full h-full>
-    <ScrollX h-full>
+    <ScrollX v-auto-animate h-full>
       <Tag
         v-for="tab in tabStore.tabs"
         :key="tab.path"
+        v-auto-animate
         :closable="tabStore.tabs.length > 1"
         size="default"
         :type="tabStore.activeTab === tab.path ? 'primary' : 'default'"

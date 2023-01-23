@@ -15,10 +15,10 @@ export class PictureService {
   async getMany(
     pageDto: PaginationDTO,
   ) {
-    const { pageNum = 1, pageSize = 10 } = pageDto
+    const { pageNumber = 1, pageSize = 10 } = pageDto
     const getList = this.pictureRepository
       .createQueryBuilder('picture')
-      .skip((+pageNum - 1) * +pageSize)
+      .skip((+pageNumber - 1) * +pageSize)
       .take(+pageSize)
       .getManyAndCount()
 
@@ -27,7 +27,7 @@ export class PictureService {
     return {
       list,
       total,
-      pageNum,
+      pageNumber,
       pageSize,
     }
   }

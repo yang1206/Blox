@@ -2,14 +2,17 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class ResponseVo<T> {
   @ApiProperty()
-      list: T[]
+    list: T[]
 
   @ApiProperty()
-      total: number
+    total: number
 
   @ApiProperty()
-      pageNum: number
+    pageNumber: number
 
   @ApiProperty()
-      pageSize: number
+    pageSize: number
+
+  @ApiProperty()
+    pages: number
 }
