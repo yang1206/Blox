@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { CommonEntity } from 'src/common/entity/common.entity'
-import { BeforeInsert, Column, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
+import { Column, Entity, JoinColumn, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
 
 @Entity('menu')
 @Tree('closure-table')
@@ -17,9 +17,9 @@ export class MenuEntity extends CommonEntity {
   @Column()
   path: string
 
-  // 路由
-  @Column()
-  label: string
+  // // 路由
+  // @Column()
+  // label: string
 
   // 排序
   @Column()
@@ -29,9 +29,13 @@ export class MenuEntity extends CommonEntity {
   @Column()
   icon: string
 
-  // 是否显示
+  // 是否显示在菜单中
   @Column({ default: true })
   show: boolean
+
+  // 是否在layout中
+  @Column({ default: true })
+  inlayout: boolean
 
   // @ManyToOne(() => MenuEntity, menus => menus.children)
   // parent: MenuEntity
@@ -49,11 +53,11 @@ export class MenuEntity extends CommonEntity {
   })
   parent: MenuEntity
 
-  @BeforeInsert()
-  async setLabel() {
-    if (this.path)
-      this.label = this.path
-  }
+  // @BeforeInsert()
+  // async setLabel() {
+  //   if (this.path)
+  //     this.label = this.path
+  // }
 }
 
 export const Person2Id = (data) => {

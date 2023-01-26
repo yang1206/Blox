@@ -8,7 +8,9 @@ export async function filterAsyncRoutes(menuInfo?: MenuData[]): Promise<RoutesTy
   function Menu2Router(menuInfo?: MenuData[]) {
     for (const menu of menuInfo as MenuData[]) {
       if (!menu.children) {
-        const route = asyncRoutes.find(route => (route.path === menu.path) && menu.show)
+        const route = asyncRoutes.find(route => (route.path === menu.path))
+        if (menu.inlayout)
+          route!.meta!.inlayout = menu.inlayout
         if (route)
           ret.push(route)
       }
@@ -19,4 +21,10 @@ export async function filterAsyncRoutes(menuInfo?: MenuData[]): Promise<RoutesTy
   }
 
   return ret
+}
+
+export function getShowMenu(menu: MenuData[]) {
+  const newTree = menu.filter(x => x.show)
+  newTree.forEach(x => x.children && (x.children = getShowMenu(x.children)))
+  return newTree
 }

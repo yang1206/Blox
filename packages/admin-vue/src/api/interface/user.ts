@@ -42,5 +42,5 @@ export interface MenuData {
   show: boolean
   children: MenuData[]
   parent_id?: string
-  label: string
+  inlayout: boolean
 }

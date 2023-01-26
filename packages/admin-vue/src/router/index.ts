@@ -35,6 +35,8 @@ export async function addDynamicRoutes() {
     const permissionStore = usePermissionStore()
     const accessRoutes = await permissionStore.generateRoutes()
     accessRoutes.forEach((route: RouteType) => {
+      if (!route.meta?.inlayout)
+        !router.hasRoute(route.name) && router.addRoute(route)
       !router.hasRoute(route.name) && router.addRoute('layout', route)
     })
     router.hasRoute(EMPTY_ROUTE.name) && router.removeRoute(EMPTY_ROUTE.name)

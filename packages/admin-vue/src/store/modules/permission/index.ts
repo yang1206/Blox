@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { filterAsyncRoutes } from './helpers'
+import { filterAsyncRoutes, getShowMenu } from './helpers'
 import { basicRoutes } from '@/router/routes'
 import type { RoutesType } from '@/typings/router'
 import { MenuData } from '@/api/interface/user'
@@ -16,6 +16,9 @@ export const usePermissionStore = defineStore('permission', {
   getters: {
     routes(): RoutesType {
       return basicRoutes.concat(this.accessRoutes)
+    },
+    getmenus(): MenuData[] {
+      return getShowMenu(this.menuInfo)
     },
   },
   actions: {

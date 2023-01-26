@@ -5,8 +5,8 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
   Query,
   Req,
   UseGuards,
@@ -122,7 +122,7 @@ export class PostsController {
    */
   @ApiOperation({ summary: '更新指定文章' })
   @Roles('admin')
-  @Put(':id')
+  @Patch(':id')
   async update(@Param('id') id: string, @Body() post: CreatePostDto) {
     return await this.postsService.updateById(id, post)
   }

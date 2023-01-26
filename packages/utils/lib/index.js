@@ -25,7 +25,6 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  LocalDate: () => LocalDate,
   compare: () => compare,
   decrypto: () => decrypto,
   encrypto: () => encrypto
@@ -51,16 +50,8 @@ function compare(password0, password1, SecretKey) {
     return true;
   return false;
 }
-
-// src/date.ts
-var dateFn = __toESM(require("date-fns"));
-var import_locale = require("date-fns/locale");
-var LocalDate = (date, formatString = "yyyy-MM-dd HH:mm:ss", locale = import_locale.zhCN) => {
-  return dateFn.format(new Date(date), formatString, { locale });
-};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  LocalDate,
   compare,
   decrypto,
   encrypto

@@ -26,7 +26,7 @@ export class PostsService {
     const { title } = post
     const doc = await this.postsRepository.findOne({ where: { title } })
     if (doc)
-      throw new HttpException('文章已存在', 401)
+      throw new HttpException('文章已存在', 400)
 
     const { tag, category = 0, status } = post
     const categoryDoc = await this.categoryService.findById(category)
@@ -256,7 +256,7 @@ export class PostsService {
   /**
     * 根据id获取指定文章
     */
-  async findById(id: string): Promise<PostInfo> {
+  async findById(id: string): Promise<PostsEntity> {
     const qb = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
@@ -270,7 +270,7 @@ export class PostsService {
     if (!result)
       throw new HttpException(`id为${id}的文章不存在`, HttpStatus.BAD_REQUEST)
     this.updateViewById(id)
-    return result.toResponseObject()
+    return result
   }
 
   /**
@@ -340,7 +340,7 @@ export class PostsService {
     const existPost = await this.postsRepository.findOneBy({ id })
     if (!existPost)
       throw new HttpException(`id为${id}的文章不存在`, 401)
-
-    return await this.postsRepository.delete(id)
+    this.postsRepository.delete(id)
+    return true
   }
 }

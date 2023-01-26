@@ -36,7 +36,7 @@ watch(
         :closable="tabStore.tabs.length > 1"
         size="default"
         :type="tabStore.activeTab === tab.path ? 'primary' : 'default'"
-        class="m-10px cursor-pointer"
+        class="m-10px cursor-pointer z-100"
         @contextmenu.prevent="contextmenu($event, tab.path)"
         @close="tabStore.removeTab(tab.path)"
         @click="handleTagClick(tab.path)"

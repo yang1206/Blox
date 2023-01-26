@@ -15,14 +15,14 @@ export class CreatePostDto {
   @ApiPropertyOptional({ description: '文章状态' })
   readonly status: 'draft' | 'publish' | ''
 
-  @IsNotEmpty()
-  // @IsNumber()
+  @IsNotEmpty({ message: '文章分类必选' })
   @ApiProperty({ description: '文章分类' })
   readonly category: number
 
   @ApiPropertyOptional({ description: '是否推荐' })
   readonly isRecommend: boolean
 
+  @IsNotEmpty({ message: '文章标签必填' })
   @ApiPropertyOptional({ description: '文章标签' })
   readonly tag: string
 }

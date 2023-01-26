@@ -1,5 +1,6 @@
 @use 'vexip-ui/style/dark';
-
+// @use 'vexip-ui/style';
+@use '@unocss/reset/tailwind.css';
 html {
   font-size: 4px; // * 方便unocss计算：1单位 = 0.25rem = 1px
 }
@@ -9,7 +10,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #f2f2f2;
+  background-color: #F1F3F9;
   font-family: 'Encode Sans Condensed', sans-serif;
 }
 

@@ -27,7 +27,6 @@ export interface postInfo {
   publishTime: Date
   createTime: Date
   updateTime: Date
-  [x: string]: unknown
 }
 export interface postsData extends resData {
   list: postInfo[]
@@ -44,3 +43,29 @@ export interface cateInfo {
 export interface categoryData extends resData {
   list: cateInfo[]
 }
+
+export interface tagsInfo {
+  id: number
+  createTime: Date
+  updateTime: Date
+  name: string
+  postsCount: number
+  label: string
+}
+export interface tagsData extends resData {
+  list: tagsInfo[]
+}
+export interface createPosts {
+  id?: string
+  title: string
+  content: string
+  summary: string
+  contentHtml: string
+  coverUrl: string
+  status: 'draft' | 'publish' | ''
+  category: number
+  isRecommend: boolean
+  tag: number[]
+}
+
+export type onePost = Omit<postInfo, 'tags'> & { tags: tagsInfo[]; category: cateInfo }

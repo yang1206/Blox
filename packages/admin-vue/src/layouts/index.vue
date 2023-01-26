@@ -5,7 +5,7 @@ import ThemeSwitch from './header/theme-switch.vue'
 import BreadCrumb from './header/breadCrumb.vue'
 import Tab from './tabs/index.vue'
 import { useAppStore, usePermissionStore, useUserStore } from '@/store'
-const asyncmenus = usePermissionStore().menuInfo
+const asyncmenus = usePermissionStore().getmenus
 const appStore = useAppStore()
 const userInfo = useUserStore().userInfo
 const isXsScreen = useMediaQuery('(min-width: 768px)')
@@ -21,7 +21,7 @@ function handleUserAction(label: string) {
 
 <template>
   <Layout
-    logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :user="user" :config="['nav', 'color']"
+    v-auto-animate logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :user="user" :config="['nav', 'color']"
     aside-fixed="md" @user-action="handleUserAction"
   >
     <!-- <template #header>
