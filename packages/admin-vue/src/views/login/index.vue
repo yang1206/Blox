@@ -7,7 +7,7 @@ const isLogin = ref(true)
 </script>
 
 <template>
-  <div class="login dark:bg-dark wh-full flex-center">
+  <div class="login dark:bg-dark wh-full   flex-center">
     <div absolute top-15 right-25>
       <ThemeSwitch :size="6" />
     </div>

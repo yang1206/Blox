@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Badge: typeof import('vexip-ui')['Badge']
+    Bg: typeof import('./../components/bg.vue')['default']
     Breadcrumb: typeof import('vexip-ui')['Breadcrumb']
     BreadcrumbItem: typeof import('vexip-ui')['BreadcrumbItem']
     Button: typeof import('vexip-ui')['Button']

@@ -12,15 +12,18 @@
     "dev": "turbo run dev --parallel",
     "dev:server": "pnpm run --dir packages/server dev",
     "dev:admin-vue": "pnpm run --dir packages/admin-vue dev",
+    "dev:client": "pnpm run --dir packages/client dev",
     "build": "pnpm exec turbo run build",
     "build:server": "pnpm run --dir packages/server build",
     "build:admin-vue": "pnpm run --dir packages/admin-vue build",
     "build:config": "pnpm run --dir packages/config build:config",
+    "build:client": "pnpm run --dir packages/client build",
     "start": "pnpm exec turbo run start",
     "start:server": "pnpm run --dir packages/server start",
     "lint": "pnpm exec turbo run lint",
     "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
-    "lint:admin-vue": "eslint --fix './packages/admin-vue/src/**/*.{ts,js}'",
+    "lint:client": "eslint --fix './packages/client/src/**/*.{tsx,ts}'",
+    "lint:admin-vue": "eslint --fix './packages/admin-vue/src/**/*.{ts,vue,tsx,js}'",
     "nibble": "eslint-nibble './packages/**/src/*.{ts,js,tsx,vue}'",
     "prepare": "husky install",
     "precommit": "lint-staged",
@@ -31,21 +34,22 @@
     "@my-blog/config": "workspace:^1.0.0",
     "@my-blog/utils": "workspace:^1.0.0",
     "date-fns": "^2.29.3",
-    "rimraf": "^3.0.2"
+    "rimraf": "^4.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.34.0",
-    "@commitlint/cli": "^17.4.0",
-    "@commitlint/config-conventional": "^17.4.0",
+    "@antfu/eslint-config": "^0.35.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@types/node": "^18.11.18",
-    "commitizen": "^4.2.6",
+    "commitizen": "^4.3.0",
     "cz-git": "^1.4.1",
-    "eslint": "^8.31.0",
+    "eslint": "^8.33.0",
+    "eslint-config-next": "13.1.6",
     "eslint-nibble": "^8.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",
-    "turbo": "^1.6.3",
+    "turbo": "^1.7.0",
     "typescript": "^4.9.4"
   },
   "config": {
@@ -58,7 +62,7 @@
     "./packages/client/**/*.{ts,tsx,js,jsx}": [
       "eslint --fix"
     ],
-    "./packages/admin-vue/**/*.{vue,ts,,js}": [
+    "./packages/admin-vue/**/*.{vue,ts,tsx,js}": [
       "eslint --fix"
     ],
     "./packages/server/src/**/*.{ts,js}": [

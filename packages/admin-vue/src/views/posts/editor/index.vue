@@ -18,6 +18,10 @@ onBeforeRouteLeave((to, form, next) => {
 const route = useRoute()
 if (route.query.id)
   getEchoData(route.query.id as string)
+useHead({
+  title: route.query.id ? '编辑文章' : '新增文章',
+
+})
 </script>
 
 <template>

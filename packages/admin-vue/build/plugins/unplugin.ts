@@ -12,7 +12,7 @@ export default [
       // importDarkTheme: true,
       importStyle: true,
     })],
-    imports: ['vue', 'vue-router', '@vueuse/core'],
+    imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
     dirs: [resolve(getSrcPath(), 'composables')],
     vueTemplate: true,
     dts: resolve(getSrcPath(), 'typings/auto-import.d.ts'),
