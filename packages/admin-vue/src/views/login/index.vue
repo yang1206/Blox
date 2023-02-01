@@ -12,7 +12,7 @@ const isLogin = ref(true)
       <ThemeSwitch :size="6" />
     </div>
     <div m-auto p-15 f-c-c min-w-345 rounded-10 card-shadow bg-white dark:bg-dark bg-opacity-60 flex>
-      <div w-380 hidden md:block py-35>
+      <div class="md:block hidden w-380 py-35">
         <img src="@/assets/img/login_banner.webp" w-full alt="login_banner">
       </div>
       <div w-320 flex-col px-20 py-35>

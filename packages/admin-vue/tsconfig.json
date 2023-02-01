@@ -18,7 +18,7 @@
       "@/*": ["src/*"],
       "~/*": ["./*"]
     },
-    "types": ["unplugin-vue-define-options/macros-global","vexip-ui/types", "vite/client","node"]
+    "types": ["vexip-ui/types", "vite/client", "node"]
   },
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

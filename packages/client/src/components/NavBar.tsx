@@ -11,12 +11,6 @@ const routes: { icon?: string; path: string; text?: string }[] = [
   // { icon: 'i-carbon-notebook', path: '/notes' },
 ]
 export default function NavBar() {
-  const [mode, setMode] = React.useState('light')
-
-  React.useEffect(() => {
-    if (localStorage.getItem('mode'))
-      setMode(localStorage.getItem('mode') as string)
-  }, [])
   return (
     <>
   <header className="fixed
@@ -28,7 +22,7 @@ export default function NavBar() {
     b='b-0 dashed gray-300 dark:b-gray-500'
     fbc
     px-8">
-        <Link href='/' className={`${cedarville_cursive.className} text-5 dark:text-#d5d5d5`}>
+      <Link href='/' title='Yang1206' className={`${cedarville_cursive.className} text-5 dark:text-#d5d5d5`}>
           Yang1206
       </Link>
       <nav grid={'~ cols-[auto_max-content]'} className='w-full  h-16 md:h-18>'>
@@ -56,7 +50,7 @@ export default function NavBar() {
             />
             <a title="Github" href="https://github.com/yang1206" target="_blank" className='icon-link i-ri-github-line' rel="noreferrer" />
             <div className='fcc'>
-              <DarkToggle setMode={setMode} mode={mode} />
+              <DarkToggle />
             </div>
           </div>
       </nav>

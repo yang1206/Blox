@@ -1,12 +1,10 @@
 import { resolve } from 'path'
-import DefineOptions from 'unplugin-vue-define-options/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VexipUIResolver } from '@vexip-ui/plugins'
 
 import { getSrcPath } from '../utils'
 export default [
-  DefineOptions(),
   AutoImport({
     resolvers: [VexipUIResolver({
       // importDarkTheme: true,
@@ -18,7 +16,9 @@ export default [
     dts: resolve(getSrcPath(), 'typings/auto-import.d.ts'),
   }),
   Components({
-    resolvers: [VexipUIResolver()],
+    resolvers: [VexipUIResolver({
+      importStyle: true,
+    })],
     dts: resolve(getSrcPath(), 'typings/components.d.ts'),
   }),
 ]

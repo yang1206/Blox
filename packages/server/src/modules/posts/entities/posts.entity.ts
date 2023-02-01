@@ -115,7 +115,8 @@ export class PostsEntity extends CommonEntity {
 
     if (this.tags && this.tags.length)
       responseObj.tags = this.tags.map(item => item.name)
-
+    if (this.toc)
+      responseObj.toc = JSON.parse(this.toc)
     if (this.author && this.author.id) {
       // responseObj.userId = this.author.id;
       responseObj.author = this.author.nickname || this.author.username

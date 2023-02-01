@@ -1,5 +1,5 @@
 @use 'vexip-ui/style/dark';
-// @use 'vexip-ui/style';
+@use 'vexip-ui/style';
 @use '@unocss/reset/tailwind.css';
 html {
   font-size: 4px; // * 方便unocss计算：1单位 = 0.25rem = 1px

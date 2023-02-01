@@ -62,6 +62,7 @@ export interface createPosts {
   summary: string
   contentHtml: string
   coverUrl: string
+  toc: any
   status: 'draft' | 'publish' | ''
   category: number
   isRecommend: boolean

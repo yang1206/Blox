@@ -43,9 +43,9 @@ const typographyCssExtend: Record<string, CSSObject> = {
   'a:hover': {
     'text-decoration-color': 'rgba(192, 132, 252, 0.8);',
   },
-  'pre': {
-    background: '#23272d !important',
-  },
+  // 'pre': {
+  //   background: '#23272d !important',
+  // },
   'blockquote': {
     'border-left': '0.25em solid rgba(168,85,247,.4)',
   },

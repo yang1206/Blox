@@ -7,5 +7,5 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <TheIcon class="cursor-pointer" :size="size" :icon="isDark ? 'carbon:moon' : 'carbon:sun'" @click.stop="toggleDark()" />
+  <TheIcon class="cursor-pointer dark-text-white" :size="size" :icon="isDark ? 'carbon:moon' : 'carbon:sun'" @click.stop="toggleDark()" />
 </template>

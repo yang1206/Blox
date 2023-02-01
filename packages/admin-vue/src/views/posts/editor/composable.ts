@@ -14,6 +14,7 @@ export const resetForm = () => {
  */
 export const newPost = async (data: Partial<createPosts>) => {
   data.tag = JSON.stringify(data.tag) as any
+  data.toc = JSON.stringify(data.toc) as any
   const { status } = await cratePost(data)
   if (status === 201) {
     Message.open({
@@ -26,6 +27,7 @@ export const newPost = async (data: Partial<createPosts>) => {
 
 export const upPost = async (id: string, data: Partial<createPosts>) => {
   data.tag = JSON.stringify(data.tag) as any
+  data.toc = JSON.stringify(data.toc) as any
   const { status } = await updatePost(id, data)
   if (status === 200)
     Message.success('保存成功')
@@ -33,22 +35,20 @@ export const upPost = async (id: string, data: Partial<createPosts>) => {
 }
 
 export const savePost = (status: 'draft' | 'publish') => {
-  if (!postsForm.value.category)
-    Message.error('请选择分类')
-  else if (!postsForm.value.tag)
-    Message.error('请选择标签')
-  else if (!postsForm.value.title)
-    Message.error('请填写标题')
-  else
+  if (!postsForm.value.category) { Message.error('请选择分类') }
+  else if (!postsForm.value.tag) { Message.error('请选择标签') }
+  else if (!postsForm.value.title) { Message.error('请填写标题') }
+  else {
     postsForm.value.status = status
-  if (postsForm.value.id)
-    upPost(postsForm.value.id, postsForm.value)
-  else
-    newPost(postsForm.value)
+    if (postsForm.value.id)
+      upPost(postsForm.value.id, postsForm.value)
+    else
+      newPost(postsForm.value)
+  }
 }
 
 export const publish = async (id: string, status: 'draft' | 'publish') => {
-  if (window.confirm('确认要切换状态吗')) {
+  if (await Confirm.open('确认要切换状态吗')) {
     const { status: code } = await updatePost(id, { status })
     if (code === 200)
       Message.success('切换成功')
@@ -56,7 +56,7 @@ export const publish = async (id: string, status: 'draft' | 'publish') => {
 }
 
 export const removePost = async (id: string) => {
-  if (window.confirm('确认要删除吗')) {
+  if (await Confirm.open('确认要删除吗')) {
     if (id) {
       const { status } = await deletePost(id)
       if (status === 200)

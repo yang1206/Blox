@@ -1,7 +1,8 @@
 'use client'
 import { inter } from '@/fonts/fonts'
 import NavBar from '@/components/NavBar'
-import Provider from '@/context/Provider'
+import Provider from '@/app/provider'
+
 export default function RootLayout({
   children,
 }: {

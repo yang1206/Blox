@@ -1,22 +1,37 @@
 import React from 'react'
+import Link from 'next/link'
 import type { postsData } from '@/types/posts'
+import PageHeader from '@/components/PageHeader'
 
-const fetchTodos = async () => {
+const fetchPosts = async () => {
   const res = await fetch('http://localhost:1206/api/posts')
-  const todos: { data: postsData } = await res.json()
-  return todos.data.list
+  const posts: { data: postsData } = await res.json()
+  return posts.data.list
 }
 
 const Posts = async () => {
-  const todos = await fetchTodos()
+  const posts = await fetchPosts()
   return (
-    <>
-      {todos.map(todo => (
-        <p key={todo.id}>
-          <p>{todo.title}</p>
-        </p>
-      ))}
-    </>
+      <div className='prose ma origin'>
+        <PageHeader title="Posts" description="Some boring but useful articles." />
+        {posts.map(post => (
+          <>
+            <Link href={`posts/${post.id}`} key={post.id} className='important-no-underline op-70 hover:op-100 block'>
+              <h3 className='text-lg md-text-xl'>{post.title}</h3>
+            </Link>
+            <div
+              className='font-mono
+            italic
+            fic
+            text-sm
+            text-gray4
+            fw-normal'
+            >
+              {new Date(post.publishTime).toDateString()}
+            </div>
+          </>
+        ))}
+      </div>
   )
 }
 

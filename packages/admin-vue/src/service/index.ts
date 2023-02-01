@@ -1,4 +1,4 @@
-import type { AxiosResponse, RawAxiosRequestConfig, RawAxiosRequestHeaders } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import Request from './request'
 import type { RequestConfig } from './request/types'
 import { resolveResError } from './request/helpers'
@@ -18,11 +18,11 @@ const request = new Request({
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
-    requestInterceptors: (config: RawAxiosRequestConfig) => {
+    requestInterceptors: (config: AxiosRequestConfig) => {
       Loading.open(10)
       const token = getLocal('token')
       if (token)
-        (config.headers! as RawAxiosRequestHeaders).Authorization = `Bearer ${token}`
+        config.headers!.Authorization = `Bearer ${token}`
 
       return config
     },

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Indent, Outdent } from '@vexip-ui/icons'
 import Menu from './menu/index.vue'
 import ThemeSwitch from './header/theme-switch.vue'
 import BreadCrumb from './header/breadCrumb.vue'
@@ -32,7 +31,9 @@ function handleUserAction(label: string) {
     </template> -->
     <template #header-left="{ reduced, toggleReduce }">
       <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduce()">
-        <Icon scale="1.5" :icon="reduced ? Indent : Outdent" />
+        <Icon v-auto-animate scale="1.2" :pulse="false">
+          <div :class="reduced ? 'i-ant-design:menu-fold-outlined' : 'i-ant-design:menu-unfold-outlined'" />
+        </Icon>
       </div>
     </template>
     <template #header-main>

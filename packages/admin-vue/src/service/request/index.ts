@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { InternalAxiosRequestConfig } from 'axios'
 import type { AxiosInstance, AxiosResponse } from 'axios'
 import type {
   CancelRequestSource,
@@ -34,13 +34,13 @@ class Request {
     this.interceptorsObj = config.interceptors
     // 拦截器执行顺序 接口请求 -> 实例请求 -> 全局请求 -> 实例响应 -> 全局响应 -> 接口响应
     this.instance.interceptors.request.use(
-      (res: AxiosRequestConfig) => res,
+      (res: InternalAxiosRequestConfig) => res,
       (err: any) => err,
     )
 
     // 使用实例拦截器
     this.instance.interceptors.request.use(
-      this.interceptorsObj?.requestInterceptors as unknown as ((value: AxiosRequestConfig<any>) => AxiosRequestConfig<any> | Promise<AxiosRequestConfig<any>>),
+      this.interceptorsObj?.requestInterceptors as unknown as ((value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>),
       this.interceptorsObj?.requestInterceptorsCatch,
     )
     this.instance.interceptors.response.use(

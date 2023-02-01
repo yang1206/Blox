@@ -21,7 +21,9 @@ export class PostsService {
     private readonly tagsService: TagsService,
   ) { }
 
-  // 创建文章
+  /**
+   * 创建文章
+   * */
   async create(user, post: CreatePostDto): Promise<string> {
     const { title } = post
     const doc = await this.postsRepository.findOne({ where: { title } })
@@ -35,18 +37,19 @@ export class PostsService {
         publishAt: dateFormat(),
       })
     }
-    const tags = await this.tagsService.findByIds((`${tag}`).split(','))
+    const tags = await this.tagsService.findByIds((`${JSON.parse(tag)}`).split(','))
     const postParam: Partial<PostsEntity> = {
       ...post,
       category: categoryDoc,
       tags,
       author: user,
+
     }
 
     if (status === 'publish') {
       Object.assign(postParam, {
         publishTime: dateFormat(),
-        status: 'draft',
+        status: 'publish',
       })
     }
     const newPost: PostsEntity = await this.postsRepository.create({

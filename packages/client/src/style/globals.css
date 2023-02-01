@@ -1,3 +1,13 @@
+:root {
+  /* Your default theme */
+  --background: #fefefe;
+  --foreground: black;
+}
+
+[data-theme='dark'] {
+  --background:  #1c1f24;
+  --foreground: white;
+}
 html,
 body {
   --at-apply: h-full base;
@@ -7,13 +17,6 @@ html * {
   /* cursor: none !important; */
 }
 
-html {
-  background: #fefefe;
-}
-
-html.dark {
-  background: #1c1f24;
-}
 
 body::-webkit-scrollbar {
   --at-apply: w0;
