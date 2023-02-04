@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CategoryService } from 'src/modules/category/category.service'
 import { TagsService } from 'src/modules/tags/tags.service'
-import { dateFormat } from 'src/utils/format'
 import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
@@ -34,7 +33,7 @@ export class PostsService {
     const categoryDoc = await this.categoryService.findById(category)
     if (status === 'publish') {
       Object.assign(post, {
-        publishAt: dateFormat(),
+        publishAt: new Date(),
       })
     }
     const tags = await this.tagsService.findByIds((`${JSON.parse(tag)}`).split(','))
@@ -48,7 +47,7 @@ export class PostsService {
 
     if (status === 'publish') {
       Object.assign(postParam, {
-        publishTime: dateFormat(),
+        publishTime: new Date(),
         status: 'publish',
       })
     }
@@ -307,7 +306,7 @@ export class PostsService {
       category: categoryDoc,
       tags,
       status: status === '' ? 'draft' : status,
-      publishTime: status === 'publish' ? dateFormat() : existPost.publishTime,
+      publishTime: status === 'publish' ? new Date() : existPost.publishTime,
     }
 
     const updatePost = this.postsRepository.merge(existPost, newPost)

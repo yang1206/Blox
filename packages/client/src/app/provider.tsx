@@ -2,8 +2,8 @@
 import '@/style/globals.css'
 import '@/style/markdown.css'
 import '@/style/dank-mono.css'
-import '@unocss/reset/tailwind.css'
 import 'uno.css'
+import '@unocss/reset/tailwind.css'
 import { ThemeProvider } from 'next-themes'
 export default function Provider({
   children,

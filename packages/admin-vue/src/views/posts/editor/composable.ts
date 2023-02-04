@@ -1,3 +1,4 @@
+import { Confirm, Message } from 'vexip-ui'
 import { cratePost, deletePost, getPostById, updatePost } from '@/api'
 import { createPosts } from '@/api/interface/posts'
 import { router } from '@/router'

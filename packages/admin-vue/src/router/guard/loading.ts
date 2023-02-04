@@ -1,3 +1,4 @@
+import { Loading } from 'vexip-ui'
 import type { Router } from 'vue-router'
 
 export function createPageLoadingGuard(router: Router) {

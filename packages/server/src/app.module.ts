@@ -36,7 +36,7 @@ import { RedisCacheModule } from './core/cache/redis.module'
         password: configService.get('DB_PASSWORD'), // 密码
         database: configService.get('DB_DATABASE'), // 数据库名
         charset: 'utf8mb4',
-        timezone: '+08:00',
+        timezone: 'local',
         synchronize: true, // 根据实体自动创建数据库表， 生产环境建议关闭
         autoLoadEntities: true,
       }),

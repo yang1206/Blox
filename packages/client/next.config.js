@@ -7,7 +7,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
- env: {
+  env: {
     SERVER_API_URL: config.SERVER_API_URL || 'http://localhost:1206/api',
     GITHUB_CLIENT_ID: config.GITHUB_CLIENT_ID,
   },

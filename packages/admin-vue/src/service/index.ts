@@ -1,4 +1,5 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { Loading, Message } from 'vexip-ui'
 import Request from './request'
 import type { RequestConfig } from './request/types'
 import { resolveResError } from './request/helpers'

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { Loading } from 'vexip-ui'
 
 export const useAppStore = defineStore('app', {
   state() {

@@ -36,7 +36,7 @@ docker exec -it mysql_local /bin/bash
 ```
 然后创建表
 ```bash
-mysql -u 123456 -p;
+mysql -u root -p;
 CREATE DATABASE  `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 ### 本地运行

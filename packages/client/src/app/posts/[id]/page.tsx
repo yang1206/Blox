@@ -9,7 +9,6 @@ const fetchPost = async (id: string) => {
   const post: { data: postInfo } = await res.json()
   return post.data
 }
-
 const PostsInfo = async (props: any) => {
   const post = await fetchPost(props.params.id)
   return (

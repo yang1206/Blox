@@ -8,7 +8,6 @@ const fetchPosts = async () => {
   const posts: { data: postsData } = await res.json()
   return posts.data.list
 }
-
 const Posts = async () => {
   const posts = await fetchPosts()
   return (

@@ -6,10 +6,10 @@ import { VexipUIResolver } from '@vexip-ui/plugins'
 import { getSrcPath } from '../utils'
 export default [
   AutoImport({
-    resolvers: [VexipUIResolver({
-      // importDarkTheme: true,
-      importStyle: true,
-    })],
+    // resolvers: [VexipUIResolver({
+    //   // importDarkTheme: true,
+    //   importStyle: true,
+    // })],
     imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
     dirs: [resolve(getSrcPath(), 'composables')],
     vueTemplate: true,

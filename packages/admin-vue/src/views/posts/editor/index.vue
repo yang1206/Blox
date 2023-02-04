@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Confirm } from 'vexip-ui'
 import editorHeader from './components/header.vue'
 import MdEditor from './components/editor'
 import { getEchoData, resetForm } from './composable'

@@ -2,10 +2,7 @@ import Image from 'next/image'
 import type { Endpoints } from '@octokit/types'
 export type User = Endpoints['GET /user']['response']['data']
 const fetchUser = async () => {
-  const res = await fetch(
-    'http://localhost:3030/api/user',
-    { next: { revalidate: 60 } },
-  )
+  const res = await fetch('https://api.github.com/users/yang1206')
   const userinfo: User = await res.json()
   return userinfo
 }
@@ -17,7 +14,7 @@ export default async function Home() {
         <Image src={user.avatar_url} alt={user.name as string} width={50} height={50}></Image>
         <div>
           <h2 className='fic justify-center md="justify-start"'>
-            {user?.name}
+            {user?.login}
           </h2>
           <p className='text-lg text-center md="text-left"'>
             {user?.bio}
