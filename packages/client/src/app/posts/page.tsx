@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import type { postsData } from '@/types/posts'
 import PageHeader from '@/components/PageHeader'
 
@@ -10,6 +11,9 @@ const fetchPosts = async () => {
 }
 const Posts = async () => {
   const posts = await fetchPosts()
+  if (!posts)
+    notFound()
+
   return (
       <div className='prose ma origin'>
         <PageHeader title="Posts" description="Some boring but useful articles." />

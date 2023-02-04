@@ -10,17 +10,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" className={inter.className}>
-      <head>
-
-      </head>
       <body>
         <Provider>
-          <div>
             <NavBar />
             <main className='px-7 pt-10 pb-18'>
               {children}
             </main>
-          </div>
         </Provider>
       </body>
     </html>

@@ -4,8 +4,7 @@ export default function Head() {
   return (
     <>
       <DefaultTags />
-      <title>Yang1206</title>
-
+      <title>Posts | Yang1206</title>
     </>
   )
 }

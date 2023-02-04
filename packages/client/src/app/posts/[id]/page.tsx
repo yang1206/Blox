@@ -1,4 +1,5 @@
 import React from 'react'
+import { notFound } from 'next/navigation'
 import type { postInfo } from '@/types/posts'
 import { LocalDate } from '@/utils'
 import MarkdownView from '@/components/MdView'
@@ -11,6 +12,9 @@ const fetchPost = async (id: string) => {
 }
 const PostsInfo = async (props: any) => {
   const post = await fetchPost(props.params.id)
+  if (!post)
+    notFound()
+
   return (
     <>
       <article className='prose font-mono ma'>
