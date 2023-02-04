@@ -122,3 +122,4 @@ CLIENT_SITE_URL=http://localhost:3030
 # 客户端资源地址（假设部署到 https://xx.com，就将 CLIENT_ASSET_PREFIX 设置为 https://xx.com，如果将资源上传到 cdn ，那就改为 cdn 地址）
 CLIENT_ASSET_PREFIX=/
 ```
+![Alt](https://repobeats.axiom.co/api/embed/c964cacad1bfd31fe31ed0a73865ccd744baf3f5.svg "Repobeats analytics image")
