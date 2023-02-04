@@ -37,11 +37,12 @@
     "rimraf": "^4.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.0",
+    "@antfu/eslint-config": "^0.35.1",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@types/node": "^18.11.18",
     "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
     "cz-git": "^1.4.1",
     "eslint": "^8.33.0",
     "eslint-config-next": "13.1.6",
@@ -49,8 +50,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "tsup": "^6.5.0",
-    "turbo": "^1.7.0",
-    "typescript": "^4.9.4"
+    "turbo": "^1.7.2",
+    "typescript": "^4.9.5"
   },
   "config": {
     "commitizen": {
@@ -59,19 +60,13 @@
     }
   },
   "lint-staged": {
-    "./packages/client/**/*.{ts,tsx,js,jsx}": [
+    "./packages/client/**/*.{ts,tsx,jsx}": [
       "eslint --fix"
     ],
     "./packages/admin-vue/**/*.{vue,ts,tsx,js}": [
       "eslint --fix"
     ],
     "./packages/server/src/**/*.{ts,js}": [
-      "eslint --fix"
-    ],
-    "./packages/config/src/**/*.ts": [
-      "eslint --fix"
-    ],
-    "./packages/utils/src/**/*.ts": [
       "eslint --fix"
     ]
   },

@@ -11,7 +11,7 @@ import { HttpExceptionFilter } from 'src/core/filters/http-exception.filter'
 import { TransformInterceptor } from 'src/core/interceptors/transform.interceptor'
 import { ValidationPipe } from 'src/core/pipe/validation.pipe'
 import { AppModule } from './app.module'
-// import { logger } from './core/logger/logger.middleware'
+import { logger } from './core/logger/logger.middleware'
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(compression()) // 启用 gzip 压缩
@@ -20,7 +20,7 @@ const bootstrap = async () => {
   app.setGlobalPrefix('api')
   app.useGlobalFilters(new HttpExceptionFilter()) // 异常返回统一处理
   // app.useGlobalFilters(new ExceptionsFilter())
-  // app.use(logger)
+  app.use(logger)
   app.useGlobalInterceptors(new TransformInterceptor()) // 正常返回统一处理
   app.useGlobalPipes(new ValidationPipe()) // 验证管道
   app.use(helmet()) // 设置安全响应头
@@ -38,9 +38,9 @@ const bootstrap = async () => {
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('docs', app, document)
-  await app.listen(1206)
+  await app.listen(process.env.SERVER_PORT)
 }
 bootstrap().then(() => {
-  Logger.log('Server is running at http://localhost:1206')
-  Logger.log('document is running at http://localhost:1206/docs')
+  Logger.log(`Server is running at http://localhost:${process.env.SERVER_PORT}`)
+  Logger.log(`document is running at http://localhost:${process.env.SERVER_PORT}/docs`)
 })

@@ -126,7 +126,7 @@ export class UserService {
   async login(user: Partial<UserEntity>): Promise<UserEntity> {
     const { username, password } = user
     const existUser = await this.userRepository.findOne({ where: { username } })
-    if (!existUser || !(await UserEntity.comparePassword(password, existUser.password))) {
+    if (!existUser || !(UserEntity.comparePassword(password, existUser.password))) {
       throw new HttpException(
         '用户名或密码错误',
         // tslint:disable-next-line: trailing-comma

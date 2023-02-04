@@ -10,3 +10,13 @@ export class LoginDto {
   @IsNotEmpty({ message: '请输入密码' })
   password: string
 }
+
+export class RefreshDto {
+  @ApiProperty({ description: '用户id' })
+  @IsNotEmpty({ message: '请输入用户id' })
+  id: string
+
+  @ApiProperty({ description: '刷新token' })
+  @IsNotEmpty({ message: '请输入刷新token' })
+  refresh_token: string
+}

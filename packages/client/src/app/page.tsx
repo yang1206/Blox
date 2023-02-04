@@ -44,7 +44,7 @@ export default async function Home() {
                 followers
               </span>
             </span>
-            <span mx-2>·</span>
+            <span className='mx-2'>·</span>
             <span>
               {user?.following}
               <span className="text-xs">

@@ -15,14 +15,13 @@ export function logger(req: Request, res: Response, next: NextFunction) {
 
   next()
 
-  if (statusCode >= 500) {
+  if (statusCode >= 500)
     Logger.error(logFormat)
-  }
-  else if (statusCode >= 400) {
+
+  else if (statusCode >= 400)
     Logger.warn(logFormat)
-  }
-  else {
+
+  else
     Logger.access(logFormat)
-    Logger.log(logFormat)
-  }
+    // Logger.log(logFormat)
 }

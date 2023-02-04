@@ -1,3 +1,4 @@
+const { config } = require('@my-blog/config');
 const UnoCSS = require('@unocss/webpack').default
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -5,6 +6,10 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
+  },
+ env: {
+    SERVER_API_URL: config.SERVER_API_URL || 'http://localhost:1206/api',
+    GITHUB_CLIENT_ID: config.GITHUB_CLIENT_ID,
   },
   webpack: (config, context) => {
     config.plugins.push(UnoCSS())
@@ -25,4 +30,7 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+})
+module.exports = withPWA(nextConfig)

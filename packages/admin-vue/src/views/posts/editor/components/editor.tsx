@@ -14,8 +14,8 @@ export default defineComponent({
       toolbars={toolbars.value}
       modelValue={postsForm.value.content}
       onHtmlChanged={(h: string) => postsForm.value.contentHtml = h }
-      onChange={(v: string) => (postsForm.value.content = v)} 
-      onGetCatalog={(list)=>(postsForm.value.toc = list)}
+      onChange={(v: string) => (postsForm.value.content = v)}
+      onGetCatalog={list => (postsForm.value.toc = list)}
       />
     )
   },

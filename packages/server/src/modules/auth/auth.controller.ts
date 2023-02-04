@@ -1,7 +1,7 @@
-import { Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from '@nestjs/common'
+import { Body, ClassSerializerInterceptor, Controller, Post, UseGuards, UseInterceptors } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import { Roles } from 'src/core/decorators/role.decorator'
-import { LoginDto } from './dto/login.dto'
+import { RefreshJwtAuthGuard } from 'src/core/guards/jwt-refresh-auth.guard'
+import { LoginDto, RefreshDto } from './dto/login.dto'
 import { AuthService } from './auth.service'
 
 @Controller()
@@ -15,9 +15,10 @@ export class AuthController {
     return await this.authService.login(user)
   }
 
-  @Post('admin')
-  @Roles('admin')
-  createBook() {
-    return this.authService.checkAdmin()
+  @ApiOperation({ summary: '刷新token' })
+  @UseGuards(RefreshJwtAuthGuard)
+  @Post('auth/refresh')
+  async refresh(@Body() refreshData: RefreshDto) {
+    return await this.authService.refreshToken(refreshData)
   }
 }

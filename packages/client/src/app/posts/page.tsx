@@ -4,7 +4,7 @@ import type { postsData } from '@/types/posts'
 import PageHeader from '@/components/PageHeader'
 
 const fetchPosts = async () => {
-  const res = await fetch('http://localhost:1206/api/posts')
+  const res = await fetch(`${process.env.SERVER_API_URL}/posts`)
   const posts: { data: postsData } = await res.json()
   return posts.data.list
 }

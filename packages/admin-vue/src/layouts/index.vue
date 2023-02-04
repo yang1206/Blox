@@ -13,7 +13,7 @@ const user = {
   email: userInfo.email,
   avatar: userInfo.avatar,
 }
-function handleUserAction(label: string) {
+function handleUserAction() {
   useUserStore().logout()
 }
 </script>

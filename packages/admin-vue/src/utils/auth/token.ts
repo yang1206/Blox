@@ -1,4 +1,5 @@
-import { getLocal, removeLocal, setLocal } from '@/utils'
+import { useUserStore } from '@/store'
+import { getLocal, getLocalExpire, removeLocal, setLocal } from '@/utils'
 // import api from '@/api'
 
 const TOKEN_CODE = 'token'
@@ -17,19 +18,18 @@ export function removeToken() {
   removeLocal(TOKEN_CODE)
 }
 
-// export async function refreshAccessToken() {
-//   const expire: number | null = getLocalExpire(TOKEN_CODE)
+export async function refreshAccessToken() {
+  const expire: number | null = getLocalExpire(TOKEN_CODE)
 
-//   // * token没有过期时间或者token离过期时间超过30分钟则不执行刷新
-//   if (!expire || expire - new Date().getTime() > 1000 * 60 * 30)
-//     return
+  if (!expire || expire - new Date().getTime() > 1000 * 60 * 5)
+    return
 
-//   try {
-//     const res: any = await api.refreshToken()
-//     if (res.code === 0)
-//       setToken(res.data.token)
-//   }
-//   catch {
-//     // 无感刷新，有异常也不提示
-//   }
-// }
+  try {
+    const { access_token, refresh_token } = await useUserStore().refreshToken()
+    setLocal('token', access_token, 1000 * 60 * 30)
+    setLocal('refresh_token', refresh_token)
+  }
+  catch {
+    // 无感刷新，有异常也不提示
+  }
+}

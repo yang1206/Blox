@@ -13,6 +13,7 @@ export interface LoginData {
   createTime: Date
   updateTime: Date
   token: string
+  refreshToken: string
 }
 
 export interface RegisterForm {

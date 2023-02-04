@@ -10,7 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" className={inter.className}>
-      <head />
+      <head>
+
+      </head>
       <body>
         <Provider>
           <div>

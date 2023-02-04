@@ -17,6 +17,17 @@ export const registerRequest = (data: RegisterForm) => {
   })
 }
 
+export const resfreshRequest = (data: { id: string; refresh_token: string }) => {
+  return request<{ id: string; refresh_token: string }, {
+    access_token: string
+    refresh_token: string
+  }>({
+    url: 'auth/refresh',
+    method: 'POST',
+    data,
+  })
+}
+
 export const menuRequest = () => {
   return request<any, MenuData[]>({
     url: '/menus',

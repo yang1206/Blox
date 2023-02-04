@@ -7,9 +7,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
 import { Repository } from 'typeorm'
 import { RedisCacheService } from 'src/core/cache/redis.service'
+import type { Request } from 'express'
 import { AuthService } from '../auth.service'
-
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     } as StrategyOptions)
   }
 
-  async validate(req, payload: UserEntity) {
+  async validate(req: Request, payload: UserEntity) {
     const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req)
 
     const cacheToken = await this.redisCacheService.get(
@@ -43,7 +43,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     this.redisCacheService.set(
            `${payload.id}&${payload.username}&${payload.role}`,
            token,
-           1800,
+           3600,
     )
     return existUser
   }

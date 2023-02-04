@@ -5,7 +5,7 @@ import MarkdownView from '@/components/MdView'
 import PostToc from '@/components/PostToc'
 
 const fetchPost = async (id: string) => {
-  const res = await fetch(`http://localhost:1206/api/posts/${id}`)
+  const res = await fetch(`${process.env.SERVER_API_URL}/posts/${id}`)
   const post: { data: postInfo } = await res.json()
   return post.data
 }
