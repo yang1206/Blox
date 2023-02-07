@@ -1,10 +1,10 @@
 import { Controller, Delete, Get, Param, Query, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 
-import { SearchQuery } from 'src/common/interface/query.interface'
 import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
+import { SearchDTO } from 'src/common/dto/search.dto'
 import { SearchService } from './search.service'
 
 @ApiTags('搜索')
@@ -31,7 +31,7 @@ export class SearchController {
   @ApiBearerAuth()
   @ApiOperation({ summary: '获取搜索记录' })
   @UseGuards(JwtAuthGuard)
-  async findAll(@Query() queryParam: SearchQuery) {
+  async findAll(@Query() queryParam: SearchDTO) {
     return this.searchService.findAll(queryParam)
   }
 

@@ -2,9 +2,10 @@ import { Body, ClassSerializerInterceptor, Controller, Get, HttpException, HttpS
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { JwtService } from '@nestjs/jwt'
-import { SearchQuery } from 'src/common/interface/query.interface'
+
 import { Roles } from 'src/core/decorators/role.decorator'
 import type { ResponseVo } from 'src/common/vo/res.vo'
+import { SearchDTO } from 'src/common/dto/search.dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UserEntity } from './entities/user.entity'
 import { UserService } from './user.service'
@@ -30,7 +31,7 @@ export class UserController {
   @ApiResponse({ status: 403, description: '无权获取用户列表' })
   @UseInterceptors(ClassSerializerInterceptor)
   @Get()
-  getUserInfo(@Query() query: SearchQuery): Promise<ResponseVo<UserEntity>> {
+  getUserInfo(@Query() query: SearchDTO): Promise<ResponseVo<UserEntity>> {
     return this.userService.findAll(query)
   }
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import type { SearchQuery } from 'src/common/interface/query.interface'
+
 import { getPagination } from 'src/utils/pagination'
+import type { SearchDTO } from 'src/common/dto/search.dto'
 import { PostsService } from '../posts/posts.service'
 import { SearchEntity } from './entities/search.entity'
 import { SearchRo } from './dto/search.dto'
@@ -47,7 +48,7 @@ export class SearchService {
   /**
    * 获取所有搜索记录
    */
-  async findAll(queryParams: SearchQuery): Promise<SearchRo> {
+  async findAll(queryParams: SearchDTO): Promise<SearchRo> {
     const query = this.searchRepository.createQueryBuilder('search').orderBy('search.updateTime', 'DESC')
     const { page = 1, size = 10, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {

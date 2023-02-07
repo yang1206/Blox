@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CategoryService } from 'src/modules/category/category.service'
 import { TagsService } from 'src/modules/tags/tags.service'
-import type { SearchQuery } from 'src/common/interface/query.interface'
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
+import type { SearchDTO } from 'src/common/dto/search.dto'
 import type { CreatePostDto } from './dto/post.dto'
 import { extractProtectedArticle } from './posts.utils'
 import { PostsEntity } from './entities/posts.entity'
@@ -61,7 +61,7 @@ export class PostsService {
   /**
    * 获取文章列表
    */
-  async findAll(queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
+  async findAll(queryParams: SearchDTO): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.tags', 'tag')
@@ -129,7 +129,7 @@ export class PostsService {
      * @param category
      * @param queryParams
      */
-  async findArticlesByCategory(category: number, queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
+  async findArticlesByCategory(category: number, queryParams: SearchDTO): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
@@ -160,7 +160,7 @@ export class PostsService {
    * @param tag
    * @param queryParams
    */
-  async findArticlesByTag(tag: number, queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
+  async findArticlesByTag(tag: number, queryParams: SearchDTO): Promise<ResponseVo<PostInfo>> {
     const query = this.postsRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.author', 'user')
@@ -238,7 +238,7 @@ export class PostsService {
   /**
   * 获取推荐文章
   */
-  async getRecommendArticles(queryParams: SearchQuery): Promise<ResponseVo<PostInfo>> {
+  async getRecommendArticles(queryParams: SearchDTO): Promise<ResponseVo<PostInfo>> {
     const { page = 1, size = 10 } = queryParams
     const query = this.postsRepository
       .createQueryBuilder('post')

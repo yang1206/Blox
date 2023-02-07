@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, Repository } from 'typeorm'
-import type { SearchQuery } from 'src/common/interface/query.interface'
+
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
+import type { SearchDTO } from 'src/common/dto/search.dto'
 import { TagEntity } from './entities/tag.entity'
 import type { CreateTagDto } from './dto/tag.dto'
 @Injectable()
@@ -27,7 +28,7 @@ export class TagsService {
   /**
    * 获取所有标签
    */
-  async findAll(queryParams: SearchQuery): Promise<ResponseVo<TagEntity>> {
+  async findAll(queryParams: SearchDTO): Promise<ResponseVo<TagEntity>> {
     const { page = 1, size = 10, postsStatus, ...params } = queryParams
     const query = this.tagsRepository.createQueryBuilder('tag').orderBy('tag.createTime', 'ASC')
 

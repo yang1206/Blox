@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { SearchQuery } from 'src/common/interface/query.interface'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
+import { SearchDTO } from 'src/common/dto/search.dto'
 import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/category.dto'
 import { CategoryEntity } from './entities/category.entity'
@@ -30,7 +30,7 @@ export class CategoryController {
    */
   @Get()
   @ApiOperation({ summary: '获取所有分类' })
-  findAll(@Query() queryParams: SearchQuery) {
+  findAll(@Query() queryParams: SearchDTO) {
     return this.categoryService.findAll(queryParams)
   }
 

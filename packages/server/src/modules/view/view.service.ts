@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { parseUserAgent } from 'src/utils/ua'
 import { parseIp } from 'src/utils/ip'
-import type { SearchQuery } from 'src/common/interface/query.interface'
 import { getPagination } from 'src/utils/pagination'
+import type { SearchDTO } from 'src/common/dto/search.dto'
 import { ViewEntity } from './entities/view.entity'
 import { ViewRo } from './dto/view.dto'
 
@@ -41,7 +41,7 @@ export class ViewService {
   /**
  * 获取所有访问
  */
-  async findAll(queryParams: SearchQuery): Promise<ViewRo> {
+  async findAll(queryParams: SearchDTO): Promise<ViewRo> {
     const query = this.viewRepository.createQueryBuilder('view').orderBy('view.createTime', 'DESC')
     const { page = 1, size = 10, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {

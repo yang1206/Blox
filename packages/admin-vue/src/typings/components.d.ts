@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
     FormSubmit: typeof import('vexip-ui')['FormSubmit']
+    FullScreen: typeof import('vexip-ui')['FullScreen']
     Icon: typeof import('vexip-ui')['Icon']
     Input: typeof import('vexip-ui')['Input']
     Layout: typeof import('vexip-ui')['Layout']

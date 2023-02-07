@@ -1,6 +1,26 @@
 version: '3'
 
 services:
+  client:
+    build:
+      context: ./packages/client
+      dockerfile: ./packages/client/Dockerfile
+    restart: always
+    ports:
+      - 3030:3030
+    depends_on:
+      - servers
+  server:
+    build:
+      context: ./packages/server
+      dockerfile: ./packages/server/Dockerfile
+    command: npm run start
+    restart: always
+    ports:
+      - 1206:1206
+    depends_on:
+      - mysql
+      - redis
   mysql:
     image: mysql/mysql-server:latest
     container_name: nest-mysql
@@ -10,4 +30,18 @@ services:
       - .env.prod
     ports:
       -"3306:3306"
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf8字符集
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf
+  redis:
+    image: redis
+    restart: always
+    env_file:
+      - .env
+      - .env.prod
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+volumes:
+  mysql:
+  redis:

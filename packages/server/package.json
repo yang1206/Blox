@@ -8,10 +8,10 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "start": "nest start",
+    "start": "cross-env NODE_ENV=development  nest start",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "cross-env NODE_ENV=production  node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -40,6 +40,7 @@
     "ioredis": "^5.3.0",
     "lodash": "^4.17.21",
     "log4js": "6.7.1",
+    "mime-types": "^2.1.35",
     "mysql2": "2.3.3",
     "node-ip2region": "^1.0.2",
     "passport": "^0.6.0",
@@ -51,7 +52,8 @@
     "stacktrace-js": "^2.0.2",
     "swagger-ui-express": "^4.6.0",
     "typeorm": "^0.3.11",
-    "ua-parser-js": "^1.0.33"
+    "ua-parser-js": "^1.0.33",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.9",
@@ -65,6 +67,7 @@
     "@types/fs-extra": "^11.0.1",
     "@types/jest": "29.4.0",
     "@types/lodash": "^4.14.191",
+    "@types/mime-types": "^2.1.1",
     "@types/multer": "^1.4.7",
     "@types/node": "^16.18.11",
     "@types/node-ip2region": "^1.0.1",

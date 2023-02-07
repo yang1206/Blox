@@ -42,6 +42,11 @@ function handleUserAction() {
       </div>
     </template>
     <template #header-right>
+      <!-- <span m-14 lh-2 cursor-pointer>
+        <FullScreen v-slot="{ toggle }">
+          <TheIcon icon="ic:outline-fullscreen" :size="2" @click="toggle('browser')" />
+        </FullScreen>
+      </span> -->
       <span lh-2 m-14 cursor-pointer>
         <ThemeSwitch />
       </span>

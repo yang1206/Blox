@@ -2,9 +2,10 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ConfigService } from '@nestjs/config'
-import type { SearchQuery } from 'src/common/interface/query.interface'
+
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
+import type { SearchDTO } from 'src/common/dto/search.dto'
 import { UserEntity } from './entities/user.entity'
 import type { CreateUserDto } from './dto/create-user.dto'
 const logger = new Logger('user.service.ts')
@@ -57,7 +58,7 @@ export class UserService {
    * @param queryParams
    * @returns
    */
-  async findAll(queryParams: SearchQuery): Promise<ResponseVo<UserEntity>> {
+  async findAll(queryParams: SearchDTO): Promise<ResponseVo<UserEntity>> {
     const query = this.userRepository.createQueryBuilder('user')
     const { page = 1, size = 10, status, ...otherParams } = queryParams
     if (typeof queryParams === 'object') {

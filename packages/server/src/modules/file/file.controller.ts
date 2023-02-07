@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common'
+import { Body, Controller, Get, Post, Query, Req, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { ApiBody, ApiConsumes, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { PaginationDTO } from 'src/common/dto/pagination.dto'
+import { SearchDTO } from 'src/common/dto/search.dto'
 import { Roles } from 'src/core/decorators/role.decorator'
-import { PictureService } from './picture.service'
+import { ApiResult } from 'src/core/decorators/api-result.decorator'
+import { PictureService } from './file.service'
+import { PictureEntity } from './entities/file.entity'
 
 export const ApiFile
   = (fileName = 'file'): MethodDecorator =>
@@ -22,7 +24,7 @@ export const ApiFile
     }
 
 @ApiTags('图片')
-@Controller()
+@Controller('file')
 export class PictureController {
   constructor(
     private readonly pictureService: PictureService,
@@ -33,11 +35,30 @@ export class PictureController {
   @Roles('admin')
   @ApiOperation({ summary: '上传图片' })
   @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          description: '文件',
+          type: 'string',
+          format: 'binary',
+        },
+        business: {
+          description: '上传文件描述，可以是纯字符串，也可以是JSON字符串',
+          type: 'string',
+          format: 'text',
+        },
+      },
+    },
+  })
   @UseInterceptors(FileInterceptor('file'))
+  @ApiResult(PictureEntity)
   async upload(
     @UploadedFile() file: Express.Multer.File,
+    @Body() params: { business: string }, @Req() req,
   ) {
-    return await this.pictureService.upload(file)
+    return await this.pictureService.upload([file], params.business || '', req.user)
   }
 
   @ApiOkResponse({ description: '图片列表' })
@@ -45,7 +66,7 @@ export class PictureController {
   @Get('list')
   @Roles('admin')
   async getMany(
-    @Query() pageDto: PaginationDTO,
+    @Query() pageDto: SearchDTO,
   ) {
     return await this.pictureService.getMany(pageDto)
   }
