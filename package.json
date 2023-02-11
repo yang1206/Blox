@@ -1,6 +1,7 @@
 {
   "name": "my-blog",
   "private": true,
+  "type": "module",
   "author": "Yang1206 <https://github.com/yang1206>",
   "repository": {
     "type": "git",

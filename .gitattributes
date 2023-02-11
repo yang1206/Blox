@@ -1,2 +1,6 @@
 *.js linguist-language=typescript
+*.mjs linguist-language=typescript
+*.css linguist-language=typescript
+*.scss linguist-language=typescript
 *.html linguist-language=typescript
+*.shell linguist-language=typescript
