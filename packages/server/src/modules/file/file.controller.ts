@@ -3,9 +3,7 @@ import { ApiBody, ApiConsumes, ApiOkResponse, ApiOperation, ApiTags } from '@nes
 import { FileInterceptor } from '@nestjs/platform-express'
 import { SearchDTO } from 'src/common/dto/search.dto'
 import { Roles } from 'src/core/decorators/role.decorator'
-import { ApiResult } from 'src/core/decorators/api-result.decorator'
 import { PictureService } from './file.service'
-import { PictureEntity } from './entities/file.entity'
 
 export const ApiFile
   = (fileName = 'file'): MethodDecorator =>
@@ -23,7 +21,7 @@ export const ApiFile
       })(target, propertyKey, descriptor)
     }
 
-@ApiTags('图片')
+@ApiTags('文件')
 @Controller('file')
 export class PictureController {
   constructor(
@@ -33,7 +31,7 @@ export class PictureController {
   @Post('upload')
   @ApiFile()
   @Roles('admin')
-  @ApiOperation({ summary: '上传图片' })
+  @ApiOperation({ summary: '上传文件' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     schema: {
@@ -53,7 +51,6 @@ export class PictureController {
     },
   })
   @UseInterceptors(FileInterceptor('file'))
-  @ApiResult(PictureEntity)
   async upload(
     @UploadedFile() file: Express.Multer.File,
     @Body() params: { business: string }, @Req() req,
@@ -61,7 +58,7 @@ export class PictureController {
     return await this.pictureService.upload([file], params.business || '', req.user)
   }
 
-  @ApiOkResponse({ description: '图片列表' })
+  @ApiOkResponse({ description: '文件列表' })
   @ApiOperation({ summary: '获取文件列表' })
   @Get('list')
   @Roles('admin')

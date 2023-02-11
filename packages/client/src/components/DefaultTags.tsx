@@ -1,6 +1,9 @@
-const APP_NAME = 'Yang1206'
-const APP_DESCRIPTION = 'Yang1206的博客'
-export default function DefaultTags() {
+import type { FC } from 'react'
+interface Props {
+  APP_NAME?: string
+  APP_DESCRIPTION?: string
+}
+const DefaultTags: FC<Props> = ({ APP_NAME = 'Yang1206', APP_DESCRIPTION = 'Yang1206的博客' }) => {
   return (
     <>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -25,3 +28,5 @@ export default function DefaultTags() {
     </>
   )
 }
+
+export default DefaultTags

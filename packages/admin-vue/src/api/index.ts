@@ -1,2 +1,2 @@
-export * from './module/user'
-export * from './module/posts'
+export * from './interface'
+export * from './module'

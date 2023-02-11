@@ -10,7 +10,7 @@ import { RouteType, RoutesType } from '@/typings/router'
 export const router = createRouter({
   history: createWebHashHistory('/'),
   routes: basicRoutes,
-  scrollBehavior: () => ({ left: 0, top: 0 }),
+  scrollBehavior: () => ({ left: 0, top: 500 }),
 })
 
 export async function setupRouter(app: App) {
@@ -33,6 +33,7 @@ export async function addDynamicRoutes() {
   // 有token的情况
   try {
     const permissionStore = usePermissionStore()
+    permissionStore.asyncGetMenu()
     const accessRoutes = await permissionStore.generateRoutes()
     accessRoutes.forEach((route: RouteType) => {
       if (!route.meta?.inlayout)

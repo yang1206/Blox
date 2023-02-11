@@ -3,7 +3,7 @@ import { CommonEntity } from 'src/common/entity/common.entity'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('file')
-export class PictureEntity extends CommonEntity {
+export class FileEntity extends CommonEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   public id: number

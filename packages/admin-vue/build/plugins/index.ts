@@ -49,7 +49,7 @@ export function setupVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOpti
           speed: 4,
         },
         webp: {
-          quality: 0.8,
+          quality: 0.5,
         },
       }),
     )
@@ -58,7 +58,7 @@ export function setupVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOpti
   if (isBuild) {
     plugins.push(
       visualizer({
-        open: true,
+        open: false,
         gzipSize: true,
         brotliSize: true,
       }),

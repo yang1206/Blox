@@ -8,6 +8,7 @@ import * as Chalk from 'chalk'
 
 const appLogDirConfig = 'dist/logs'
 fs.ensureDirSync(Path.join(__dirname, appLogDirConfig))
+
 void ['access', 'app-out', 'errors'].forEach((t) => {
   fs.ensureDirSync(Path.join(__dirname, appLogDirConfig, t))
 })

@@ -1,5 +1,5 @@
-import { PictureDTO } from './file.dto'
+import { FileDTO } from './file.dto'
 
-export class PictureCreateDto extends PictureDTO {
+export class PictureCreateDto extends FileDTO {
   readonly name?: string
 }

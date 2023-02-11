@@ -28,6 +28,9 @@ const cateQuery = useQuery({
 //   params.updateTimeStart = val[0]
 //   params.updateTimeEnd = val[1]
 // }
+
+// 站位用，datepicker暂时有bug必须关联value才能让clearable出现
+const date = ref()
 const publishDateChange = (val: any) => {
   params.publishTimeStart = val[0]
   params.publishTimeEnd = val[1]
@@ -106,9 +109,9 @@ const columns = ref(
             <!-- <FormItem label="创建时间" prop="">
                   <DatePicker clearable is-range type="datetime" style="max-width: 380px;" @change="updateDateChange" />
                 </FormItem> -->
-            <FormItem label="发布时间" prop="">
+            <FormItem label="发布时间">
               <DatePicker
-                placeholder="发布时间" :outside-cancel="true" min="2022" clearable is-range style="min-width: 200px;"
+                v-model:value="date" min="2022" clearable no-action range style="min-width: 200px;"
                 @change="publishDateChange"
               />
             </FormItem>

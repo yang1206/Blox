@@ -1,10 +1,14 @@
 {
   "name": "my-blog",
   "private": true,
-  "author": "Yang1206",
+  "author": "Yang1206 <https://github.com/yang1206>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yang1206/my-blog.git"
+  },
   "license": "MIT",
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "pnpm": ">=7"
   },
   "scripts": {
@@ -19,6 +23,8 @@
     "build:config": "pnpm run --dir packages/config build:config",
     "build:client": "pnpm run --dir packages/client build",
     "start": "pnpm exec turbo run start",
+    "start:client": "pnpm run --dir packages/client start",
+    "start:admin-vue": "pnpm run --dir packages/admin-vue start",
     "start:server": "pnpm run --dir packages/server start",
     "lint": "pnpm exec turbo run lint",
     "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
@@ -37,10 +43,10 @@
     "rimraf": "^4.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.1",
+    "@antfu/eslint-config": "^0.35.2",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.13.0",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
     "cz-git": "^1.4.1",
@@ -48,9 +54,9 @@
     "eslint-config-next": "13.1.6",
     "eslint-nibble": "^8.1.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "tsup": "^6.5.0",
-    "turbo": "^1.7.2",
+    "lint-staged": "^13.1.1",
+    "tsup": "^6.6.0",
+    "turbo": "^1.7.4",
     "typescript": "^4.9.5"
   },
   "config": {

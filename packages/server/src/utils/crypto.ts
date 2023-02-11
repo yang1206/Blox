@@ -5,3 +5,7 @@ export function encryptFileMD5(buffer: Buffer) {
 
   return md5.update(buffer).digest('hex')
 }
+
+export function getUUID() {
+  return crypto.randomUUID()
+}

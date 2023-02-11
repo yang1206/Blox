@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Confirm } from 'vexip-ui'
 import Menu from './menu/index.vue'
 import ThemeSwitch from './header/theme-switch.vue'
 import BreadCrumb from './header/breadCrumb.vue'
@@ -7,21 +8,30 @@ import { useAppStore, usePermissionStore, useUserStore } from '@/store'
 const asyncmenus = usePermissionStore().getmenus
 const appStore = useAppStore()
 const userInfo = useUserStore().userInfo
-const isXsScreen = useMediaQuery('(min-width: 768px)')
+const isXsScreen = useMediaQuery('(min-width: 576px)')
 const user = {
   name: userInfo.username,
   email: userInfo.email,
   avatar: userInfo.avatar,
 }
-function handleUserAction() {
-  useUserStore().logout()
+const isDark = useDark()
+
+const toggleDark = useToggle(isDark)
+// 主题色
+const sysColor = useStorage('color', '#339af0')
+// 实体显示logo
+const signType = useStorage<'aside' | 'header'>('signType', 'aside')
+async function handleUserAction() {
+  const isLogout = await Confirm.open('是否要退出登陆')
+  if (isLogout)
+    useUserStore().logout()
 }
 </script>
 
 <template>
   <Layout
-    v-auto-animate logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :user="user" :config="['nav', 'color']"
-    aside-fixed="md" @user-action="handleUserAction"
+    v-auto-animate logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :color="sysColor" :sign-type="signType" :user="user" :config="['nav', 'theme', 'color']"
+    aside-fixed="xs" :dark-mode="isDark" @user-action="handleUserAction" @toggle-theme="toggleDark()" @color-change="(color) => { sysColor = color }" @nav-change=" type => { signType = type } "
   >
     <!-- <template #header>
       <div dark:bg-dark>
@@ -31,7 +41,7 @@ function handleUserAction() {
     </template> -->
     <template #header-left="{ reduced, toggleReduce }">
       <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduce()">
-        <Icon v-auto-animate scale="1.2" :pulse="false">
+        <Icon v-auto-animate scale="1.2">
           <div :class="reduced ? 'i-ant-design:menu-fold-outlined' : 'i-ant-design:menu-unfold-outlined'" />
         </Icon>
       </div>

@@ -49,6 +49,7 @@ export const useUserStore = defineStore('user', {
       // const { resetTabs } = useTabStore()
       removeLocal('userinfo')
       removeLocal('token')
+      removeLocal('menuinfo')
       router.push('/login')
     },
   },

@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator'
-export class PictureDTO {
+export class FileDTO {
   /**
    * 图片路径
    */

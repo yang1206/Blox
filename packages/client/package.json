@@ -2,6 +2,11 @@
   "name": "@my-blog/client",
   "version": "0.1.0",
   "private": true,
+  "author": "Yang1206 <https://github.com/yang1206>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yang1206/my-blog.git"
+  },
   "scripts": {
     "dev": "node dev-server.js",
     "build": "next build",
