@@ -105,3 +105,4 @@ dist
 # TernJS port file
 .tern-port
 packages/admin-vue/stats.html
+packages/client/public/sw.js.map

@@ -9,7 +9,8 @@ export async function filterAsyncRoutes(menuInfo?: MenuData[]): Promise<RoutesTy
     for (const menu of menuInfo as MenuData[]) {
       if (!menu.children) {
         const route = asyncRoutes.find(route => (route.path === menu.path))
-        if (menu.inlayout)
+
+        if (menu.inlayout && route)
           route!.meta!.inlayout = menu.inlayout
         if (route)
           ret.push(route)
@@ -19,7 +20,6 @@ export async function filterAsyncRoutes(menuInfo?: MenuData[]): Promise<RoutesTy
       }
     }
   }
-
   return ret
 }
 

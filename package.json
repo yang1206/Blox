@@ -13,25 +13,25 @@
     "pnpm": ">=7"
   },
   "scripts": {
-    "clean": "npx rimraf ./node_modules ./packages/**/node_modules",
+    "clean": "npx rimraf ./node_modules ./**/**/node_modules",
     "dev": "turbo run dev --parallel",
-    "dev:server": "pnpm run --dir packages/server dev",
-    "dev:admin-vue": "pnpm run --dir packages/admin-vue dev",
-    "dev:client": "pnpm run --dir packages/client dev",
+    "dev:server": "pnpm run --dir app/server dev",
+    "dev:admin-vue": "pnpm run --dir app/admin-vue dev",
+    "dev:client": "pnpm run --dir app/client dev",
     "build": "pnpm exec turbo run build",
-    "build:server": "pnpm run --dir packages/server build",
-    "build:admin-vue": "pnpm run --dir packages/admin-vue build",
+    "build:server": "pnpm run --dir app/server build",
+    "build:admin-vue": "pnpm run --dir app/admin-vue build",
     "build:config": "pnpm run --dir packages/config build:config",
     "build:client": "pnpm run --dir packages/client build",
     "start": "pnpm exec turbo run start",
-    "start:client": "pnpm run --dir packages/client start",
-    "start:admin-vue": "pnpm run --dir packages/admin-vue start",
-    "start:server": "pnpm run --dir packages/server start",
+    "start:client": "pnpm run --dir app/client start",
+    "start:admin-vue": "pnpm run --dir app/admin-vue start",
+    "start:server": "pnpm run --dir app/server start",
     "lint": "pnpm exec turbo run lint",
-    "lint:server": "eslint --fix './packages/server/src/**/*.{ts,js}'",
-    "lint:client": "eslint --fix './packages/client/src/**/*.{tsx,ts}'",
-    "lint:admin-vue": "eslint --fix './packages/admin-vue/src/**/*.{ts,vue,tsx,js}'",
-    "nibble": "eslint-nibble './packages/**/src/*.{ts,js,tsx,vue}'",
+    "lint:server": "eslint --fix './app/server/src/**/*.{ts,js}'",
+    "lint:client": "eslint --fix './app/client/src/**/*.{tsx,ts}'",
+    "lint:admin-vue": "eslint --fix './app/admin-vue/src/**/*.{ts,vue,tsx,js}'",
+    "nibble": "eslint-nibble './app/**/src/*.{ts,js,tsx,vue}'",
     "prepare": "husky install",
     "precommit": "lint-staged",
     "lint:lint-staged": "lint-staged",
@@ -67,13 +67,13 @@
     }
   },
   "lint-staged": {
-    "./packages/client/**/*.{ts,tsx,jsx}": [
+    "./app/client/**/*.{ts,tsx,jsx}": [
       "eslint --fix"
     ],
-    "./packages/admin-vue/**/*.{vue,ts,tsx,js}": [
+    "./app/admin-vue/**/*.{vue,ts,tsx,js}": [
       "eslint --fix"
     ],
-    "./packages/server/src/**/*.{ts,js}": [
+    "./app/server/src/**/*.{ts,js}": [
       "eslint --fix"
     ]
   },
