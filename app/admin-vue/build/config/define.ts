@@ -1,13 +1,15 @@
 import { format } from 'date-fns'
-
+import pkg from '../../package.json'
+const { dependencies, devDependencies, name, version } = pkg
 /**
  * * 此处定义的是全局常量，启动或打包后将添加到window中
  * https://vitejs.cn/config/#define
  */
-
-// 项目构建时间
-const _BUILD_TIME_ = JSON.stringify(format(new Date(), 'yyyy-MM-dd HH:mm:ss'))
+const __APP_INFO__ = {
+  pkg: { dependencies, devDependencies, name, version },
+  lastBuildTime: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+}
 
 export const viteDefine = {
-  _BUILD_TIME_,
+  __APP_INFO__,
 }

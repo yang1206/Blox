@@ -2,6 +2,7 @@ import { Confirm, Message } from 'vexip-ui'
 import { cratePost, deletePost, getPostById, updatePost } from '@/api'
 import { createPosts } from '@/api/interface/posts'
 import { router } from '@/router'
+import { isValidKey } from '@/utils'
 
 export const postsForm = ref<Partial<createPosts>>({})
 
@@ -75,18 +76,12 @@ export const removePost = async (id: string) => {
  */
 export const getEchoData = async (id: string) => {
   const { data } = await getPostById(id)
-  // Object.keys(postsForm.value).forEach((key) => {
-  //   postsForm.value[key] = data[key]
-  // })
-  // postsForm.value = Object.assign(data, postsForm.value)
-  postsForm.value.id = data.id
-  postsForm.value.title = data.title
-  postsForm.value.content = data.content
-  postsForm.value.coverUrl = data.coverUrl
-  postsForm.value.status = data.status
   postsForm.value.isRecommend = !!data.isRecommend
-  postsForm.value.contentHtml = data.contentHtml
   postsForm.value.category = data.category.id
-  postsForm.value.summary = data.summary
   postsForm.value.tag = data.tags.map(item => item.id)
+  Object.keys(postsForm.value).forEach((key) => {
+    if (isValidKey(key, postsForm.value))
+      (key !== 'tag' || key !== 'category' || key !== 'isRecommend') ?? (postsForm.value[key] = data[key])
+  })
+  postsForm.value = Object.assign(data, postsForm.value)
 }

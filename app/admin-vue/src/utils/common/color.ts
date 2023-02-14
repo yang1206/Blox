@@ -10,9 +10,6 @@ export const TAG_COLORS = [
   'gold',
   'purple',
 ]
-export function isValidKey(key: string | number | symbol, object: object): key is keyof typeof object {
-  return key in object
-}
 export const getRandomColor = (() => {
   const cache: { [key: string]: string } = {}
   return (key: string) => {

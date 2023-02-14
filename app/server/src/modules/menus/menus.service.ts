@@ -43,7 +43,11 @@ export class MenusService {
 * @param id
 */
   async findOne(id: number) {
-    return this.menusRepository.findOneOrFail({ where: { id }, relations: ['parent', 'children'] })
+    const data = await this.menusRepository.findOneOrFail({ where: { id }, relations: ['parent', 'children'] })
+    return {
+      ...data,
+      parent_id: data?.parent?.id,
+    }
   }
 
   /**

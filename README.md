@@ -12,9 +12,9 @@ my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你
 - `Redis`: 数据缓存
 ## 技术栈细节
 
-- [后端](./packages/server/README.md)
-- [后台管理](./packages/admin-vue/README.md)
-- [博客前端](./packages/client/README.md)
+- [后端](./app/server/README.md)
+- [后台管理](./app/admin-vue/README.md)
+- [博客前端](./app/client/README.md)
   
 ## 项目运行
 ### 数据库

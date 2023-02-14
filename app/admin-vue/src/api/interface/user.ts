@@ -33,15 +33,3 @@ export interface RegisterData {
   createTime: Date
   updateTime: Date
 }
-
-export interface MenuData {
-  id: string
-  name: string
-  path: string
-  sort: number
-  icon: string
-  show: boolean
-  children: MenuData[]
-  parent_id?: string
-  inlayout: boolean
-}
