@@ -41,9 +41,7 @@ async function handleUserAction() {
     </template> -->
     <template #header-left="{ reduced, toggleReduce }">
       <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduce()">
-        <Icon v-auto-animate scale="1.2">
-          <div :class="reduced ? 'i-ant-design:menu-fold-outlined' : 'i-ant-design:menu-unfold-outlined'" />
-        </Icon>
+        <TheIcon v-auto-animate :icon="reduced ? 'line-md:menu-fold-right' : 'line-md:menu-fold-left'" :size="1.8" />
       </div>
     </template>
     <template #header-main>
@@ -61,9 +59,7 @@ async function handleUserAction() {
         <ThemeSwitch />
       </span>
       <Linker to="https://github.com/yang1206/my-blog" style="display: flex; margin-right: 16px;">
-        <Icon :scale="1.6">
-          <div i-carbon:logo-github />
-        </Icon>
+        <TheIcon icon="line-md:github-loop" :size="1.5" />
       </Linker>
     </template>
     <template #aside-main="{ reduced }">

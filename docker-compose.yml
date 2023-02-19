@@ -3,17 +3,18 @@ version: '3'
 services:
   client:
     build:
-      context: ./packages/client
-      dockerfile: ./packages/client/Dockerfile
+      context: ./app/client
+      dockerfile: ./app/client/Dockerfile
     restart: always
+    command: npm run start
     ports:
       - 3030:3030
     depends_on:
-      - servers
+      - server
   server:
     build:
-      context: ./packages/server
-      dockerfile: ./packages/server/Dockerfile
+      context: ./app/server
+      dockerfile: ./app/server/Dockerfile
     command: npm run start
     restart: always
     ports:
@@ -29,8 +30,10 @@ services:
       - .env
       - .env.prod
     ports:
-      -"3306:3306"
+      - 3306:3306
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf
+    volumes:
+      - mysql:/data
   redis:
     image: redis
     restart: always

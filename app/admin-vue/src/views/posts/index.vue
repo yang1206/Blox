@@ -118,7 +118,7 @@ const columns = ref(
 
             <Space justify="end">
               <FormItem>
-                <Button type="primary" @click="$router.push('/posts/editor')">
+                <Button v-auto-animate type="primary" @click="$router.push('/posts/editor')">
                   新建
                 </Button>
               </FormItem>

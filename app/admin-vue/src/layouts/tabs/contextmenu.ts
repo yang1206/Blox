@@ -17,31 +17,31 @@ export const contextmenu = async (event: MouseEvent, path: string) => {
         label: '重新加载',
         key: 'reload',
         disabled: path !== tabStore.activeTab,
-        icon: useIcon('mdi:refresh', { size: 1 }),
+        icon: useIcon('line-md:rotate-270', { size: 1.2 }),
       },
       {
         label: '关闭',
         key: 'close',
         disabled: tabStore.tabs.length <= 1,
-        icon: useIcon('mdi:close', { size: 1 }),
+        icon: useIcon('line-md:close', { size: 1.2 }),
       },
       {
         label: '关闭其他',
         key: 'close-other',
         disabled: tabStore.tabs.length <= 1,
-        icon: useIcon('mdi:arrow-expand-horizontal', { size: 1 }),
+        icon: useIcon('line-md:arrow-align-center', { size: 1.2 }),
       },
       {
         label: '关闭左侧',
         key: 'close-left',
         disabled: tabStore.tabs.length <= 1 || path === tabStore.tabs[0].path,
-        icon: useIcon('mdi:arrow-expand-left', { size: 1 }),
+        icon: useIcon('line-md:arrow-open-left', { size: 1.2 }),
       },
       {
         label: '关闭右侧',
         key: 'close-right',
         disabled: tabStore.tabs.length <= 1 || path === tabStore.tabs[tabStore.tabs.length - 1].path,
-        icon: useIcon('mdi:arrow-expand-right', { size: 1 }),
+        icon: useIcon('line-md:arrow-open-right', { size: 1.2 }),
       }],
   })
   if (!selectedKeys)

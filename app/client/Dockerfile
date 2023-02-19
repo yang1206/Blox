@@ -7,4 +7,4 @@ ENV TZ=Asia/Shanghai
 
 RUN pnpm i && pnpm run build && pnpm dev
 
-EXPOSE 1206
+EXPOSE 3030
