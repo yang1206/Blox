@@ -17,9 +17,6 @@ export function createPermissionGuard(router: Router) {
     /** 有token的情况 */
     if (to.path === '/login')
       return { path: '/' }
-
-    // TODO
-    // refreshAccessToken()
     return true
   })
 }

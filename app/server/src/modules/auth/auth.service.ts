@@ -64,7 +64,6 @@ export class AuthService {
     return await this.userService.findOne(user.id)
   }
 
-  // TODO 刷新token优化
   /**
    * 刷新token
    * @param userId

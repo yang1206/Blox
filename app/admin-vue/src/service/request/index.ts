@@ -84,7 +84,7 @@ class Request {
       && this.cancelRequestSourceList?.splice(sourceIndex as number, 1)
   }
 
-  request<T>(config: RequestConfig<T>): Promise<T> {
+  async request<T>(config: RequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
       if (config.interceptors?.requestInterceptors)

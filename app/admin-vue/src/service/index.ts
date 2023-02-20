@@ -3,9 +3,11 @@ import { Loading, Message } from 'vexip-ui'
 import Request from './request'
 import type { RequestConfig } from './request/types'
 import { resolveResError } from './request/helpers'
+import { refreshToken } from './request/refreshToken'
 import { getLocal } from '@/utils'
+import { useUserStore } from '@/store'
 // import { useUserStore } from '@/store'
-export interface IResponse<T> {
+export interface IResponse<T = any> {
   data: T
   message: string
   status: number
@@ -14,7 +16,7 @@ export interface IResponse<T> {
 interface HttpRequestConfig<T, R> extends RequestConfig<IResponse<R>> {
   data?: T
 }
-const request = new Request({
+export const request = new Request({
   baseURL: import.meta.env.VITE_APP_GLOB_BASE_API,
   timeout: 1000 * 60 * 5,
   interceptors: {
@@ -33,20 +35,26 @@ const request = new Request({
       return result
     },
     responseInterceptorsCatch: (error) => {
-      Loading.open({
-        percent: 100,
-        maxPercent: 100,
-        state: 'error',
-      })
-      const message = resolveResError(error.response.status, error.response.data.message)
-      Message.error({
-        content: message,
-      })
-      // if (error.response.status === 401) {
-      //   const userStore = useUserStore()
-      //   userStore.logout()
-      // }
-      return Promise.reject(new Error(error))
+      if (error.response.status === 401) {
+        refreshToken(error).catch(() => {
+          useUserStore().logout()
+          Message.error({
+            content: '身份验证失败',
+          })
+        })
+      }
+      else {
+        Loading.open({
+          percent: 100,
+          maxPercent: 100,
+          state: 'error',
+        })
+        const message = resolveResError(error.response.status, error.response.data.message)
+        Message.error({
+          content: message,
+        })
+        return Promise.reject(new Error(error))
+      }
     },
   },
 })

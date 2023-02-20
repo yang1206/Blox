@@ -43,7 +43,7 @@ const delMenu = async (id: number) => {
       </Button>
     </Row>
     <Row>
-      <Table :data="menusDatas">
+      <Table v-auto-animate :data="menusDatas">
         <TableColumn name="id" id-key="id" fixed />
         <TableColumn name="名称" id-key="name" />
         <TableColumn name="图标" id-key="icon">

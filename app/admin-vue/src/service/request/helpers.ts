@@ -1,13 +1,7 @@
-import { useUserStore } from '@/store'
-
 export function resolveResError(code: number | string | undefined, message = ''): string {
   switch (code) {
     case 400:
       message = message ?? '请求参数错误'
-      break
-    case 401:
-      message = message ?? '登录已过期'
-      useUserStore().logout()
       break
     case 403:
       message = message ?? '没有权限'
