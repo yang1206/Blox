@@ -5,8 +5,6 @@ import type { RequestConfig } from './request/types'
 import { resolveResError } from './request/helpers'
 import { refreshToken } from './request/refreshToken'
 import { getLocal } from '@/utils'
-import { useUserStore } from '@/store'
-// import { useUserStore } from '@/store'
 export interface IResponse<T = any> {
   data: T
   message: string
@@ -35,15 +33,7 @@ export const request = new Request({
       return result
     },
     responseInterceptorsCatch: (error) => {
-      if (error.response.status === 401) {
-        refreshToken(error).catch(() => {
-          useUserStore().logout()
-          Message.error({
-            content: '身份验证失败',
-          })
-        })
-      }
-      else {
+      const ErrorFn = (msg?: string) => {
         Loading.open({
           percent: 100,
           maxPercent: 100,
@@ -51,9 +41,18 @@ export const request = new Request({
         })
         const message = resolveResError(error.response.status, error.response.data.message)
         Message.error({
-          content: message,
+          content: msg || message,
         })
         return Promise.reject(new Error(error))
+      }
+      if (error.response.status === 401) {
+        // 如果是401，尝试刷新token
+        refreshToken(error).catch(() => {
+          ErrorFn('身份验证失败')
+        })
+      }
+      else {
+        ErrorFn()
       }
     },
   },
