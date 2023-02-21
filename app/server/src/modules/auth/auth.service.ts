@@ -55,7 +55,12 @@ export class AuthService {
     await this.redisCacheService.set(
            `${data.id}&${data.username}&${data.role}`,
            access_token,
-           1800,
+           3600,
+    )
+    await this.redisCacheService.set(
+      `_refresh_token${data.id}&${data.username}&${data.role}`,
+      refresh_token,
+      604800,
     )
     return Object.assign(data, { token: access_token, refreshToken: refresh_token })
   }
@@ -71,8 +76,15 @@ export class AuthService {
    */
   async refreshToken(refreshData: RefreshDto) {
     const user = await this.getUser({ id: refreshData.id })
+
+    const refresh_cache_token = await this.redisCacheService.get(`_refresh_token${user.id}&${user.username}&${user.role}`)
+
     if (!user || !refreshData.refresh_token)
       throw new ForbiddenException('Access Denied')
+      // 比对传来的刷新token与缓存中的是否一致
+    if (refresh_cache_token !== refreshData.refresh_token)
+      throw new ForbiddenException()
+
     const tokens = await this.createToken({
       id: user.id,
       username: user.username,
@@ -82,10 +94,10 @@ export class AuthService {
            `${user.id}&${user.username}&${user.role}`,
            tokens.access_token,
            3600)
+    this.redisCacheService.set(
+      `_refresh_token${user.id}&${user.username}&${user.role}`,
+      tokens.refresh_token,
+      604800)
     return tokens
-  }
-
-  isExpires(access) {
-    return Date.now() - access.getTime > access.expiresIn * 1000
   }
 }

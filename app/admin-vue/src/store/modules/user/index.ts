@@ -26,13 +26,16 @@ export const useUserStore = defineStore('user', {
     getToken(): string {
       return this.token as string
     },
+    getRefreshToken(): string {
+      return this.refresh_token as string
+    },
   },
   actions: {
     async asyncLogin(loginFrom: LoginForm) {
       const res = await loginRequest(loginFrom)
       const { token, refreshToken } = res.data
       this.token = token
-      setLocal('token', token, 1000 * 60 * 30)
+      setLocal('token', token)
       setLocal('refresh_token', refreshToken)
       this.userInfo = res.data
       this.role = String(res.data.role)
@@ -41,7 +44,7 @@ export const useUserStore = defineStore('user', {
       await usePermission.asyncGetMenu()
     },
     async refreshToken() {
-      const res = await resfreshRequest({ id: this.userInfo.id, refresh_token: this.refresh_token as string })
+      const res = await resfreshRequest({ id: this.userInfo.id, refresh_token: getLocal('refresh_token') as string })
       return res.data
     },
 
@@ -49,6 +52,7 @@ export const useUserStore = defineStore('user', {
       // const { resetTabs } = useTabStore()
       removeLocal('userinfo')
       removeLocal('token')
+      removeLocal('refresh_token')
       removeLocal('menuinfo')
       router.push('/login')
     },
