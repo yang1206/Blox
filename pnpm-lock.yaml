@@ -5,10 +5,10 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.35.2
+      '@blox/config': workspace:^1.0.0
+      '@blox/utils': workspace:^1.0.0
       '@commitlint/cli': ^17.4.4
       '@commitlint/config-conventional': ^17.4.4
-      '@my-blog/config': workspace:^1.0.0
-      '@my-blog/utils': workspace:^1.0.0
       '@types/node': ^18.14.1
       commitizen: ^4.3.0
       cross-env: ^7.0.3
@@ -24,8 +24,8 @@ importers:
       turbo: ^1.8.2
       typescript: ^4.9.5
     dependencies:
-      '@my-blog/config': link:packages/config
-      '@my-blog/utils': link:packages/utils
+      '@blox/config': link:packages/config
+      '@blox/utils': link:packages/utils
       date-fns: 2.29.3
       rimraf: 4.1.2
     devDependencies:

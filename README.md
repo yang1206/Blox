@@ -1,6 +1,6 @@
 # 📝 博客系统 📝
 
-my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你轻松的创建、编辑、管理和发布你的文章，完全支持MarkDown书写！
+Blox 是一个完全使用 TypeScript 编写的博客系统，它可以让你轻松的创建、编辑、管理和发布你的文章，完全支持MarkDown书写！
 
 ## 简介
 
@@ -56,7 +56,7 @@ CREATE DATABASE  `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 首先，clone 项目。
 
 ```bash
-git clone --depth=1 https://github.com/yang1206/my-blog.git your-project-name
+git clone --depth=1 https://github.com/yang1206/blox.git your-project-name
 ```
 
 然后，安装项目依赖。

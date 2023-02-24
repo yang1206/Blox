@@ -11,7 +11,7 @@ import { PictureModule } from 'src/modules/file/file.module'
 import { ViewModule } from 'src/modules/view/view.module'
 import { SearchModule } from 'src/modules/search/search.module'
 import { MenusModule } from 'src/modules/menus/menus.module'
-import { filePath } from '@my-blog/config'
+import { filePath } from '@blox/config'
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 import { RedisCacheModule } from './core/cache/redis.module'
 

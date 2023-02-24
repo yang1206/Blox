@@ -1,4 +1,4 @@
-const { config } = require('@my-blog/config');
+const { config } = require('@blox/config');
 const UnoCSS = require('@unocss/webpack').default
 /** @type {import('next').NextConfig} */
 const nextConfig = {

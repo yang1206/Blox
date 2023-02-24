@@ -1,4 +1,4 @@
-const { config } = require('@my-blog/config');
+const { config } = require('@blox/config');
 const cli = require('next/dist/cli/next-dev');
 
 const port = config.CLIENT_PORT || 3030;

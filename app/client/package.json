@@ -1,11 +1,11 @@
 {
-  "name": "@my-blog/client",
+  "name": "@blox/client",
   "version": "0.1.0",
   "private": true,
   "author": "Yang1206 <https://github.com/yang1206>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yang1206/my-blog.git"
+    "url": "git+https://github.com/yang1206/blox.git"
   },
   "scripts": {
     "dev": "node dev-server.js",

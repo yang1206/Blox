@@ -1,2 +1,2 @@
-# @my-blog/config
+# @blox/config
 

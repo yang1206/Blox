@@ -1,11 +1,11 @@
 {
-  "name": "my-blog",
+  "name": "blox",
   "private": true,
   "type": "module",
   "author": "Yang1206 <https://github.com/yang1206>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yang1206/my-blog.git"
+    "url": "git+https://github.com/yang1206/blox.git"
   },
   "license": "MIT",
   "engines": {
@@ -42,8 +42,8 @@
     "commit": "git pull && git add -A && git-cz && git push"
   },
   "dependencies": {
-    "@my-blog/config": "workspace:^1.0.0",
-    "@my-blog/utils": "workspace:^1.0.0",
+    "@blox/config": "workspace:^1.0.0",
+    "@blox/utils": "workspace:^1.0.0",
     "date-fns": "^2.29.3",
     "rimraf": "^4.1.2"
   },

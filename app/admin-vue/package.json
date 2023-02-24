@@ -1,5 +1,5 @@
 {
-  "name": "@my-blog/admin-vue",
+  "name": "@blox/admin-vue",
   "type": "module",
   "version": "0.1.0",
   "private": true,

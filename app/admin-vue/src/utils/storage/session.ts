@@ -1,4 +1,4 @@
-import * as crypto from '@my-blog/utils'
+import * as crypto from '@blox/utils'
 const SecretKey = import.meta.env.AUTH_SECRET
 export function setSession(key: string, value: unknown) {
   const json = crypto.encrypto(value, SecretKey)
