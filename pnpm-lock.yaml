@@ -145,6 +145,7 @@ importers:
       remark-toc: ^8.0.1
       typescript: 4.9.5
       unocss: ^0.50.0
+      unocss-preset-scrollbar-hide: ^1.0.1
     dependencies:
       '@ducanh2912/next-pwa': 8.0.0_next@13.2.1
       '@formkit/auto-animate': 1.0.0-beta.6
@@ -174,6 +175,7 @@ importers:
       '@unocss/webpack': 0.50.0
       typescript: 4.9.5
       unocss: 0.50.0_@unocss+webpack@0.50.0
+      unocss-preset-scrollbar-hide: 1.0.1_unocss@0.50.0
 
   app/server:
     specifiers:
@@ -14254,6 +14256,20 @@ packages:
   /universalify/2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
+
+  /unocss-preset-scrollbar-hide/1.0.1_unocss@0.50.0:
+    resolution: {integrity: sha512-U+JcxAMhgvI14ZtveQBRSbyYGkgYRDlOJzAW2pUbrTvsGZwTyb3dWLvNiMdtN4s1dFEGMCBRAgnoBPLh21APPQ==}
+    peerDependencies:
+      '@unocss/nuxt': ^0.40.0
+      unocss: ^0.40.0
+    peerDependenciesMeta:
+      '@unocss/nuxt':
+        optional: true
+      unocss:
+        optional: true
+    dependencies:
+      unocss: 0.50.0_@unocss+webpack@0.50.0
+    dev: true
 
   /unocss/0.50.0_@unocss+webpack@0.50.0:
     resolution: {integrity: sha512-7lUt6/S3yPQEdWPRVe0de+ggV7FqsNUPW7pZtrT80M2FjDc7/RoGI+0rmujk22opk/u35dY0U1m6J+Q20KOqtg==}

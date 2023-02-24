@@ -68,13 +68,13 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className="antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto">
+      <body className="scrollbar-hide mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto md:px-3">
         <Provider>
-            <NavBar />
-            <main className='px-7 pt-10 pb-18'>
-              {children}
-            </main>
-            <Footer />
+          <NavBar />
+          <main className='px-7 pt-10 pb-18'>
+            {children}
+          </main>
+          <Footer />
         </Provider>
       </body>
     </html>

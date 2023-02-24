@@ -10,11 +10,7 @@
 }
 
 
-html,
-body {
-  --at-apply: h-full base;
-  scroll-behavior:smooth;
-}
+
 body::-webkit-scrollbar {
   --at-apply: w0;
 }

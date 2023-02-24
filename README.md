@@ -1,6 +1,7 @@
 # 📝 博客系统 📝
 
-my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你轻松的创建、编辑、管理和发布你的文章。
+my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你轻松的创建、编辑、管理和发布你的文章，完全支持MarkDown书写！
+
 ## 简介
 
 使用TypeScript编写的完整的博客系统,通过这个项目你能学习到这些技术
@@ -10,6 +11,7 @@ my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你
 - `Next.js`: 前端博客页面框架
 - `MySQL`: 数据存储
 - `Redis`: 数据缓存
+
 ## 技术栈细节
 
 - [后端](./app/server/README.md)
@@ -17,30 +19,40 @@ my-blog 是一个完全使用 TypeScript 编写的博客系统，它可以让你
 - [博客前端](./app/client/README.md)
   
 ## 项目运行
+
 ### 数据库
+
 首先安装 `MySQL`，推荐使用 docker 进行安装。
 <br />
 拉取镜像
 <br />
+
 ```bash
 docker pull mysql:latest
 ```
+
 <br />
 启动服务，这里数据库密码为123456
 
 ```bash
 docker run -itd --name mysql_local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server
 ```
+
 进入容器
+
 ```bash
 docker exec -it mysql_local /bin/bash
 ```
+
 然后创建表
+
 ```bash
 mysql -u root -p;
 CREATE DATABASE  `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
+
 ### 本地运行
+
 首先，clone 项目。
 
 ```bash
@@ -67,8 +79,11 @@ pnpm run dev
 
 首次启动，默认创建管理员用户：admin，密码：yang1206（可在 `.env` 文件中进行修改）。
 [PS] 如服务端配置启动失败，请先确认 MySQL 的配置是否正确，配置文件在 `.env`。
+
 ### 全局配置
+
 根目录下的`.env`和`.env.prod`分别是本地与生产环境的配置文件
+
 ```bash
 #服务端
 # 数据库地址
@@ -123,4 +138,9 @@ CLIENT_SITE_URL=http://localhost:3030
 # 客户端资源地址（假设部署到 https://xx.com，就将 CLIENT_ASSET_PREFIX 设置为 https://xx.com，如果将资源上传到 cdn ，那就改为 cdn 地址）
 CLIENT_ASSET_PREFIX=/
 ```
+
 ![Alt](https://repobeats.axiom.co/api/embed/c964cacad1bfd31fe31ed0a73865ccd744baf3f5.svg "Repobeats analytics image")
+
+## License
+
+Blox is licensed under the MIT license. See [LICENSE](/LICENSE) for more details

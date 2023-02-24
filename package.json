@@ -22,7 +22,7 @@
     "build:server": "pnpm run --dir app/server build",
     "build:admin-vue": "pnpm run --dir app/admin-vue build",
     "build:config": "pnpm run --dir packages/config build:config",
-    "build:client": "pnpm run --dir packages/client build",
+    "build:client": "pnpm run --dir app/client build",
     "start": "pnpm exec turbo run start",
     "start:client": "pnpm run --dir app/client start",
     "start:admin-vue": "pnpm run --dir app/admin-vue start",

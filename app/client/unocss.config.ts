@@ -7,6 +7,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { presetScrollbarHide } from 'unocss-preset-scrollbar-hide'
 import type { CSSObject, Shortcut } from 'unocss'
 
 const usefulShortcuts: Shortcut[] = [
@@ -100,6 +101,7 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify(),
+    presetScrollbarHide(),
     presetIcons({
       scale: 1.2,
     }),
