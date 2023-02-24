@@ -72,7 +72,7 @@ export default defineConfig({
         default: '#6f6f6f',
         dark: '#C8CCD0',
       },
-      primary: '#00bcd4',
+      primary: 'var(--vxp-color-primary-light-1)',
     },
     fontFamily: {
       mono: 'dm,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',

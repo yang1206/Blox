@@ -1,4 +1,4 @@
-import { Cedarville_Cursive, Inter, Roboto_Mono } from '@next/font/google'
+import { Cedarville_Cursive, Inter, Roboto_Mono } from 'next/font/google'
 
 export const inter = Inter({
   subsets: ['latin'],

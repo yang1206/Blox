@@ -4,6 +4,10 @@ import { notFound } from 'next/navigation'
 import type { postsData } from '@/types/posts'
 import PageHeader from '@/components/PageHeader'
 
+export const metadata = {
+  title: 'Posts',
+}
+
 const fetchPosts = async () => {
   const res = await fetch(`${process.env.SERVER_API_URL}/posts`)
   const posts: { data: postsData } = await res.json()

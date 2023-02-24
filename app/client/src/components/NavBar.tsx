@@ -48,7 +48,7 @@ export default function NavBar() {
               icon-link
               i-ri:twitter-line' rel="noreferrer"
             /> */}
-            <a title="Github" href="https://github.com/yang1206" target="_blank" className='icon-link i-ri-github-line' rel="noreferrer" />
+            <a title="Github" href="https://github.com/yang1206" target="_blank" className='icon-link i-line-md:github-loop' rel="noreferrer" />
             <div className='fcc'>
               <DarkToggle />
             </div>

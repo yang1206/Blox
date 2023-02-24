@@ -10,7 +10,11 @@ const fetchPost = async (id: string) => {
   const post: { data: postInfo } = await res.json()
   return post.data
 }
-const PostsInfo = async (props: any) => {
+export async function generateMetadata(props: { params: { id: string } }) {
+  const post = await fetchPost(props.params.id)
+  return { title: post.title }
+}
+const PostsInfo = async (props: { params: { id: string } }) => {
   const post = await fetchPost(props.params.id)
   if (!post)
     notFound()

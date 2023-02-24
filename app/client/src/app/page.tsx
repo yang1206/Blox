@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <div className="prose font-mono ma origin">
       <div className='flex flex-col items-center md="gap-10 flex-row"'>
-        <Image src={user.avatar_url} alt={user.name as string} width={50} height={50}></Image>
+        <Image src={user.avatar_url} alt={user.login as string} width={50} height={50}></Image>
         <div>
           <h2 className='fic justify-center md="justify-start"'>
             {user?.login}

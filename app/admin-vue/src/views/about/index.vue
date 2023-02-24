@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
-  modelValue?: boolean
-}>()
+console.warn(__APP_INFO__)
 </script>
 
 <template>

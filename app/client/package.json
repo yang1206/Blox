@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^8.0.0",
-    "@next/font": "13.1.6",
-    "next": "13.1.6",
+    "@formkit/auto-animate": "1.0.0-beta.6",
+    "next": "13.2.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -26,24 +26,25 @@
     "remark-gfm": "^3.0.1",
     "remark-toc": "^8.0.1"
   },
-  "eslintConfig": {
-    "extends": "next/core-web-vitals"
-  },
   "devDependencies": {
     "@iconify-json/akar-icons": "^1.1.13",
     "@iconify-json/carbon": "^1.1.15",
+    "@iconify-json/line-md": "^1.1.23",
     "@iconify-json/logos": "^1.1.23",
     "@iconify-json/ri": "^1.1.5",
     "@octokit/types": "^9.0.0",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.27",
-    "@types/react-dom": "18.0.10",
+    "@types/node": "18.14.1",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
     "@types/react-syntax-highlighter": "^15.5.6",
-    "@unocss/cli": "^0.49.7",
-    "@unocss/preset-uno": "^0.49.7",
-    "@unocss/reset": "^0.49.7",
-    "@unocss/webpack": "^0.49.7",
+    "@unocss/cli": "^0.50.0",
+    "@unocss/preset-uno": "^0.49.8",
+    "@unocss/reset": "^0.50.0",
+    "@unocss/webpack": "^0.50.0",
     "typescript": "4.9.5",
-    "unocss": "^0.49.7"
+    "unocss": "^0.50.0"
+  },
+  "eslintConfig": {
+    "extends": "next/core-web-vitals"
   }
 }

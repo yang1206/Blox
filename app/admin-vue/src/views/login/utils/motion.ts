@@ -1,4 +1,4 @@
-import { Slot, withDirectives } from 'vue'
+import { Slot, resolveDirective, withDirectives } from 'vue'
 
 /** 封装@vueuse/motion动画库中的自定义指令v-motion */
 export default defineComponent({

@@ -6,6 +6,7 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
+    // typedRoutes: true,
   },
   env: {
     SERVER_API_URL: config.SERVER_API_URL || 'http://localhost:1206/api',
