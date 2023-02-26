@@ -1,4 +1,4 @@
-import type { RouteType } from '@/typings/router'
+import type { RouteType } from '~/typings/router'
 
 export default {
   name: 'About',

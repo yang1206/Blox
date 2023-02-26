@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { filterAsyncRoutes, getShowMenu } from './helpers'
 import { basicRoutes } from '@/router/routes'
-import type { RoutesType } from '@/typings/router'
+import type { RoutesType } from '~/typings/router'
 import { MenuData, menuRequest } from '@/api'
 import { getLocal, setLocal } from '@/utils'
 

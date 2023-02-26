@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { active } from '../utils'
-import type { MenuData } from '@/api/interface/user'
+import type { MenuData } from '@/api'
 import { router } from '@/router'
 defineProps<{
   menusData: MenuData[]

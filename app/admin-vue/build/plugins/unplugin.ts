@@ -3,7 +3,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VexipUIResolver } from '@vexip-ui/plugins'
 
-import { getSrcPath } from '../utils'
+import { getRootPath, getSrcPath } from '../utils'
 export default [
   AutoImport({
     // resolvers: [VexipUIResolver({
@@ -13,12 +13,12 @@ export default [
     imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
     dirs: [resolve(getSrcPath(), 'composables')],
     vueTemplate: true,
-    dts: resolve(getSrcPath(), 'typings/auto-import.d.ts'),
+    dts: resolve(getRootPath(), 'typings/auto-import.d.ts'),
   }),
   Components({
     resolvers: [VexipUIResolver({
       importStyle: true,
     })],
-    dts: resolve(getSrcPath(), 'typings/components.d.ts'),
+    dts: resolve(getRootPath(), 'typings/components.d.ts'),
   }),
 ]

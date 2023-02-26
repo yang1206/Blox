@@ -5,10 +5,10 @@ import { setupRouterGuard } from './guard'
 import { getToken } from '@/utils/auth'
 import { isNullOrWhitespace } from '@/utils/common/is'
 import { usePermissionStore } from '@/store'
-import { RouteType, RoutesType } from '@/typings/router'
+import { RouteType, RoutesType } from '~/typings/router'
 
 export const router = createRouter({
-  history: createWebHashHistory('/'),
+  history: import.meta.env.VITE_USE_HASH ? createWebHashHistory('/') : createWebHashHistory('/'),
   routes: basicRoutes,
   scrollBehavior: () => ({ left: 0, top: 500 }),
 })

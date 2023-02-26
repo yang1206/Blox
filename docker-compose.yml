@@ -1,49 +1,44 @@
-version: '3'
+version: '2.4'
 
 services:
-  client:
-    build:
-      context: ./app/client
-      dockerfile: ./app/client/Dockerfile
-    restart: always
-    command: npm run start
-    ports:
-      - 3030:3030
-    depends_on:
-      - server
   server:
-    build:
-      context: ./app/server
-      dockerfile: ./app/server/Dockerfile
-    command: npm run start
+    build :
+      context: ./
+      dockerfile: Dockerfile
     restart: always
-    ports:
-      - 1206:1206
+    platform: linux/arm64/v8
     depends_on:
       - mysql
       - redis
+
   mysql:
     image: mysql/mysql-server:latest
     container_name: nest-mysql
-    restarts: always
     env_file:
       - .env
       - .env.prod
+    environment:
+      TZ: Asia/Shanghai
     ports:
       - 3306:3306
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf
     volumes:
       - mysql:/data
+    platform: linux/arm64/v8
+    restart: always
   redis:
     image: redis
     restart: always
     env_file:
       - .env
       - .env.prod
+    environment:
+      TZ: Asia/Shanghai
     ports:
       - 6379:6379
     volumes:
       - redis:/data
+    platform: linux/arm64/v8
 
 volumes:
   mysql:

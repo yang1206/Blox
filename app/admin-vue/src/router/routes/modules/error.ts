@@ -1,4 +1,4 @@
-import type { RouteType } from '@/typings/router'
+import type { RouteType } from '~/typings/router'
 const Layout = () => import('@/layouts/index.vue')
 
 export default {

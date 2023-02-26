@@ -1,4 +1,4 @@
-import type { RouteModule, RouteType, RoutesType } from '@/typings/router'
+import type { RouteModule, RouteType, RoutesType } from '~/typings/router'
 export const basicRoutes: RoutesType = [
   {
     name: '404',

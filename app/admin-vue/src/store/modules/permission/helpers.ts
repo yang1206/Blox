@@ -1,5 +1,5 @@
 import { MenuData } from '@/api/interface/user'
-import type { RoutesType } from '@/typings/router'
+import type { RoutesType } from '~/typings/router'
 import { asyncRoutes } from '@/router/routes'
 export async function filterAsyncRoutes(menuInfo?: MenuData[]): Promise<RoutesType> {
   const ret: RoutesType = []
