@@ -51,7 +51,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <Form ref="formRef" w-full :rules="loginRules" flex-1 :model="loginForm" hide-label>
+  <Form ref="formRef" :rules="loginRules" :model="loginForm" hide-label w-full flex-1>
     <Motion min-w-260 :delay="100">
       <FormItem label="username" prop="username">
         <Input clearable size="large" placeholder="请输入帐号">

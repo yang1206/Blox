@@ -129,7 +129,7 @@ const columns = ref(
     </Row>
     <Row>
       <Column>
-        <Table v-auto-animate v-loading="isLoading" highlight use-y-bar :current-page="params.page" :page-size="params.size" :columns="columns" :data="tableData">
+        <Table v-auto-animate v-loading="isLoading" use-y-bar highlight :current-page="params.page" :page-size="params.size" :columns="columns" :data="tableData">
           <TableColumn :order="2" id-key="status" name="状态">
             <template #default="{ row }">
               <Badge is-dot :type="row.status === 'draft' ? 'warning' : 'primary'" />

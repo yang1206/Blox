@@ -19,18 +19,18 @@ const back = () => {
 </script>
 
 <template>
-  <header h-60px flex p-8 color-coolGray dark:bg-dark items-center justify-between>
+  <header h-60px flex items-center justify-between p-8 color-coolgray dark:bg-dark>
     <div class="left flex gap-20">
-      <div w-30 h-30 class="text-#000000 dark:bg-blue hover:color-#2599FB" i-carbon:close @click="back" />
+      <div class="text-#000000 dark:bg-blue hover:color-#2599FB" i-carbon:close h-30 w-30 @click="back" />
       <input v-model="postsForm.title" v-auto-animate placeholder="请输入文章标题" class="title-input">
     </div>
-    <div class="right flex gap-30 items-center">
+    <div class="right flex items-center gap-30">
       <themeSwitchVue :size="5" />
       <Button type="primary" @click="savePost('publish')">
         发布
       </Button>
       <Dropdown mr-20 trigger="click">
-        <div text-18 cursor-pointer i-carbon:overflow-menu-horizontal />
+        <div i-carbon:overflow-menu-horizontal cursor-pointer text-18 />
         <template #drop>
           <DropdownList>
             <DropdownItem name="显示" disabled>

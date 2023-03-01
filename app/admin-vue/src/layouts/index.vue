@@ -55,7 +55,7 @@ async function handleUserAction() {
           <TheIcon icon="ic:outline-fullscreen" :size="2" @click="toggle('browser')" />
         </FullScreen>
       </span> -->
-      <span lh-2 m-14 cursor-pointer>
+      <span m-14 cursor-pointer lh-2>
         <ThemeSwitch />
       </span>
       <Linker to="https://github.com/yang1206/my-blog" style="display: flex; margin-right: 16px;">
@@ -66,10 +66,10 @@ async function handleUserAction() {
       <Menu :menus-data="asyncmenus" :reduced="reduced" />
     </template>
     <template #main>
-      <div v-if="isXsScreen" fixed top-54px h-40px flex items-center w-full class="tabs">
+      <div v-if="isXsScreen" fixed top-54px h-40px w-full flex items-center class="tabs">
         <Tab />
       </div>
-      <main class="bg-#F3F5FA main" :class="isXsScreen ? 'pt-114px' : 'pt-74'" dark:bg-dark wh-full p-20px>
+      <main class="main bg-#F3F5FA" :class="isXsScreen ? 'pt-114px' : 'pt-74'" wh-full p-20px dark:bg-dark>
         <router-view v-slot="{ Component, route }">
           <transition name="fade-slide" mode="out-in" appear>
             <component :is="Component" v-if="appStore.reloadFlag" :key="route.path" />

@@ -10,7 +10,7 @@
     <template #description>
       <div>
         <p
-          v-motion class="font-medium text-40 mb-4 dark:text-white" :initial="{
+          v-motion class="mb-4 text-40 font-medium dark:text-white" :initial="{
             opacity: 0,
             y: 100,
           }" :enter="{

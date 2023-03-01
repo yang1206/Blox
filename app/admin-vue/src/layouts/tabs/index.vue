@@ -27,7 +27,7 @@ watch(
 </script>
 
 <template>
-  <div class="tabs" bg-white dark:bg-dark w-full h-full>
+  <div class="tabs" h-full w-full bg-white dark:bg-dark>
     <ScrollX v-auto-animate h-full>
       <Tag
         v-for="tab in tabStore.tabs"
@@ -36,7 +36,7 @@ watch(
         :closable="tabStore.tabs.length > 1"
         size="default"
         :type="tabStore.activeTab === tab.path ? 'primary' : 'default'"
-        class="m-10px cursor-pointer z-100"
+        class="z-100 m-10px cursor-pointer"
         @contextmenu.prevent="contextmenu($event, tab.path)"
         @close="tabStore.removeTab(tab.path)"
         @click="handleTagClick(tab.path)"

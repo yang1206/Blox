@@ -7,12 +7,12 @@ const isLogin = ref(true)
 </script>
 
 <template>
-  <div class="login dark:bg-dark wh-full   flex-center">
-    <div absolute top-15 right-25>
+  <div class="login wh-full flex-center dark:bg-dark">
+    <div absolute right-25 top-15>
       <ThemeSwitch :size="6" />
     </div>
-    <div m-auto p-15 f-c-c min-w-345 rounded-10 card-shadow bg-white dark:bg-dark bg-opacity-60 flex>
-      <div class="md:block hidden w-380 py-35">
+    <div m-auto min-w-345 f-c-c flex rounded-10 bg-white bg-opacity-60 p-15 card-shadow dark:bg-dark>
+      <div class="hidden w-380 py-35 md:block">
         <img src="@/assets/img/login_banner.webp" w-full alt="login_banner">
       </div>
       <div w-320 flex-col px-20 py-35>

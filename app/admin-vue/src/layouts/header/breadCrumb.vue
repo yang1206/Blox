@@ -24,11 +24,11 @@ watch(
   <Breadcrumb>
     <template v-for="(item, index) in breadcrumbList" :key="index">
       <BreadcrumbItem>
-        <span v-if="index === breadcrumbList.length - 1" class="text-#97a8be h-20px lh-20px cursor-text flex gap-5">
+        <span v-if="index === breadcrumbList.length - 1" class="h-20px flex cursor-text gap-5 lh-20px text-#97a8be">
           <TheIcon v-if="item.meta.icon" :icon="item.meta.icon" />
           {{ item.meta.title }}
         </span>
-        <span v-else class="text-#666 font-600 h-20px lh-20px flex gap-5" @click="handleRedirect(item.redirect)">
+        <span v-else class="h-20px flex gap-5 font-600 lh-20px text-#666" @click="handleRedirect(item.redirect)">
           <TheIcon v-if="item.meta.icon" :icon="item.meta.icon" />
           {{ item.meta.title }}</span>
       </BreadcrumbItem>
