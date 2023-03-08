@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 .wrapper {
   display: flex;
 
-  z-index: 9;
+  z-index: 999;
   overflow: hidden;
   position: relative;
   .content {

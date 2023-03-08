@@ -9,14 +9,24 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Badge: typeof import('vexip-ui')['Badge']
     Breadcrumb: typeof import('vexip-ui')['Breadcrumb']
     BreadcrumbItem: typeof import('vexip-ui')['BreadcrumbItem']
     Button: typeof import('vexip-ui')['Button']
     Card: typeof import('vexip-ui')['Card']
+    Checkbox: typeof import('vexip-ui')['Checkbox']
+    Column: typeof import('vexip-ui')['Column']
     ConfigProvider: typeof import('vexip-ui')['ConfigProvider']
+    DatePicker: typeof import('vexip-ui')['DatePicker']
+    Drawer: typeof import('vexip-ui')['Drawer']
+    Dropdown: typeof import('vexip-ui')['Dropdown']
+    DropdownItem: typeof import('vexip-ui')['DropdownItem']
+    DropdownList: typeof import('vexip-ui')['DropdownList']
+    Form: typeof import('vexip-ui')['Form']
     FormItem: typeof import('vexip-ui')['FormItem']
     FormReset: typeof import('vexip-ui')['FormReset']
     FormSubmit: typeof import('vexip-ui')['FormSubmit']
+    Icon: typeof import('vexip-ui')['Icon']
     Input: typeof import('vexip-ui')['Input']
     Layout: typeof import('vexip-ui')['Layout']
     Linker: typeof import('vexip-ui')['Linker']
@@ -24,6 +34,7 @@ declare module '@vue/runtime-core' {
     MenuItem: typeof import('vexip-ui')['MenuItem']
     Modal: typeof import('vexip-ui')['Modal']
     NumberInput: typeof import('vexip-ui')['NumberInput']
+    Pagination: typeof import('vexip-ui')['Pagination']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Row: typeof import('vexip-ui')['Row']
@@ -34,6 +45,10 @@ declare module '@vue/runtime-core' {
     Table: typeof import('vexip-ui')['Table']
     TableColumn: typeof import('vexip-ui')['TableColumn']
     Tag: typeof import('vexip-ui')['Tag']
+    Textarea: typeof import('vexip-ui')['Textarea']
     TheIcon: typeof import('./../src/components/TheIcon.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('vexip-ui')['vLoading']
   }
 }

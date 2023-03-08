@@ -3,13 +3,13 @@ import { useQuery } from '@tanstack/vue-query'
 import { Confirm, Message } from 'vexip-ui'
 import MenuForm from './MenuForm.vue'
 import { menuRequest, menuRequestById } from '@/api'
-import { LocalDate, treeToList } from '@/utils'
+import { LocalDate } from '@/utils'
 const menusDatas = ref()
 const { data } = useQuery({
   queryKey: ['menu'],
   queryFn: async () => {
     const data = await menuRequest()
-    menusDatas.value = treeToList(data.data)
+    menusDatas.value = data.data
     return data
   },
 })
@@ -43,7 +43,7 @@ const delMenu = async (id: number) => {
       </Button>
     </Row>
     <Row>
-      <Table v-auto-animate :data="menusDatas">
+      <Table :data="menusDatas">
         <TableColumn name="id" id-key="id" fixed />
         <TableColumn name="名称" id-key="name" />
         <TableColumn name="图标" id-key="icon">

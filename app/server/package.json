@@ -52,7 +52,7 @@
     "stacktrace-js": "^2.0.2",
     "swagger-ui-express": "^4.6.2",
     "typeorm": "^0.3.12",
-    "ua-parser-js": "^1.0.33"
+    "ua-parser-js": "^1.0.34"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.2.0",
@@ -68,7 +68,7 @@
     "@types/lodash": "^4.14.191",
     "@types/mime-types": "^2.1.1",
     "@types/multer": "^1.4.7",
-    "@types/node": "^16.18.13",
+    "@types/node": "^16.18.14",
     "@types/node-ip2region": "^1.0.1",
     "@types/passport": "^1.0.12",
     "@types/passport-jwt": "^3.0.8",
@@ -76,8 +76,8 @@
     "@types/request-ip": "^0.0.37",
     "@types/supertest": "^2.0.12",
     "@types/ua-parser-js": "^0.7.36",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
     "jest": "29.4.1",
     "source-map-support": "^0.5.21",
