@@ -4,8 +4,8 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
-import type { SearchDTO } from 'src/common/dto/search.dto'
-import type { SearchService } from './search.service'
+import { SearchDTO } from 'src/common/dto/search.dto'
+import { SearchService } from './search.service'
 
 @ApiTags('搜索')
 @Controller('search')

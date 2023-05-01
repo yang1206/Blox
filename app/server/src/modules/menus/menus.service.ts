@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import type { TreeRepository } from 'typeorm'
+import { TreeRepository } from 'typeorm'
 import type { CreateMenuDto } from './dto/create-menu.dto'
 import type { UpdateMenuDto } from './dto/update-menu.dto'
 import { MenuEntity, Person2Id } from './entities/menu.entity'

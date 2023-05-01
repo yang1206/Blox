@@ -4,7 +4,7 @@ import { getClientIP } from 'src/utils/ip'
 import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
 import { RolesGuard } from 'src/core/guards/role.guard'
-import type { ViewService } from './view.service'
+import { ViewService } from './view.service'
 import { ViewEntity } from './entities/view.entity'
 
 @Controller('view')

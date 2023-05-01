@@ -13,13 +13,13 @@ import {
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { RolesGuard } from 'src/core/guards/role.guard'
-import type { Request } from 'express'
+import { Request } from 'express'
 
 import { Roles } from 'src/core/decorators/role.decorator'
 import { ResponseVo } from 'src/common/vo/res.vo'
-import type { SearchDTO } from 'src/common/dto/search.dto'
-import type { CreatePostDto, LikePostDto } from './dto/post.dto'
-import type { PostsService } from './posts.service'
+import { SearchDTO } from 'src/common/dto/search.dto'
+import { CreatePostDto, LikePostDto } from './dto/post.dto'
+import { PostsService } from './posts.service'
 import { PostInfo } from './vo/post.vo'
 
 @ApiTags('文章')

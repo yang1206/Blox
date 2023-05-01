@@ -8,7 +8,7 @@ type ROLES = 'admin' | 'visitor'
  * 自定义角色验证装饰器
  * @param roles
  */
-export function Roles(...roles: ROLES[]) {
+export const Roles = (...roles: ROLES[]) => {
   return applyDecorators(
     SetMetadata('roles', roles),
     UseGuards(JwtAuthGuard),

@@ -2,9 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } f
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
-import type { SearchDTO } from 'src/common/dto/search.dto'
-import type { CategoryService } from './category.service'
-import type { CreateCategoryDto } from './dto/category.dto'
+import { SearchDTO } from 'src/common/dto/search.dto'
+import { CategoryService } from './category.service'
+import { CreateCategoryDto } from './dto/category.dto'
 import { CategoryEntity } from './entities/category.entity'
 
 @Controller('category')

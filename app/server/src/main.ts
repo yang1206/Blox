@@ -13,7 +13,7 @@ import { ValidationPipe } from 'src/core/pipe/validation.pipe'
 import { AppModule } from './app.module'
 import { logger } from './core/logger/logger.middleware'
 
-async function bootstrap() {
+const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(compression()) // 启用 gzip 压缩
   app.use(json({ limit: '10mb' })) // 修改请求的容量

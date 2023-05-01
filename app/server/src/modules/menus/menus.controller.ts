@@ -3,9 +3,9 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { JwtAuthGuard } from 'src/core/guards/jwt-auth.guard'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
-import type { MenusService } from './menus.service'
-import type { CreateMenuDto } from './dto/create-menu.dto'
-import type { UpdateMenuDto } from './dto/update-menu.dto'
+import { MenusService } from './menus.service'
+import { CreateMenuDto } from './dto/create-menu.dto'
+import { UpdateMenuDto } from './dto/update-menu.dto'
 import { MenuEntity } from './entities/menu.entity'
 
 @ApiTags('菜单')

@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post, Query, Req, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { ApiBody, ApiConsumes, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { FileInterceptor } from '@nestjs/platform-express'
-import type { SearchDTO } from 'src/common/dto/search.dto'
+import { SearchDTO } from 'src/common/dto/search.dto'
 import { Roles } from 'src/core/decorators/role.decorator'
-import type { PictureService } from './file.service'
+import { PictureService } from './file.service'
 
-export function ApiFile(fileName = 'file'): MethodDecorator {
+export const ApiFile = (fileName = 'file'): MethodDecorator => {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     ApiBody({
       schema: {

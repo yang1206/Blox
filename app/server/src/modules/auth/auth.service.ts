@@ -1,9 +1,9 @@
 import { ForbiddenException, Injectable } from '@nestjs/common'
-import type { JwtService } from '@nestjs/jwt'
+import { JwtService } from '@nestjs/jwt'
 import type { UserEntity } from 'src/modules/user/entities/user.entity'
-import type { UserService } from 'src/modules/user/user.service'
-import type { RedisCacheService } from 'src/core/cache/redis.service'
-import type { ConfigService } from '@nestjs/config'
+import { UserService } from 'src/modules/user/user.service'
+import { RedisCacheService } from 'src/core/cache/redis.service'
+import { ConfigService } from '@nestjs/config'
 import type { RefreshDto } from './dto/login.dto'
 
 @Injectable()
