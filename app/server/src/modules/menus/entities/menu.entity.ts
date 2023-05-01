@@ -60,7 +60,7 @@ export class MenuEntity extends CommonEntity {
   // }
 }
 
-export const Person2Id = (data) => {
+export function Person2Id(data) {
   const responseObj: Array<MenuEntity & { parent_id: number }> = [...data]
   responseObj.forEach((item) => {
     if (item.parent)

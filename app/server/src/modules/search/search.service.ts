@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
 
 import { getPagination } from 'src/utils/pagination'
 import type { SearchDTO } from 'src/common/dto/search.dto'
-import { PostsService } from '../posts/posts.service'
+import type { PostsService } from '../posts/posts.service'
 import { SearchEntity } from './entities/search.entity'
 import { SearchRo } from './dto/search.dto'
 

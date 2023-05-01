@@ -1,15 +1,15 @@
 import { Body, ClassSerializerInterceptor, Controller, Get, HttpException, HttpStatus, Patch, Post, Query, Request, UseGuards, UseInterceptors } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RolesGuard } from 'src/core/guards/role.guard'
-import { JwtService } from '@nestjs/jwt'
+import type { JwtService } from '@nestjs/jwt'
 
 import { Roles } from 'src/core/decorators/role.decorator'
 import type { ResponseVo } from 'src/common/vo/res.vo'
-import { SearchDTO } from 'src/common/dto/search.dto'
-import { CreateUserDto } from './dto/create-user.dto'
+import type { SearchDTO } from 'src/common/dto/search.dto'
+import type { CreateUserDto } from './dto/create-user.dto'
 import { UserEntity } from './entities/user.entity'
-import { UserService } from './user.service'
-import { updatePasswordDto } from './dto/update-user.dto'
+import type { UserService } from './user.service'
+import type { updatePasswordDto } from './dto/update-user.dto'
 
 @ApiTags('用户')
 @Controller('user')

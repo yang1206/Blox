@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { active } from '../utils'
+
 const route = useRoute()
 const router = useRouter()
 
 const breadcrumbList = ref()
-const initBreadcrumbList = () => {
+function initBreadcrumbList() {
   breadcrumbList.value = route.matched.filter(item => !!item.meta?.title)
 }
-const handleRedirect = (path: string) => {
+function handleRedirect(path: string) {
   router.push(path)
   active.value = path
 }

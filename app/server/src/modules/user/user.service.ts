@@ -1,13 +1,14 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common'
-import { Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
-import { ConfigService } from '@nestjs/config'
+import type { ConfigService } from '@nestjs/config'
 
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
 import type { SearchDTO } from 'src/common/dto/search.dto'
 import { UserEntity } from './entities/user.entity'
 import type { CreateUserDto } from './dto/create-user.dto'
+
 const logger = new Logger('user.service.ts')
 @Injectable()
 export class UserService {

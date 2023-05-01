@@ -8,6 +8,7 @@ import {
   HttpStatus,
 } from '@nestjs/common'
 import { Logger } from '../logger/log4j.util'
+
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {

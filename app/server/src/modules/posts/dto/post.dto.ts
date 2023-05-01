@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
+
 export class CreatePostDto {
   @ApiProperty({ description: '文章标题' })
   @IsNotEmpty({ message: '文章标题必填' })

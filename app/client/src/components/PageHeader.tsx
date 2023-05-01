@@ -8,14 +8,11 @@ export default function PageHeader(props: {
   return (
     <>
       <h2
-        className='text-2xl
-        md-text-3xl
-        mb4
-        mt-0'
+        className="text-2xl md-text-3xl mb4 mt-0"
       >
         { title }
       </h2>
-      <p className='font-mono text-xs md-text-sm italic'>
+      <p className="font-mono text-xs italic md-text-sm">
         { description }
       </p>
     </>

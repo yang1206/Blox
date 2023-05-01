@@ -13,7 +13,7 @@ RUN pnpm i
 # 安装开发期依赖
 
 # 构建项目
-COPY . .
+COPY . . 
 RUN pnpm build
 
 FROM --platform=linux/amd64 node:lts-alpine
@@ -32,5 +32,4 @@ RUN apk add --no-cache tzdata
 RUN apk add --no-cache autoconf
 # 设置时区为中国东八区，这里的配置可以被docker-compose.yml或docker run时指定的时区覆盖
 ENV TZ="Asia/Shanghai"
-
 RUN pnpm i && pnpm start

@@ -71,6 +71,7 @@ import { RedisCacheModule } from './core/cache/redis.module'
   controllers: [],
   providers: [
     {
+      // TODO 替换class-validator为zod  https://github.com/risenforces/nestjs-zod#using-zodvalidationpipe
       provide: APP_PIPE,
       useClass: ValidationPipe,
     },

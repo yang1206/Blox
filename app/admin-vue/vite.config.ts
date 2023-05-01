@@ -2,6 +2,7 @@ import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import { convertEnv, getRootPath, getSrcPath } from './build/utils'
 import { setupVitePlugins } from './build/plugins'
 import { createViteProxy, viteDefine } from './build/config'
+
 export default defineConfig((configEnv: ConfigEnv) => {
   const srcPath = getSrcPath()
   const rootPath = getRootPath()

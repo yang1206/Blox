@@ -1,13 +1,14 @@
 {
   "name": "blox",
-  "private": true,
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@7.22.0",
   "author": "Yang1206 <https://github.com/yang1206>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yang1206/blox.git"
   },
-  "license": "MIT",
   "engines": {
     "node": ">=18",
     "pnpm": ">=7"
@@ -32,12 +33,11 @@
     "pm2:client": "pnpm run --dir app/client pm2",
     "pm2:admin": "pnpm run --dir app/admin-vue pm2",
     "lint": "pnpm exec turbo run lint",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
     "lint:server": "eslint --fix './app/server/src/**/*.{ts,js}'",
     "lint:client": "eslint --fix './app/client/src/**/*.{tsx,ts}'",
     "lint:admin-vue": "eslint --fix './app/admin-vue/src/**/*.{ts,vue,tsx}'",
-    "nibble": "eslint-nibble './app/**/src/*.{ts,js,tsx,vue}'",
-    "prepare": "husky install",
-    "precommit": "lint-staged",
     "lint:lint-staged": "lint-staged",
     "commit": "git pull && git add -A && git-cz && git push"
   },
@@ -45,25 +45,23 @@
     "@blox/config": "workspace:^1.0.0",
     "@blox/utils": "workspace:^1.0.0",
     "date-fns": "^2.29.3",
-    "rimraf": "^4.3.1"
+    "rimraf": "^5.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.3",
-    "@commitlint/cli": "^17.4.4",
+    "@antfu/eslint-config": "^0.38.4",
+    "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
-    "@types/node": "^18.14.6",
-    "@unocss/eslint-config": "^0.50.4",
+    "@types/node": "^18.16.3",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
-    "cz-git": "^1.5.3",
-    "eslint": "^8.35.0",
-    "eslint-config-next": "13.2.1",
-    "eslint-nibble": "^8.1.0",
+    "cz-git": "^1.6.1",
+    "eslint": "^8.38.0",
+    "eslint-config-next": "13.3.4",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
-    "tsup": "^6.6.3",
-    "turbo": "^1.8.3",
-    "typescript": "^4.9.5"
+    "lint-staged": "^13.2.1",
+    "tsup": "^6.7.0",
+    "turbo": "^1.9.3",
+    "typescript": "^5.0.4"
   },
   "config": {
     "commitizen": {
@@ -82,11 +80,9 @@
       "eslint --fix"
     ]
   },
-  "packageManager": "pnpm@7.22.0",
   "eslintConfig": {
     "extends": [
-      "@antfu/eslint-config-ts",
-      "@unocss"
+      "@antfu/eslint-config-ts"
     ]
   }
 }

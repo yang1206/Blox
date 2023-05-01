@@ -1,5 +1,8 @@
 import type { RouteType } from '~/typings/router'
-const Layout = () => import('@/layouts/index.vue')
+
+function Layout() {
+  return import('@/layouts/index.vue')
+}
 
 export default {
   name: 'ErrorPage',

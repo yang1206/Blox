@@ -1,4 +1,4 @@
-export const extractProtectedArticle = (article) => {
+export function extractProtectedArticle(article) {
   delete article.content
   delete article.html
 }

@@ -4,6 +4,7 @@ import { Confirm, Message } from 'vexip-ui'
 import MenuForm from './MenuForm.vue'
 import { menuRequest, menuRequestById } from '@/api'
 import { LocalDate } from '@/utils'
+
 const menusDatas = ref()
 const { data } = useQuery({
   queryKey: ['menu'],
@@ -16,16 +17,16 @@ const { data } = useQuery({
 const menu = ref()
 const formtype = ref()
 const active = ref(false)
-const addMenu = () => {
+function addMenu() {
   formtype.value = 1
   active.value = true
 }
-const editMenu = async (id: number) => {
+async function editMenu(id: number) {
   formtype.value = 0
   menu.value = (await menuRequestById(id)).data
   active.value = true
 }
-const delMenu = async (id: number) => {
+async function delMenu(id: number) {
   const isConfirm = await Confirm.open('确认删除吗？')
   if (isConfirm) {
     delMenu(id).then(() => {
@@ -74,8 +75,8 @@ const delMenu = async (id: number) => {
         </TableColumn>
       </Table>
     </Row>
-    <Modal v-model:active="active" no-footer :title="formtype ? '新增' : '编辑'" width="800">
-      <div v-auto-animate flex-center>
+    <Modal v-model:active="active" no-footer transfer :title="formtype ? '新增' : '编辑'" width="800">
+      <div flex-center>
         <MenuForm v-if="active" :menu-datas="data?.data" :formtype="formtype" :menu-data="menu" @close="async () => { active = false; await nextTick() }" />
       </div>
     </Modal>

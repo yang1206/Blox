@@ -4,6 +4,7 @@ import { postsForm, removePost, savePost } from '../composable'
 import themeSwitchVue from '@/layouts/header/theme-switch.vue'
 import { router } from '@/router'
 import { categoryRequest, tagsRequest } from '@/api'
+
 const draweAactive = ref(false)
 const cateQuery = useQuery({
   queryKey: ['category'],
@@ -13,7 +14,7 @@ const tagsQuery = useQuery({
   queryKey: ['tags'],
   queryFn: tagsRequest,
 })
-const back = () => {
+function back() {
   router.back()
 }
 </script>
@@ -52,7 +53,7 @@ const back = () => {
   </header>
   <Drawer v-model:active="draweAactive" width="30%" transfer title="标题">
     <ConfigProvider :props="{ default: { clearable: true } }">
-      <Form ref="form" label-align="top" style="max-width: 450px;" :model="postsForm">
+      <Form label-align="top" style="max-width: 450px;" :model="postsForm">
         <FormItem label="摘要" prop="summary">
           <Textarea v-model:value="postsForm.summary" />
         </FormItem>

@@ -4,8 +4,9 @@ import Motion from '../utils/motion'
 import { registerForm, registerRules } from '../utils/rules'
 import { registerRequest } from '@/api'
 import { useFormValid } from '@/composables/useFormValid'
+
 const formRef = ref<InstanceType<typeof Form>>()
-const handleSubmit = async () => {
+async function handleSubmit() {
   const validated = await useFormValid(formRef).validForm()
   if (validated) {
     registerRequest(registerForm).then((res) => {

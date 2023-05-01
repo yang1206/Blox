@@ -2,11 +2,12 @@
 import { active } from '../utils'
 import type { MenuData } from '@/api'
 import { router } from '@/router'
+
 defineProps<{
   menusData: MenuData[]
   reduced?: boolean
 }>()
-const selectMenu = (label: string) => {
+function selectMenu(label: string) {
   active.value = label
   router.push(label)
 }

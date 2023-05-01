@@ -1,8 +1,9 @@
 'use client'
 import Link from 'next/link'
 import React from 'react'
+import { cedarville_cursive } from 'src/fonts/fonts'
 import DarkToggle from './DarkToggle'
-import { cedarville_cursive } from '@/fonts/fonts'
+
 const routes: { icon?: string; path: string; text?: string }[] = [
   // { icon: 'i-carbon-blog', path: '/posts', text: 'Blog' },
   { icon: 'i-carbon-blog', path: '/posts' },
@@ -13,27 +14,19 @@ const routes: { icon?: string; path: string; text?: string }[] = [
 export default function NavBar() {
   return (
     <>
-      <header className="fixed
-    z-9999
-    top-0
-    inset-x-0
-    trans
-    backdrop-blur
-    b='b-0 dashed gray-300 dark:b-gray-500'
-    fbc
-    px-8">
-        <Link href='/' title='Yang1206' className={`${cedarville_cursive.className} text-5 dark:text-#d5d5d5`}>
+      <header className="b='b-0 dashed gray-300 dark:b-gray-500' fixed inset-x-0 top-0 z-9999 fbc px-8 backdrop-blur trans">
+        <Link href="/" title="Yang1206" className={`${cedarville_cursive.className} text-5 dark:text-#d5d5d5`}>
           Yang1206
         </Link>
-        <nav grid={'~ cols-[auto_max-content]'} className='w-full  h-16 md:h-18>'>
+        <nav className="grid={'~ cols-[auto_max-content]'} h-16 w-full md:h-18">
           <div />
-          <div className='grid gap-5 auto-flow-col items-center'>
+          <div className="items-center grid auto-flow-col gap-5">
             {
               routes.map((route) => {
                 return (
                   <Link key={route.path} href={route.path} title={route.path.slice(1, 2).toUpperCase() + route.path.slice(2).toLowerCase()}>
                     {
-                      route.text ? <span className='icon-text'>{route.text}</span> : <div className={`${route.icon}  icon-btn`} />
+                      route.text ? <span className="icon-text">{route.text}</span> : <div className={`${route.icon}  icon-btn`} />
                     }
                   </Link>
                 )
@@ -48,8 +41,8 @@ export default function NavBar() {
               icon-link
               i-ri:twitter-line' rel="noreferrer"
             /> */}
-            <a title="Github" href="https://github.com/yang1206" target="_blank" className='icon-link i-line-md:github-loop' rel="noreferrer" />
-            <div className='fcc'>
+            <a title="Github" href="https://github.com/yang1206" target="_blank" className="i-line-md:github-loop icon-link" rel="noreferrer" />
+            <div className="fcc">
               <DarkToggle />
             </div>
           </div>

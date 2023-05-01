@@ -3,6 +3,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Exclude } from 'class-transformer'
 import * as bcrypt from 'bcrypt'
 import { CommonEntity } from 'src/common/entity/common.entity'
+
 @Entity('user')
 export class UserEntity extends CommonEntity {
   /**

@@ -1,12 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { In, Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
+import { In } from 'typeorm'
 
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'
 import type { SearchDTO } from 'src/common/dto/search.dto'
 import { TagEntity } from './entities/tag.entity'
 import type { CreateTagDto } from './dto/tag.dto'
+
 @Injectable()
 export class TagsService {
   constructor(

@@ -6,7 +6,7 @@ import request from '@/service'
  * @param data
  * @returns
  */
-export const postsRequest = (data: postsParams) => {
+export function postsRequest(data: postsParams) {
   return request<postsParams, postsData>({
     url: '/posts',
     method: 'GET',
@@ -19,7 +19,7 @@ export const postsRequest = (data: postsParams) => {
  * @param data
  * @returns
  */
-export const getPostById = (id: string) => {
+export function getPostById(id: string) {
   return request<{ id: string }, onePost>({
     url: `/posts/${id}`,
     method: 'GET',
@@ -30,7 +30,7 @@ export const getPostById = (id: string) => {
  * @param data
  * @returns
  */
-export const cratePost = (data: Partial<createPosts>) => {
+export function cratePost(data: Partial<createPosts>) {
   return request<Partial<createPosts>, string>({
     url: '/posts',
     method: 'POST',
@@ -43,7 +43,7 @@ export const cratePost = (data: Partial<createPosts>) => {
  * @param data
  * @returns
  */
-export const updatePost = (id: string, data: Partial<createPosts>) => {
+export function updatePost(id: string, data: Partial<createPosts>) {
   return request<Partial<createPosts>, string>({
     url: `/posts/${id}`,
     method: 'PATCH',
@@ -56,7 +56,7 @@ export const updatePost = (id: string, data: Partial<createPosts>) => {
  * @param data
  * @returns
  */
-export const deletePost = (id: string) => {
+export function deletePost(id: string) {
   return request<{ id: string }, string>({
     url: `/posts/${id}`,
     method: 'DELETE',
@@ -68,7 +68,7 @@ export const deletePost = (id: string) => {
  * @param data
  * @returns
  */
-export const categoryRequest = () => {
+export function categoryRequest() {
   return request<any, categoryData>({
     url: '/category',
     method: 'GET',
@@ -80,7 +80,7 @@ export const categoryRequest = () => {
  * @param data
  * @returns
  */
-export const tagsRequest = () => {
+export function tagsRequest() {
   return request<any, tagsData>({
     url: '/tags',
     method: 'GET',

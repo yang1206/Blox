@@ -1,5 +1,6 @@
 import type { Rule } from 'vexip-ui'
 import type { RegisterForm } from '@/api/interface/user'
+
 export const loginRules: { [key: string]: Rule } = {
   username: {
     required: true,

@@ -5,6 +5,7 @@ import { removePost } from './editor/composable'
 import { LocalDate, getRandomColor } from '@/utils'
 import { categoryRequest, postsRequest } from '@/api'
 import type { postsParams } from '@/api/interface/posts'
+
 const params = reactive<postsParams>({ title: '', page: 1, size: 10, status: '' })
 // 存放表单数据
 const tableData = ref()
@@ -31,7 +32,7 @@ const cateQuery = useQuery({
 
 // 站位用，datepicker暂时有bug必须关联value才能让clearable出现
 const date = ref()
-const publishDateChange = (val: any) => {
+function publishDateChange(val: any) {
   params.publishTimeStart = val[0]
   params.publishTimeEnd = val[1]
 }

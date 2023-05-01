@@ -4,9 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import type { IStrategyOptions } from 'passport-local'
 import { Strategy } from 'passport-local'
 import { UserEntity } from 'src/modules/user/entities/user.entity'
-import { Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
 import { compare } from '@blox/utils'
-import { ConfigService } from '@nestjs/config'
+import type { ConfigService } from '@nestjs/config'
 
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(

@@ -4,6 +4,7 @@ import { loginRequest, resfreshRequest } from '@/api'
 import { getLocal, removeLocal, setLocal } from '@/utils'
 import { LoginData, LoginForm } from '@/api/interface/user'
 import { router } from '@/router'
+
 interface User {
   token?: string
   refresh_token?: string

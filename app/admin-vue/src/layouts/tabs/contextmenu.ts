@@ -1,12 +1,13 @@
 // import { Contextmenu } from 'vexip-ui'
 import { Contextmenu } from 'vexip-ui'
 import { useAppStore, useTabStore } from '@/store'
+
 const tabStore = useTabStore()
 const appStore = useAppStore()
 /**
  * 创建右键菜单
  */
-export const contextmenu = async (event: MouseEvent, path: string) => {
+export async function contextmenu(event: MouseEvent, path: string) {
   // 未选择是则返回 null
   const selectedKeys = await Contextmenu.open({
     clientX: event.clientX,

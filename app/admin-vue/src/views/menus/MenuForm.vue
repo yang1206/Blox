@@ -2,6 +2,7 @@
 import { Form, Message } from 'vexip-ui'
 import { MenuData, MenuDto, addMenu, editMenu } from '@/api'
 import { isValidKey } from '@/utils'
+
 const props = defineProps<{
   menuDatas?: MenuData[]
   menuData?: MenuData
@@ -50,7 +51,7 @@ const providedProps = {
   default: { clearable: true },
 }
 const reload = inject<() => void>('reload')
-const handleSubmit = async () => {
+async function handleSubmit() {
   if (!props.menuData) {
     addMenu(form).then(() => {
       Message.success('新增成功')

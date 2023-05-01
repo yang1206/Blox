@@ -2,12 +2,13 @@ import { AxiosError } from 'axios'
 import { request as ApiInstance, IResponse } from '..'
 import { useUserStore } from '@/store'
 import { getLocal, setLocal } from '@/utils'
+
 const MAX_ERROR_COUNT = 5
 let currentCount = 0
 const queue: ((t: string) => any)[] = []
 let isRefresh = false
 
-export const refreshToken = async (error: AxiosError<IResponse>) => {
+export async function refreshToken(error: AxiosError<IResponse>) {
   const logout = () => {
     useUserStore().logout()
     return Promise.reject(error)

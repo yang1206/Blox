@@ -8,6 +8,6 @@ import { zhCN } from 'date-fns/locale'
  * @param locale
  * @returns
  */
-export const LocalDate = (date: Date, formatString = 'yyyy-MM-dd HH:mm:ss', locale: Locale = zhCN) => {
+export function LocalDate(date: Date, formatString = 'yyyy-MM-dd HH:mm:ss', locale: Locale = zhCN) {
   return format(new Date(date), formatString, { locale })
 }

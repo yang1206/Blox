@@ -1,7 +1,7 @@
 import type { LoginData, LoginForm, RegisterData, RegisterForm } from '../interface/user'
 import request from '@/service'
 
-export const loginRequest = (data: LoginForm) => {
+export function loginRequest(data: LoginForm) {
   return request<LoginForm, LoginData>({
     url: '/login',
     method: 'POST',
@@ -9,7 +9,7 @@ export const loginRequest = (data: LoginForm) => {
   })
 }
 
-export const registerRequest = (data: RegisterForm) => {
+export function registerRequest(data: RegisterForm) {
   return request<RegisterForm, RegisterData>({
     url: '/user/register',
     method: 'POST',
@@ -17,7 +17,7 @@ export const registerRequest = (data: RegisterForm) => {
   })
 }
 
-export const resfreshRequest = (data: { id: string; refresh_token: string }) => {
+export function resfreshRequest(data: { id: string; refresh_token: string }) {
   return request<{ id: string; refresh_token: string }, {
     access_token: string
     refresh_token: string

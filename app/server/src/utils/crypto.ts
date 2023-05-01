@@ -1,4 +1,6 @@
-import * as crypto from 'crypto'
+import * as crypto from 'node:crypto'
+import type { Buffer } from 'node:buffer'
+
 // 计算 流 MD5
 export function encryptFileMD5(buffer: Buffer) {
   const md5 = crypto.createHash('md5')

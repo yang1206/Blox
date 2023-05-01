@@ -6,7 +6,7 @@ import { isValidKey } from '@/utils'
 
 export const postsForm = ref<Partial<createPosts>>({})
 
-export const resetForm = () => {
+export function resetForm() {
   postsForm.value = {}
 }
 
@@ -14,7 +14,7 @@ export const resetForm = () => {
  * 新增文章
  * @param data
  */
-export const newPost = async (data: Partial<createPosts>) => {
+export async function newPost(data: Partial<createPosts>) {
   data.tag = JSON.stringify(data.tag) as any
   data.toc = JSON.stringify(data.toc) as any
   const { status } = await cratePost(data)
@@ -27,7 +27,7 @@ export const newPost = async (data: Partial<createPosts>) => {
   // router.back()
 }
 
-export const upPost = async (id: string, data: Partial<createPosts>) => {
+export async function upPost(id: string, data: Partial<createPosts>) {
   data.tag = JSON.stringify(data.tag) as any
   data.toc = JSON.stringify(data.toc) as any
   const { status } = await updatePost(id, data)
@@ -36,7 +36,7 @@ export const upPost = async (id: string, data: Partial<createPosts>) => {
   // router.back()
 }
 
-export const savePost = (status: 'draft' | 'publish') => {
+export function savePost(status: 'draft' | 'publish') {
   if (!postsForm.value.category) { Message.error('请选择分类') }
   else if (!postsForm.value.tag) { Message.error('请选择标签') }
   else if (!postsForm.value.title) { Message.error('请填写标题') }
@@ -49,7 +49,7 @@ export const savePost = (status: 'draft' | 'publish') => {
   }
 }
 
-export const publish = async (id: string, status: 'draft' | 'publish') => {
+export async function publish(id: string, status: 'draft' | 'publish') {
   if (await Confirm.open('确认要切换状态吗')) {
     const { status: code } = await updatePost(id, { status })
     if (code === 200)
@@ -57,7 +57,7 @@ export const publish = async (id: string, status: 'draft' | 'publish') => {
   }
 }
 
-export const removePost = async (id: string) => {
+export async function removePost(id: string) {
   if (await Confirm.open('确认要删除吗')) {
     if (id) {
       const { status } = await deletePost(id)
@@ -74,7 +74,7 @@ export const removePost = async (id: string) => {
  * 获取编辑回显数据
  * @param id
  */
-export const getEchoData = async (id: string) => {
+export async function getEchoData(id: string) {
   const { data } = await getPostById(id)
   postsForm.value.isRecommend = !!data.isRecommend
   postsForm.value.category = data.category.id

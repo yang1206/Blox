@@ -1,12 +1,16 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "cSpell.words": [
-        "blox",
-        "pinia",
-        "vexip"
-    ],
-    "unocss.root": [
-        "app/admin-vue",
-        "app/client"
-    ]
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "blox",
+    "pinia",
+    "vexip"
+  ],
+  "unocss.root": [
+    "app/admin-vue",
+    "app/client"
+  ],
+  "eslint.workingDirectories": [
+    "app/admin-vue",
+    "app/client"
+  ]
 }

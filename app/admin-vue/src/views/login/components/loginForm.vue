@@ -7,6 +7,7 @@ import { getLocal, removeLocal, setLocal } from '@/utils'
 import type { LoginForm } from '@/api/interface/user'
 import { useFormValid } from '@/composables/useFormValid'
 import { addDynamicRoutes, router } from '@/router'
+
 const route = useRoute()
 const query = route.query
 const userStore = useUserStore()
@@ -22,7 +23,7 @@ if (localLoginInfo) {
   loginForm.username = localLoginInfo.username || ''
   loginForm.password = localLoginInfo.password || ''
 }
-const handleSubmit = async () => {
+async function handleSubmit() {
   loadingState.value = true
   const validated = await useFormValid(formRef).validForm()
   if (validated) {

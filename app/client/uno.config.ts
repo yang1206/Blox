@@ -4,10 +4,7 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  transformerDirectives,
-  transformerVariantGroup,
 } from 'unocss'
-import { presetScrollbarHide } from 'unocss-preset-scrollbar-hide'
 import type { CSSObject, Shortcut } from 'unocss'
 
 const usefulShortcuts: Shortcut[] = [
@@ -25,8 +22,6 @@ const usefulShortcuts: Shortcut[] = [
   ['fec', 'flex justify-end items-center'],
   ['fb', 'flex justify-between'],
   ['fbc', 'flex justify-between items-center'],
-  ['fw', 'flex justify-wrap'],
-  ['fwr', 'flex justify-wrap-reverse'],
   ['fa', 'flex justify-around'],
   ['fac', 'flex justify-around items-center'],
 
@@ -60,8 +55,6 @@ export default defineConfig({
     ['text', 'text-text-default dark:text-text-dark'],
     ['bg', 'trans bg-bg-default dark:bg-bg-dark'],
     ['base', 'trans text'],
-
-    ['text-main-linear', 'text-gradient-to-tr from-purple-400 to-red-500'],
 
     ['icon', 'w-5.5 h-5.5 cursor-pointer select-none transition-opacity-300 ease-in-out text'],
     ['icon-btn', 'icon color-inherit op64 hover-op100 hover-color-teal-500 dark-hover-color-inherit'],
@@ -101,15 +94,10 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify(),
-    presetScrollbarHide(),
     presetIcons({
       scale: 1.2,
     }),
     presetTypography({ cssExtend: typographyCssExtend }),
-  ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
   ],
   safelist: 'sm-fsc max-w-75'.split(' '),
 })

@@ -1,20 +1,21 @@
 import { MenuData, MenuDto } from '../interface/menu'
 import request from '@/service'
-export const menuRequest = () => {
+
+export function menuRequest() {
   return request<any, MenuData[]>({
     url: '/menus',
     method: 'GET',
   })
 }
 
-export const menuRequestById = (id: number) => {
+export function menuRequestById(id: number) {
   return request<any, MenuData>({
     url: `/menus/${id}`,
     method: 'GET',
   })
 }
 
-export const addMenu = (data: MenuDto) => {
+export function addMenu(data: MenuDto) {
   return request<any, any>({
     url: '/menus',
     method: 'POST',
@@ -22,7 +23,7 @@ export const addMenu = (data: MenuDto) => {
   })
 }
 
-export const editMenu = (id: number, data: MenuDto) => {
+export function editMenu(id: number, data: MenuDto) {
   return request<any, any>({
     url: `/menus/${id}`,
     method: 'PATCH',
@@ -30,7 +31,7 @@ export const editMenu = (id: number, data: MenuDto) => {
   })
 }
 
-export const delMenu = (id: number) => {
+export function delMenu(id: number) {
   return request<any, MenuData>({
     url: `/menus/${id}`,
     method: 'Delete',

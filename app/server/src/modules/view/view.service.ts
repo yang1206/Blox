@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
 import { parseUserAgent } from 'src/utils/ua'
 import { parseIp } from 'src/utils/ip'
 import { getPagination } from 'src/utils/pagination'

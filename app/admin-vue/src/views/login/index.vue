@@ -3,6 +3,7 @@ import LoginForm from './components/loginForm.vue'
 import registerForm from './components/registerForm.vue'
 import Motion from './utils/motion'
 import ThemeSwitch from '@/layouts/header/theme-switch.vue'
+
 const isLogin = ref(true)
 </script>
 

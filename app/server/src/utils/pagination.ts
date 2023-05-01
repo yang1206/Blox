@@ -5,10 +5,9 @@
  * @param pageNumberber 当前页数
  * @returns
  */
-export const getPagination = (
-  total: number,
+export function getPagination(total: number,
   pageNumber: number,
-  pageSize: number) => {
+  pageSize: number) {
   const pages = Math.ceil(total / pageSize)
   return {
     total,

@@ -1,6 +1,6 @@
 import { format as dateFormatFn } from 'date-fns'
 
-export const dateFormat = (date = null, format = 'yyyy-MM-dd HH:mm:ss') => {
+export function dateFormat(date = null, format = 'yyyy-MM-dd HH:mm:ss') {
   if (date === null || date === undefined)
     date = new Date()
 

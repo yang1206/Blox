@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import type { Repository } from 'typeorm'
 
 import type { ResponseVo } from 'src/common/vo/res.vo'
 import { getPagination } from 'src/utils/pagination'

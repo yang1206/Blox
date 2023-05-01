@@ -2,6 +2,7 @@
 import { useTheme } from 'next-themes'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+
 // import remarkToc from 'remark-toc'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -11,7 +12,7 @@ import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/pris
 interface tProps {
   textContent: string
 }
-const MarkdownView = (props: tProps) => {
+function MarkdownView(props: tProps) {
   const { textContent } = props
   const { resolvedTheme } = useTheme()
   return (
@@ -36,28 +37,28 @@ const MarkdownView = (props: tProps) => {
         // },
         h1({ children }) {
           return (
-            <h1 id={children as string} className='group cursor-pointer'>
+            <h1 id={children as string} className="group cursor-pointer">
               {children}
-              <a href={`#${children}`} className='header-anchor no-underline'> # </a>
+              <a href={`#${children}`} className="header-anchor no-underline"> # </a>
             </h1>
           )
         },
         h2({ children }) {
-          return <h2 id={children as string} className='group cursor-pointer'>
+          return <h2 id={children as string} className="group cursor-pointer">
             {children}
-            <a href={`#${children}`} className='header-anchor no-underline'> # </a>
+            <a href={`#${children}`} className="header-anchor no-underline"> # </a>
           </h2>
         },
         h3({ children }) {
-          return <h3 id={children as string} className='group cursor-pointer'>
+          return <h3 id={children as string} className="group cursor-pointer">
             {children}
-            <a href={`#${children}`} className='header-anchor no-underline'> # </a>
+            <a href={`#${children}`} className="header-anchor no-underline"> # </a>
           </h3>
         },
         h4({ children }) {
-          return <h4 id={children as string} className='group cursor-pointer'>
+          return <h4 id={children as string} className="group cursor-pointer">
             {children}
-            <a href={`#${children}`} className='header-anchor no-underline'> # </a>
+            <a href={`#${children}`} className="header-anchor no-underline"> # </a>
           </h4>
         },
         // h5({ children }) {
@@ -71,7 +72,7 @@ const MarkdownView = (props: tProps) => {
         //   </h6>
         // },
       }}
-      className='prose font-mono ma'
+      className="prose font-mono ma"
     >
       {textContent}
     </ReactMarkdown>

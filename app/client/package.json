@@ -14,40 +14,43 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^8.1.0",
+    "@ducanh2912/next-pwa": "8.3.0",
     "@formkit/auto-animate": "1.0.0-beta.6",
-    "next": "13.2.1",
+    "next": "13.3.4",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "^8.0.5",
+    "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "remark-toc": "^8.0.1"
   },
   "devDependencies": {
-    "@iconify-json/akar-icons": "^1.1.13",
+    "@antfu/eslint-config-react": "^0.38.5",
+    "@iconify-json/akar-icons": "^1.1.16",
     "@iconify-json/carbon": "^1.1.16",
-    "@iconify-json/line-md": "^1.1.23",
-    "@iconify-json/logos": "^1.1.23",
-    "@iconify-json/ri": "^1.1.5",
-    "@octokit/types": "^9.0.0",
-    "@types/node": "18.14.1",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@iconify-json/line-md": "^1.1.24",
+    "@iconify-json/logos": "^1.1.25",
+    "@iconify-json/ri": "^1.1.8",
+    "@octokit/types": "^9.2.0",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
     "@types/react-syntax-highlighter": "^15.5.6",
-    "@unocss/cli": "^0.50.4",
-    "@unocss/preset-uno": "^0.50.4",
-    "@unocss/reset": "^0.50.4",
-    "@unocss/webpack": "^0.50.4",
-    "typescript": "4.9.5",
-    "unocss": "^0.50.4",
-    "unocss-preset-scrollbar-hide": "^1.0.1"
+    "@unocss/eslint-config": "^0.51.8",
+    "@unocss/postcss": "^0.51.8",
+    "@unocss/preset-uno": "^0.51.8",
+    "@unocss/reset": "^0.51.8",
+    "postcss": "^8.4.23",
+    "typescript": "5.0.4",
+    "unocss": "^0.51.8"
   },
   "eslintConfig": {
     "extends": [
-      "next/core-web-vitals"
+      "next/core-web-vitals",
+      "@antfu/eslint-config-react",
+      "@unocss"
     ]
   }
 }

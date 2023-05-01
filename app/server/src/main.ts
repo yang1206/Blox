@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import helmet from 'helmet'
@@ -12,7 +12,8 @@ import { TransformInterceptor } from 'src/core/interceptors/transform.intercepto
 import { ValidationPipe } from 'src/core/pipe/validation.pipe'
 import { AppModule } from './app.module'
 import { logger } from './core/logger/logger.middleware'
-const bootstrap = async () => {
+
+async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(compression()) // 启用 gzip 压缩
   app.use(json({ limit: '10mb' })) // 修改请求的容量

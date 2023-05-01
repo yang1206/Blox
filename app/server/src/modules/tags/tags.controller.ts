@@ -3,8 +3,8 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { RolesGuard } from 'src/core/guards/role.guard'
 import { Roles } from 'src/core/decorators/role.decorator'
 import type { ResponseVo } from 'src/common/vo/res.vo'
-import { TagsService } from './tags.service'
-import { CreateTagDto } from './dto/tag.dto'
+import type { TagsService } from './tags.service'
+import type { CreateTagDto } from './dto/tag.dto'
 import type { TagEntity } from './entities/tag.entity'
 
 @ApiTags('标签')

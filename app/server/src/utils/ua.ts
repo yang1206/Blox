@@ -13,13 +13,14 @@ const keys = [
   'device.type',
 ]
 
-const joinMsg = (ua, keys) =>
-  keys
+function joinMsg(ua, keys) {
+  return keys
     .map(key => get(ua, key))
     .filter(Boolean)
     .join(' ')
+}
 
-export const parseUserAgent = (userAgent) => {
+export function parseUserAgent(userAgent) {
   const uaparser = new UAParser()
   uaparser.setUA(userAgent)
   const ua = uaparser.getResult()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const isRouterAlive = ref(true)
-const reload = () => {
+function reload() {
   isRouterAlive.value = false
   nextTick(() => {
     isRouterAlive.value = true

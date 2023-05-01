@@ -1,4 +1,4 @@
-import RootLayout from '@/app/layout'
+import RootLayout from 'src/app/layout'
 
 export default function NotFound() {
   return (

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { inter } from '@/fonts/fonts'
-import NavBar from '@/components/NavBar'
-import Provider from '@/app/provider'
-import Footer from '@/components/Footer'
+import { inter } from 'src/fonts/fonts'
+import NavBar from 'src/components/NavBar'
+import Provider from 'src/app/provider'
+import Footer from 'src/components/Footer'
 
 export const metadata: Metadata = {
   icons: {
@@ -68,10 +68,10 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className="scrollbar-hide mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto md:px-3">
+      <body className="mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto md:px-3">
         <Provider>
           <NavBar />
-          <main className='px-7 pt-10 pb-18'>
+          <main className="px-7 pt-10 pb-18">
             {children}
           </main>
           <Footer />

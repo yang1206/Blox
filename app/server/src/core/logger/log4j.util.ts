@@ -1,7 +1,8 @@
-import * as Path from 'path'
-import Util from 'util'
+import * as Path from 'node:path'
+import Util from 'node:util'
 import * as fs from 'fs-extra'
 import * as Log4js from 'log4js'
+
 import { format } from 'date-fns' // 处理时间的工具
 import * as StackTrace from 'stacktrace-js'
 import * as Chalk from 'chalk'

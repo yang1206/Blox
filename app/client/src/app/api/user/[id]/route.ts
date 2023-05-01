@@ -1,4 +1,5 @@
 import type { Endpoints } from '@octokit/types'
+
 export type User = Endpoints['GET /user']['response']['data']
 
 export async function GET(request: Request, props: { params: { id: string } }) {

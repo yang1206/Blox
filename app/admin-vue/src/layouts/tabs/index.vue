@@ -2,16 +2,17 @@
 import { active } from '../utils'
 import { contextmenu } from './contextmenu'
 import { useTabStore } from '@/store'
+
 const route = useRoute()
 const router = useRouter()
 const tabStore = useTabStore()
-const handleTagClick = (path: string) => {
+function handleTagClick(path: string) {
   tabStore.setActiveTab(path)
   router.push(path)
   active.value = path
 }
 // 鼠标中键也可以关闭标签
-const mousedownEvent = (event: MouseEvent, path: string) => {
+function mousedownEvent(event: MouseEvent, path: string) {
   if (event.button === 1 && tabStore.tabs.length > 1)
     tabStore.removeTab(path)
 }
