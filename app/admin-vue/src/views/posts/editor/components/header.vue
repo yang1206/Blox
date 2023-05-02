@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
-import { postsForm, removePost, savePost } from '../composable'
+import { postsForm, removePost, savePost } from '../store'
 import themeSwitchVue from '@/layouts/header/theme-switch.vue'
 import { router } from '@/router'
 import { categoryRequest, tagsRequest } from '@/api'

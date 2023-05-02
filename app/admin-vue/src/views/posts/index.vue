@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TagType, defineColumns } from 'vexip-ui'
 import { useQuery } from '@tanstack/vue-query'
-import { removePost } from './editor/composable'
+import { removePost } from './editor/store'
 import { LocalDate, getRandomColor } from '@/utils'
 import { categoryRequest, postsRequest } from '@/api'
 import type { postsParams } from '@/api/interface/posts'
@@ -146,7 +146,7 @@ const columns = ref(
           </TableColumn>
           <TableColumn :order="4" :width="300" id-key="tags" name="标签">
             <template #default="{ row }">
-              <Tag v-for="(item, index) in row.tags" :key="index" size="small" :type="getRandomColor(item) as TagType">
+              <Tag v-for="(item, index) in row.tags" :key="index" size="small" :type="getRandomColor(item as string) as TagType">
                 {{ item }}
               </Tag>
             </template>

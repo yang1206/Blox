@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Confirm } from 'vexip-ui'
 import editorHeader from './components/header.vue'
-import MdEditor from './components/editor'
-import { getEchoData, resetForm } from './composable'
+import MdEditor from './components/Editor'
+import { getEchoData, resetForm } from './store'
 import { router } from '@/router'
 // 拦截浏览器退出或刷新
 // window.onbeforeunload = function () {
@@ -19,9 +19,9 @@ onBeforeRouteLeave(async (to, form, next) => {
 const route = useRoute()
 if (route.query.id)
   getEchoData(route.query.id as string)
+
 useHead({
   title: route.query.id ? '编辑文章' : '新增文章',
-
 })
 </script>
 

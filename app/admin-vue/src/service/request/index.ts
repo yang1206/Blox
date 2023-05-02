@@ -51,7 +51,7 @@ class Request {
     this.instance.interceptors.response.use(
       // 因为我们接口的数据都在res.data下，所以我们直接返回res.data
       (res: AxiosResponse) => {
-        return res.data
+        return res?.data
       },
       (err: any) => err,
     )
