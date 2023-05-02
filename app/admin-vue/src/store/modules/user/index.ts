@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { usePermissionStore } from '../permission'
 import { loginRequest, resfreshRequest } from '@/api'
 import { getLocal, removeLocal, setLocal } from '@/utils'
-import { LoginData, LoginForm } from '@/api/interface/user'
+import type { LoginData, LoginForm } from '@/api/interface/user'
 import { router } from '@/router'
 
 interface User {

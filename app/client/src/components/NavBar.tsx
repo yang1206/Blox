@@ -18,9 +18,9 @@ export default function NavBar() {
         <Link href="/" title="Yang1206" className={`${cedarville_cursive.className} text-5 dark:text-#d5d5d5`}>
           Yang1206
         </Link>
-        <nav className="grid={'~ cols-[auto_max-content]'} h-16 w-full md:h-18">
+        <nav style={{ gridTemplateColumns: 'auto max-content' }} className="grid h-16 w-full md:h-18">
           <div />
-          <div className="items-center grid auto-flow-col gap-5">
+          <div className="grid auto-flow-col items-center gap-5">
             {
               routes.map((route) => {
                 return (
