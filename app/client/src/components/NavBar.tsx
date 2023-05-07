@@ -20,7 +20,7 @@ export default function NavBar() {
         </Link>
         <nav style={{ gridTemplateColumns: 'auto max-content' }} className="grid h-16 w-full md:h-18">
           <div />
-          <div className="grid auto-flow-col items-center gap-5">
+          <div className="grid items-center auto-flow-col gap-5">
             {
               routes.map((route) => {
                 return (

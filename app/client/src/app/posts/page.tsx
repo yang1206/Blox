@@ -18,15 +18,15 @@ async function Posts() {
     notFound()
 
   return (
-    <div className="prose ma origin">
+    <div className="origin ma prose slide-up">
       {/* <PageHeader title="Posts" description="Some boring but useful articles." /> */}
       {posts.map(post => (
         <>
-          <Link href={`posts/${post.id}`} key={post.id} className="important-no-underline op-70 hover:op-100 block">
+          <Link href={`posts/${post.id}`} key={post.id} className="block op-70 important-no-underline hover:op-100">
             <h3 className="text-lg md-text-xl">{post.title}</h3>
           </Link>
           <div
-            className="font-mono fic italic text-sm text-gray4 fw-normal"
+            className="fic font-mono text-sm fw-normal italic text-gray4"
           >
             {new Date(post.publishTime).toDateString()}
           </div>

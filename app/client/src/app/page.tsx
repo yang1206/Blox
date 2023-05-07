@@ -10,19 +10,19 @@ async function fetchUser() {
 export default async function Home() {
   const user = await fetchUser()
   return (
-    <div className="prose ma font-mono origin">
-      <div className='flex items-center flex-col md="gap-10 flex-row"'>
+    <div className="slide-up-content origin ma font-mono prose">
+      <div className='md="gap-10 flex-row" flex flex-col items-center'>
         <Image src={user.avatar_url} alt={user.login as string} width={50} height={50}></Image>
         <div>
-          <h2 className='fic justify-center md="justify-start"'>
+          <h2 className='md="justify-start" fic justify-center'>
             {user?.login}
           </h2>
-          <p className='text-lg text-center md="text-left"'>
+          <p className='md="text-left" text-center text-lg'>
             {user?.bio}
           </p>
-          <div className='fic justify-center md="justify-start" gap-4'>
+          <div className='md="justify-start" fic justify-center gap-4'>
             <div className="fic gap-2">
-              <div className="text-3.5 i-carbon-building" />
+              <div className="i-carbon-building text-3.5" />
               {user?.company}
             </div>
             <div className="fic gap-2">
@@ -34,7 +34,7 @@ export default async function Home() {
               {user?.blog}
             </div>
           </div>
-          <div className='fic justify-center md="justify-start" my-4'>
+          <div className='md="justify-start" fic justify-center my-4'>
             <div className="i-carbon-user-favorite-alt-filled mr2" />
             <span>
               {user?.followers}

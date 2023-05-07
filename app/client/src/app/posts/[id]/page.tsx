@@ -21,7 +21,7 @@ async function PostsInfo(props: { params: { id: string } }) {
 
   return (
     <>
-      <article className="prose font-mono ma">
+      <article className="slide-up-content ma font-mono prose">
         <div className="base">
           <h1>{post.title}</h1>
         </div>
