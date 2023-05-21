@@ -45,7 +45,7 @@ async function delMenu(id: number) {
     </Row>
     <Row>
       <Table :data="menusDatas">
-        <TableColumn name="id" id-key="id" fixed />
+        <TableColumn name="id" id-key="id" fixed="left" />
         <TableColumn name="名称" id-key="name" />
         <TableColumn name="图标" id-key="icon">
           <template #default="{ row }">
@@ -63,7 +63,7 @@ async function delMenu(id: number) {
         </TableColumn>
         <TableColumn name="操作" id-key="o">
           <template #default="{ row }">
-            <Space :size="5">
+            <Space :size="5" inline flex>
               <Button text type="primary" @click="editMenu(row.id)">
                 编辑
               </Button>

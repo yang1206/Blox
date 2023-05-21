@@ -10,7 +10,10 @@
   --foreground: white;
 }
 
-
+body {
+  height: 100%;
+  overflow: auto;
+}
 
 body::-webkit-scrollbar {
   --at-apply: w0;
@@ -82,3 +85,27 @@ body::-webkit-scrollbar {
 .slide-up-content > *:nth-child(18) { animation-delay: 900ms; }
 .slide-up-content > *:nth-child(19) { animation-delay: 950ms; }
 .slide-up-content > *:nth-child(20) { animation-delay: 1000ms; }
+
+
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-new(root) {
+  z-index: 1;
+}

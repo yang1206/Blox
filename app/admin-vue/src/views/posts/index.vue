@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { TagType, defineColumns } from 'vexip-ui'
+import { Badge, Tag, TagType, defineColumns } from 'vexip-ui'
 import { useQuery } from '@tanstack/vue-query'
 import { removePost } from './editor/store'
 import { LocalDate, getRandomColor } from '@/utils'
 import { categoryRequest, postsRequest } from '@/api'
-import type { postsParams } from '@/api/interface/posts'
+import type { PostInfo, postsParams } from '@/api/interface/posts'
 
 const params = reactive<postsParams>({ title: '', page: 1, size: 10, status: '' })
 // 存放表单数据
-const tableData = ref()
+const tableData = ref<PostInfo[]>()
 const total = ref()
 // 使用vue-query请求数据
 const { isLoading } = useQuery({
@@ -51,15 +51,55 @@ const statusOptions = ref([
   },
 ])
 const columns = ref(
-  defineColumns([
+  defineColumns<PostInfo>([
     {
       name: '标题',
       key: 'title',
       order: 0,
+      width: 150,
+    },
+    {
+      name: '状态',
+      order: 1,
+      key: 'status',
+      width: 80,
+      renderer(data) {
+        return [
+          h(
+            Badge,
+            {
+              isDot: true,
+              style: 'margin-right: 5px;',
+              type: data.row.status === 'draft' ? 'warning' : 'primary',
+            },
+          ),
+          h('span', data.row.status === 'draft' ? '草稿' : '已发布'),
+        ]
+      },
+    },
+    {
+      name: '分类',
+      key: 'category',
+      order: 2,
+      width: 80,
+      renderer(data) {
+        return (
+          h(Tag,
+            {
+              size: 'small',
+              simple: true,
+              color: getRandomColor(data.row.category),
+            },
+            { default: () => data.row.category },
+          )
+        )
+      },
+
     },
     {
       name: '阅读量',
       key: 'views',
+      width: 80,
       order: 5,
       sorter: true,
     },
@@ -131,20 +171,7 @@ const columns = ref(
     <Row>
       <Column>
         <Table v-auto-animate v-loading="isLoading" use-y-bar highlight :current-page="params.page" :page-size="params.size" :columns="columns" :data="tableData">
-          <TableColumn :order="2" id-key="status" name="状态">
-            <template #default="{ row }">
-              <Badge is-dot :type="row.status === 'draft' ? 'warning' : 'primary'" />
-              {{ row.status === 'draft' ? '草稿' : '已发布' }}
-            </template>
-          </TableColumn>
-          <TableColumn :order="3" id-key="catgory" name="分类">
-            <template #default="{ row }">
-              <Tag size="small" simple :color="getRandomColor(row.category)">
-                {{ row.category }}
-              </Tag>
-            </template>
-          </TableColumn>
-          <TableColumn :order="4" :width="300" id-key="tags" name="标签">
+          <TableColumn :order="4" :width="180" id-key="tags" name="标签">
             <template #default="{ row }">
               <Tag v-for="(item, index) in row.tags" :key="index" size="small" :type="getRandomColor(item as string) as TagType">
                 {{ item }}

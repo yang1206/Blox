@@ -2,6 +2,7 @@ import 'uno.css'
 import '@/styles/index.scss'
 import '@/styles/vexip.scss'
 import { createApp } from 'vue'
+import { Confirm, Loading, Toast } from 'vexip-ui'
 import { MotionPlugin } from '@vueuse/motion'
 import { createHead } from '@vueuse/head'
 import { VueQueryPlugin, VueQueryPluginOptions } from '@tanstack/vue-query'
@@ -24,6 +25,14 @@ async function setupApp() {
   const head = createHead()
   await setupStore(app)
   await setupRouter(app)
-  app.use(VueQueryPlugin, vueQueryPluginOptions).use(autoAnimatePlugin).use(head).use(MotionPlugin).mount('#app')
+  app
+    .use(VueQueryPlugin, vueQueryPluginOptions)
+    .use(autoAnimatePlugin)
+    .use(head)
+    .use(MotionPlugin)
+    .use(Confirm)
+    .use(Loading)
+    .use(Toast)
+    .mount('#app')
 }
 setupApp()

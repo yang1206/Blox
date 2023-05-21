@@ -16,9 +16,8 @@ const user = {
   email: userInfo.email,
   avatar: userInfo.avatar,
 }
-const isDark = useDark()
+const { isDark, toggleDark } = useAppStore()
 
-const toggleDark = useToggle(isDark)
 // 主题色
 const sysColor = useStorage('color', '#339af0')
 // 实体显示logo
@@ -33,8 +32,8 @@ async function handleUserAction() {
 <template>
   <Layout
     v-auto-animate
-    style="height: 100%;" logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :color="sysColor" :sign-type="signType" :user="user" :config="['nav', 'theme', 'color']"
-    aside-fixed="xs" :dark-mode="isDark" @user-action="handleUserAction" @toggle-theme="toggleDark()" @color-change="(color) => { sysColor = color }" @nav-change=" type => { signType = type } "
+    style="height: 100%;" logo="https://s2.loli.net/2022/05/12/gxRJwmb1ClQPoGe.jpg" sign-name="博客后台管理" :color="sysColor" :sign-type="signType" :user="user" :config="['nav', 'color']"
+    aside-fixed="xs" :dark-mode="isDark" @user-action="handleUserAction" @color-change="(color) => { sysColor = color }" @nav-change=" type => { signType = type } "
   >
     <!-- <template #header>
       <div dark:bg-dark>
@@ -42,8 +41,8 @@ async function handleUserAction() {
         <Tab />
       </div>
     </template> -->
-    <template #header-left="{ reduced, toggleReduce }">
-      <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduce()">
+    <template #header-left="{ reduced, toggleReduced }">
+      <div v-if="isXsScreen" style="display: flex; cursor: pointer;" @click="toggleReduced()">
         <TheIcon v-auto-animate :icon="reduced ? 'line-md:menu-fold-right' : 'line-md:menu-fold-left'" :size="1.8" />
       </div>
     </template>

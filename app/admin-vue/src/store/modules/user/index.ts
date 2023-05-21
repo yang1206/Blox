@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user', {
       token: getLocal('token') || '',
       refresh_token: getLocal('refresh_token') || '',
       userInfo: getLocal('userinfo') as LoginData || null,
-      role: (getLocal('userinfo') as LoginData).role,
+      role: (getLocal('userinfo') as LoginData)?.role,
     }
   },
   getters: {

@@ -9,7 +9,7 @@ export interface postsParams extends Partial<SearchQuery> {
   publishTimeEnd?: string
 }
 
-export interface postInfo {
+export interface PostInfo {
   id: string
   title: string
   content: string
@@ -29,7 +29,7 @@ export interface postInfo {
   updateTime: Date
 }
 export interface postsData extends resData {
-  list: postInfo[]
+  list: PostInfo[]
 }
 
 export interface cateInfo {
@@ -69,4 +69,4 @@ export interface createPosts {
   tag: number[]
 }
 
-export type onePost = Omit<postInfo, 'tags'> & { tags: tagsInfo[]; category: cateInfo }
+export type onePost = Omit<PostInfo, 'tags'> & { tags: tagsInfo[]; category: cateInfo }
